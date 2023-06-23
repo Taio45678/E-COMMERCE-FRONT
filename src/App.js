@@ -1,10 +1,10 @@
 
 import './App.css';
 import NavBar from './Components/NavBar/NavBar';
-import CardContainer from './Components/CardContainer/CardContainer';
 import DetailProducto from './Components/DetailProducto/DetailProducto';
 import FormProducto from './Components/FormProducto/FormProducto';
 import LandingPage from './Components/LandingPage/LandingPage';
+import CardContainer from './Components/CardContainer/CardContainer';
 import AboutUs from './Components/AboutUs/AboutUs'
 import {useLocation, Routes, Route, useNavigate, Router} from 'react-router-dom'
 
