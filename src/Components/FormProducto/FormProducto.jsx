@@ -56,10 +56,6 @@ export default function FormProducto() {
     alert("el producto a crear será"+datosString)
   }
 
-  function aux(){
-
-  }
-
   return (
     <div>
       <form className='form'>
