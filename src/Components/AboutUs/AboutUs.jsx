@@ -20,7 +20,7 @@ const AboutUs = () => {
   return (
     <Grid
       container
-      spacing={4}
+      spacing={5}
       sx={{
         justifyContent: 'start',
         padding: '10px',
@@ -63,10 +63,12 @@ const AboutUs = () => {
               }
               title={
                 <>
-                <Typography variant="h9" sx={{ display: 'flex', flexWrap: 'wrap', fontWeight: 'bold' }}>
+                {/* <Typography variant="h9" sx={{ display: 'flex', flexWrap: 'wrap', fontWeight: 'bold' }}>
                   {integrante.redes}
-                </Typography>
-                  <Typography sx={{ display: 'flex', width: '20px' }} variant="h6">
+                </Typography> */}
+                  <Typography sx={{ display: 'flex', width: '80px', 
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap', }} variant="h6">
                     {integrante.nombre}
                   </Typography>
                   

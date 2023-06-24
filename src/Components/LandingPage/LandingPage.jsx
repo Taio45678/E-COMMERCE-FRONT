@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import NavBar from '../../components/NavBar/NavBar';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Paper from '@mui/material/Paper';
@@ -132,6 +131,6 @@ function SwipeableTextMobileStepper() {
           </Box>
         </Grid>
       );
-    }
+}
     
-    export default SwipeableTextMobileStepper;
+export default SwipeableTextMobileStepper;

@@ -1,13 +1,19 @@
-import React from 'react'
-import CardContainer from '../CardContainer/CardContainer'
-import Filtros from '../Filtros/Filtros'
+import React from 'react';
+import { Box, } from '@mui/material';
+import Filtros from '../Filtros/Filtros';
+
 
 export default function Home() {
+
   return (
-    <div>
-        
-        <CardContainer></CardContainer>
-        <Filtros></Filtros>
-    </div>
-  )
+    <Box container direction="column" style={{ minHeight: '100vh', }}>
+      <Box item xs={12} md={8}>
+        <CardContainer />
+      </Box>
+      <Box item xs={12} md={4}>
+        <Filtros />
+      </Box>
+    </Box>
+  );
+
 }
