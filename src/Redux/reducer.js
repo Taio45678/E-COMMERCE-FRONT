@@ -2,7 +2,8 @@
 
 //Valores iniciales del estado global 
 const initialState = {
-    allProducts: []
+    allProducts: [],
+    details: [],
 }
 
 export default function rootReducer(state = initialState, {type, payload}){
@@ -19,6 +20,12 @@ export default function rootReducer(state = initialState, {type, payload}){
             return{
                 ...state,
                 allProducts: payload
+            }
+
+        case 'GET_DETAIL':
+            return {
+                ...state,
+                details: payload
             }
 
         default: 
