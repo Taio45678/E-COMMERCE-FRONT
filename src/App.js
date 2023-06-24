@@ -5,7 +5,8 @@ import DetailProducto from './Components/DetailProducto/DetailProducto';
 import FormProducto from './Components/FormProducto/FormProducto';
 import LandingPage from './Components/LandingPage/LandingPage';
 import CardContainer from './Components/CardContainer/CardContainer';
-import AboutUs from './Components/AboutUs/AboutUs'
+import AboutUs from './Components/AboutUs/AboutUs';
+import Footer from './Components/Footer/Footer';
 import { Routes, Route, useNavigate, } from 'react-router-dom'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/formProducto' element ={<FormProducto/>}></Route>
         <Route path='/detailProducto/:id' element ={<DetailProducto/>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
