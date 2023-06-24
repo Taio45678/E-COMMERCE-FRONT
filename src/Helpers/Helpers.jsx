@@ -59,7 +59,7 @@ export const integrantes = [
         id: 1,
         nombre: 'Gaston',
         area: 'Full Stack',
-        imagen: 'https://imageup.me/yyz',
+        imagen: 'https://acortar.link/QKqxRl',
         redes: 'linkedin',
         github: 'gaston',
     },

@@ -1,25 +1,33 @@
-import { CardContent, CardHeader, Link, Typography } from '@mui/material';
-import { Avatar, Grid, Card, CardActions } from '@mui/material';
+import { CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, CardActions } from '@mui/material';
 import { integrantes } from '../../Helpers/Helpers';
-import { useTheme } from '@emotion/react';
+import { createTheme } from '@mui/material/styles';
+import '../AboutUs/AboutUs.css';
+
 
 const AboutUs = () => {
-  const theme = useTheme();
-  const { values } = theme.breakpoints;
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
 
   return (
     <Grid
       container
       spacing={4}
       sx={{
-        minHeight: theme.heights.homeSection,
         justifyContent: 'start',
         padding: '10px',
         width: {
           mobile: '99.5%',
           tablet: '99.5%',
           laptop: '99.5%',
-          desktop: values.desktop,
         },
         alignSelf: 'center',
         mb: 8,
@@ -33,6 +41,11 @@ const AboutUs = () => {
               minWidth: '200px',
               padding: 2,
               height: 'auto',
+              backgroundColor: '#40e0d0',
+              transition: 'transform 0.2s', 
+              '&:hover': {
+                transform: 'scale(1.05)', 
+              },
             }}
           >
             <CardHeader
@@ -82,7 +95,7 @@ const AboutUs = () => {
                 alignItems: 'flex-start',
               }}
             >
-              <Link href={integrante.linkedin} sx={{ fontSize: 12, textAlign: 'start' }}>
+              <Link href={integrante.linkedin} sx={{ fontSize: 12, textAlign: 'start', fontFamily: 'Arial', color: 'black' }}>
                 <Typography>LINKEDIN</Typography>
               </Link>
               <Link href={integrante.github} sx={{ fontSize: 12, textAlign: 'start' }}>
