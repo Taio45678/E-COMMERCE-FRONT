@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import NavBar from '../../components/NavBar/NavBar';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Paper from '@mui/material/Paper';
@@ -83,7 +82,7 @@ function SwipeableTextMobileStepper() {
           interval={5000}
         >
           {images.map((step, index) => (
-            <div key={step.label}>
+            <div key={index}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <Box
                   component="img"
@@ -106,7 +105,7 @@ function SwipeableTextMobileStepper() {
         </AutoPlaySwipeableViews>
               <MobileStepper
               steps={maxSteps}
-              position="relative"
+              position="static"
               activeStep={activeStep}
               nextButton={
                 <Button
@@ -132,6 +131,6 @@ function SwipeableTextMobileStepper() {
           </Box>
         </Grid>
       );
-    }
+}
     
-    export default SwipeableTextMobileStepper;
+export default SwipeableTextMobileStepper;
