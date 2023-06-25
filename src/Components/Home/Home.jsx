@@ -1,25 +1,40 @@
-import React from 'react';
-import { Box, Grid, Card, CardContent, CardMedia, Typography, Autocomplete, TextField, } from '@mui/material';
+import * as React from 'react';
+import { Box, Button, Grid, Card, CardContent, CardMedia, Typography, Autocomplete, TextField, Pagination, Stack, } from '@mui/material';
 
+ 
 
-  const ProductList = ({ productos }) => {
-    const [filteredProductos, setFilteredProductos] = React.useState(productos);
-    const [selectedProduct, setSelectedProduct] = React.useState(null);
+const ProductList = ({ productos }) => {
+  const [filteredProductos, setFilteredProductos] = React.useState(productos);
+  const [selectedProduct, setSelectedProduct] = React.useState(null);
+  const [page, setPage] = React.useState(1);
+  const [visibleProducts, setVisibleProducts] = React.useState(3); 
 
-    const handleFilterChange = (event, value) => {
-      setSelectedProduct(value);
-      if (value) {
-        const filtered = productos.filter(producto =>
-          producto.name.toLowerCase().includes(value.toLowerCase())
-        );
-        setFilteredProductos(filtered);
-      } else {
-        setFilteredProductos(productos);
-      }
-    };
+  const handleChange = (event, value) => {
+    setPage(value);
+    setVisibleProducts(3);
+  };
 
+  const handleFilterChange = (event, value) => {
+    setSelectedProduct(value);
+    if (typeof value === 'string') { // Check if value is a string
+      const filtered = productos.filter(producto =>
+        producto.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredProductos(filtered);
+    } else {
+      setFilteredProductos(productos);
+    }
+    setPage(1);
+    setVisibleProducts(3);
+  };
 
-    return (
+  const handleLoadMore = () => {
+    setVisibleProducts(prevVisibleProducts => prevVisibleProducts + 3); // Increase the number of visible products by 3
+  };
+    
+  return (
+    <React.Fragment>
+
       <Grid container spacing={10} sx={{
         justifyContent: 'center',
         alignSelf: 'center',
@@ -29,7 +44,7 @@ import { Box, Grid, Card, CardContent, CardMedia, Typography, Autocomplete, Text
         p: '4%',
         maxWidth: '100%',
       }}>
-         <Grid item xs={12} sx={{ mb: '2%' }}>
+        <Grid item xs={12} sx={{ mb: '2%' }}>
             <Autocomplete
               value={selectedProduct}
               onChange={handleFilterChange}
@@ -73,9 +88,26 @@ import { Box, Grid, Card, CardContent, CardMedia, Typography, Autocomplete, Text
             </Card>
           </Grid>
         ))}
-      </Grid>
-    );
-  };
+      </Grid> 
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: '2%' }}>
+        <Button onClick={handleLoadMore} variant="outlined">
+          Load More
+        </Button>
+      </Box>
+      
+      <Stack spacing={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2%', mb: '8%', }}>
+        <Typography>Page: {page}</Typography>
+        <Pagination
+          count={Math.ceil(filteredProductos.length / 6)} // Assuming 6 products per page
+          page={page}
+          onChange={handleChange}
+        />
+      </Stack>
+
+    </React.Fragment>  
+  );
+};
 
   const Home = () => {
 
