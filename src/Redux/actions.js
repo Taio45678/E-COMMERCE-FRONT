@@ -1,17 +1,18 @@
-import arrayObjetos from "../Archivos pruebas/arrayObjetos"
+// import arrayObjetos from "../Helpers/arrayObjetos"
 
-//Accion de prueba para probar funcionalidad de redux
-export function testAction(action){
-    return {
-        type: 'TEST_ACTION',
-        payload: action
-    }
-}
+// //Accion de prueba para probar funcionalidad de redux
+// export function testAction(action){
+//     return {
+//         type: 'TEST_ACTION',
+//         payload: action
+//     }
+// }
 
-export function getAllProducts(){
-    var arrayAllProducts = arrayObjetos()
-    return {
-        type: 'GET_ALL_PRODUCTS',
-        payload: arrayAllProducts
-    }
-}
+// export function getAllProducts(){
+//     const arrayAllProducts = arrayObjetos();
+//     return {
+//         type: 'GET_ALL_PRODUCTS',
+//         payload: arrayAllProducts,
+//     }
+// }
+
