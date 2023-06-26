@@ -1,4 +1,4 @@
-// import arrayObjetos from "../Helpers/arrayObjetos"
+import arrayObjetos from "../Helpers/arrayObjetos"
 import axios from "axios"
 
 export const GET_DETAIL = 'GET_DETAIL'

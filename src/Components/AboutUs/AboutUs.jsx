@@ -23,7 +23,11 @@ const AboutUs = () => {
       spacing={5}
       sx={{
         justifyContent: 'start',
-        padding: '10px',
+        display: 'space-between', 
+        alignItems: 'center', 
+        mt: 8, 
+        margin: 0,
+        padding: '100px',
         width: {
           mobile: '99.5%',
           tablet: '99.5%',
