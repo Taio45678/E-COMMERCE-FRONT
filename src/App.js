@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       {/* {location.pathname === '/' ? <LandingPage onClick={onClick}></LandingPage> : <NavBar></NavBar>} */}
-      <NavBar></NavBar>
+      <NavBar />
       <Routes>
         <Route path='/' element={<LandingPage onClick={onClick} />} /> {/* Ruta principal */}
         <Route path='/home' element ={<Home/>}></Route>
@@ -29,7 +29,7 @@ function App() {
         <Route path='/formProducto' element ={<FormProducto/>}></Route>
         <Route path='/detailProducto/:id' element ={<DetailProducto/>}></Route>
       </Routes>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }
