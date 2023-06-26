@@ -1,3 +1,6 @@
+import {
+    GET_DETAIL
+} from './actions'
 
 
 //Valores iniciales del estado global 
@@ -22,7 +25,7 @@ export default function rootReducer(state = initialState, {type, payload}){
                 allProducts: payload
             }
 
-        case 'GET_DETAIL':
+        case GET_DETAIL:
             return {
                 ...state,
                 details: payload
