@@ -146,7 +146,7 @@ const initialValues = {
                     )}
                   </FieldArray>
                     
-                  <div className='error'>{errors.colors}</div>                    
+                  {errors.colors ? <div className='error'>{errors.colors}</div>: null}                    
                 </Grid>         
                 <Button sx={{backgroundColor: '#ff8a65',}} variant='contained' type="submit">Enviar</Button>
                 </Grid>
