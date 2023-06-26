@@ -6,18 +6,18 @@ import * as Yup from 'yup';
 
 //Aqui se renderiza el formulario para crear un nuevo producto
 
-export default function FormProducto() {
+export default function FormModProd(name, image, stock, description, price, colors) {
 
 const requiredString = Yup.string().required("Campo requerido");
 
 const regexImg = /\.(jpg|jpeg|png|gif|bmp)$/;
 const initialValues = {
-      name: "",
-      image: "",
-      stock: "",
-      description: "",
-      price: "",
-      colors: []
+      name: name,
+      image: image,
+      stock: stock,
+      description: description,
+      price: price,
+      colors: colors
 }
 
   return (

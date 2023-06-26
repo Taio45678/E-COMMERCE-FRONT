@@ -1,14 +1,31 @@
 import React from 'react'
-import './CardProducto.css'
+import { makeStyles } from '@mui/styles';
+import { Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
-//Aqui se renderiza la carta de cada producto
+const useStyles = makeStyles({
+  cards: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  image: {
+    width: '250px',
+    height: '200px',
+  },
+});
 
-export default function CardProducto({name, image, price}) {
+function CardProducto({ name, image, price }) {
+  const classes = useStyles();
+
   return (
-    <div className='cards'>
-      <h3>{name}</h3>
-      <img src={image} alt={name} style={{width: '200px', height: '200px'}}></img>
-      <h4>${price}</h4>
-    </div>
-  )
-}
+    <Box className={classes.cards} component="div">
+      <Typography variant="h3">{name}</Typography>
+      <img src={image} alt={name} className={classes.image} />
+      <Typography variant="h4">${price}</Typography>
+    </Box>
+  );
+};
+
+export default CardProducto;
+
