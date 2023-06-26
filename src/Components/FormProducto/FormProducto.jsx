@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
-import {TextInput, TextAreaInput} from './InputsForm'
-import {RegisterSchema} from './Validator/yup'
-import { TextareaAutosize, TextField, Button, Grid } from '@mui/material';
+import React, {} from 'react'
+import { Formik, FieldArray, Field } from "formik";
+import {TextField, Button, Grid } from '@mui/material';
 import * as Yup from 'yup';
-import './Form.css'
 
 
 //Aqui se renderiza el formulario para crear un nuevo producto
