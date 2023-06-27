@@ -192,25 +192,27 @@ const Home = () => {
 
   const aplicarFiltros = (categorias, colores) => {
     // Filtrar los resultados en función de las categorías y colores seleccionados
-    const resultadosFiltrados = productos.filter((producto) => {
-      const categoriasSeleccionadas = Array.isArray(categorias) ? categorias : [categorias];
-      const coloresSeleccionados = Array.isArray(colores) ? colores : [colores];
+    // const resultadosFiltrados = productos.filter((producto) => {
+    //   const categoriasSeleccionadas = Array.isArray(categorias) ? categorias : [categorias];
+    //   const coloresSeleccionados = Array.isArray(colores) ? colores : [colores];
   
-      // Verificar si el producto pertenece a alguna de las categorías seleccionadas
-      const perteneceACategoria = categoriasSeleccionadas.includes(producto.categoría);
+    //   // Verificar si el producto pertenece a alguna de las categorías seleccionadas
+    //   const perteneceACategoria = categoriasSeleccionadas.includes(producto.categoría);
   
-      // Verificar si el producto tiene alguno de los colores seleccionados
-      const tieneColor = coloresSeleccionados.some((color) => producto.colores.includes(color));
+    //   // Verificar si el producto tiene alguno de los colores seleccionados
+    //   const tieneColor = coloresSeleccionados.some((color) => producto.colores.includes(color));
       
   
-      // Retornar true si el producto cumple con los filtros, de lo contrario false
-      return perteneceACategoria && tieneColor;
-    });
+    //   // Retornar true si el producto cumple con los filtros, de lo contrario false
+    //   return perteneceACategoria && tieneColor;
+    // });
   
-    // Actualizar el estado o realizar cualquier acción que necesites con los resultados filtrados
-    // Ejemplo:
-    setProductosMostrados(resultadosFiltrados.length);
-    setProductosFiltrados(resultadosFiltrados);
+    // // Actualizar el estado o realizar cualquier acción que necesites con los resultados filtrados
+    // // Ejemplo:
+    // setProductosMostrados(resultadosFiltrados.length);
+    // setProductosFiltrados(resultadosFiltrados);
+    var params = coloresSeleccionados;
+    dispatch(aplicarFiltros(params))
   };
 
 
@@ -285,13 +287,13 @@ const Home = () => {
             input={<OutlinedInput label="Categoría" />}
             MenuProps={MenuProps}
           >
-          {productos.map((producto) => (
+          {productos2?.map((producto) => (
             <MenuItem
               key={producto.id}
-              value={producto.categoría}
-              style={getStyles(producto.categoría, categoriasSeleccionadas, theme)}
+              value={producto.categoria}
+              style={getStyles(producto.categoria, categoriasSeleccionadas, theme)}
             >
-              {producto.categoría}
+              {producto.categoria}
             </MenuItem>
           ))}
         </Select>
@@ -310,8 +312,8 @@ const Home = () => {
           input={<OutlinedInput label="Colores" />}
           MenuProps={MenuProps}
         >
-          {productos.reduce((colores, producto) => {
-            producto.colores.forEach((color) => {
+          {productos2.reduce((colores, producto) => {
+            producto.colorproducto?.split(",").forEach((color) => {
               if (!colores.includes(color)) {
                 colores.push(color);
               }

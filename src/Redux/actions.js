@@ -43,3 +43,10 @@ export function getDetail(id){
         });
     }
 }
+
+export function aplicarFiltros(categoriasYcolores){
+    return {
+        type: 'APLICAR_FILTROS',
+        payload: categoriasYcolores
+    }
+}
