@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Container, FormControl, FormHelperText, OutlinedInput } from '@mui/material';
+import { Button, Container, FormControl, OutlinedInput } from '@mui/material';
 
 export default function SearchBar() {
   const [producto, setProducto] = React.useState('');
