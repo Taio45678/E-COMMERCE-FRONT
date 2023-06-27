@@ -8,6 +8,7 @@ const initialState = {
     allProducts: [],
     allProductsAux: [],
     details: [],
+    favoritos: []
 }
 
 export default function rootReducer(state = initialState, {type, payload}){
@@ -48,7 +49,20 @@ export default function rootReducer(state = initialState, {type, payload}){
                 ...state,
                 allProducts: arrayFiltrado
             }
-
+        case 'ADD_FAVORITES':
+            var favs = state.favoritos;
+            favs.push(payload)
+            return {
+                ...state,
+                favoritos: favs
+            }
+        case 'REMOVE_FAVORITES':
+            var filterFavs = state.favoritos;
+            var resultFavs = filterFavs.filter(prod => prod.nombreproducto === payload.nombreproducto)
+            return {
+                ...state,
+                favoritos: resultFavs
+            }    
         default: 
          return state; 
     }
