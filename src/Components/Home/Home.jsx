@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, CardActions, IconButton, OutlinedInput, InputLabel, MenuItem, FormControl, FormControlLabel, Checkbox, Select, Chip, useTheme, Stack } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
-
+import {useSelector, useDispatch} from 'react-redux'
+import { getAllProducts } from '../../Redux/actions';
 const Home = () => {
 
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
@@ -10,7 +11,14 @@ const Home = () => {
 
   const [productosFiltrados, setProductosFiltrados] = useState([]); // Agrega esta línea para declarar el estado productos
 
+  const dispatch = useDispatch();
+  // Función que trae los productos del back al store de redux 
+  useEffect(()=>{
+    dispatch(getAllProducts())
+  },[])
   
+  //Traemos todos los productos del store local 
+  const {allProducts} = useSelector((state)=>state)
 
   const limpiarFiltros = () => {
     setCategoriasSeleccionadas([]); 
@@ -57,6 +65,7 @@ const Home = () => {
     },
   });
 
+  const productos2 = allProducts;
 
   const productos = [
     {
@@ -192,6 +201,7 @@ const Home = () => {
   
       // Verificar si el producto tiene alguno de los colores seleccionados
       const tieneColor = coloresSeleccionados.some((color) => producto.colores.includes(color));
+      
   
       // Retornar true si el producto cumple con los filtros, de lo contrario false
       return perteneceACategoria && tieneColor;
@@ -334,7 +344,7 @@ const Home = () => {
 
     </Container>  
       
-      {productos.slice(0, productosMostrados).map((producto) => (
+      {productos2?.slice(0, productosMostrados).map((producto) => (
         <Grid item mobile={12} tablet={6} laptop={6} desktop={6} key={producto.id}>
 
         
@@ -354,11 +364,11 @@ const Home = () => {
             <CardHeader
               avatar={
                 <Avatar
-                  src={producto.image}
+                  src={producto.fotoprinc}
                   sx={{ width: 160, height: 160, bgcolor: theme.palette.primary.light.toString(), }}
                   aria-label="product"
                 >
-                  {producto.name
+                  {producto.nombreproducto
                     .split(' ')
                     .map((ele) => ele[0])
                     .join('')}
@@ -367,9 +377,9 @@ const Home = () => {
               title={
                 <>
                   <Typography sx={{ display: 'flex', width: '80px', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} variant="h6">
-                    {producto.name}
+                    {producto.nombreproducto}
                   </Typography>
-                  <Typography variant="h7"sx={{ color: 'blue' }}>{producto.categoría}</Typography>
+                  <Typography variant="h7"sx={{ color: 'blue' }}>{producto.categoria}</Typography>
                 </>
               }
               action={
@@ -385,7 +395,7 @@ const Home = () => {
               }}
             >
               <Typography sx={{ width: 200, h: 200, fontSize: 14 }}>
-                {producto.description}
+                {producto.descproducto}
               </Typography>
             </CardContent>
             <CardActions
@@ -397,10 +407,10 @@ const Home = () => {
               }}
             >
               <Typography sx={{ fontSize: 12, textAlign: 'start', fontFamily: 'Arial', color: 'black' }}>
-                Stock: {producto.stock}
+                Stock: {producto.disponibproducto}
               </Typography>
               <Typography sx={{ fontSize: 18, textAlign: 'start', fontFamily: 'Arial', color: 'black' }}>
-                Price: $ {producto.price}
+                Price: $ {producto.precioproducto}
               </Typography>
             </CardActions>
 

@@ -33,9 +33,15 @@ export default function Footer() {
             icon={<Home />}
             value="home"
             component={Link}
+<<<<<<< HEAD
             href="/"
           />
           <BottomNavigationAction
+=======
+            href="http://localhost:3000/home"
+            />
+            <BottomNavigationAction
+>>>>>>> 4eb1248ff3f9902e1092b94ccb37a66561d15dbd
             label="About Us"
             icon={<Info />}
             value="about"
