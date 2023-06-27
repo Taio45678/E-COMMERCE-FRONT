@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Grid, useMediaQuery } from '@mui/material';
 import { validacionesContacto } from './validaciones';
-import contact from '../../Assets/Img/contact.jpg';
+import contact from '../../assets/Img/contact.jpg';
 
 const Contacto = () => {
   const [name, setName] = useState('');

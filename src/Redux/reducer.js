@@ -6,7 +6,9 @@ import {
 //Valores iniciales del estado global 
 const initialState = {
     allProducts: [],
+    allProductsAux: [],
     details: [],
+    favoritos: []
 }
 
 export default function rootReducer(state = initialState, {type, payload}){
@@ -22,7 +24,8 @@ export default function rootReducer(state = initialState, {type, payload}){
         case 'GET_ALL_PRODUCTS':
             return{
                 ...state,
-                allProducts: payload
+                allProducts: payload,
+                allProductsAux: payload
             }
 
         case GET_DETAIL:
@@ -30,7 +33,36 @@ export default function rootReducer(state = initialState, {type, payload}){
                 ...state,
                 details: payload
             }
-
+        case 'APLICAR_FILTROS':
+            var arrayFiltrado = [];
+            var arrayCatYColor = payload;
+            state.allProducts.forEach((producto)=>{
+                var arrayColores = producto.colorproducto.split(",");
+                arrayCatYColor.forEach((param)=>{
+                    if(arrayColores.includes(param) || producto.categoria === param){
+                        arrayFiltrado.push(producto);
+                    }
+                })
+                
+            })
+            return{
+                ...state,
+                allProducts: arrayFiltrado
+            }
+        case 'ADD_FAVORITES':
+            var favs = state.favoritos;
+            favs.push(payload)
+            return {
+                ...state,
+                favoritos: favs
+            }
+        case 'REMOVE_FAVORITES':
+            var filterFavs = state.favoritos;
+            var resultFavs = filterFavs.filter(prod => prod.nombreproducto === payload.nombreproducto)
+            return {
+                ...state,
+                favoritos: resultFavs
+            }    
         default: 
          return state; 
     }
