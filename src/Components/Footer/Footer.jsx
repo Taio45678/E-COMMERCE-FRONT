@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Facebook, Instagram, LinkedIn, Home, Info, AlternateEmail } from '@mui/icons-material';
 import { Grid, Box, BottomNavigation, BottomNavigationAction, Link, } from '@mui/material';
 
-// const preventDefault = (event) => event.preventDefault();
+const preventDefault = (event) => event.preventDefault();
 
 export default function Footer() {
   const [value, setValue] = React.useState(0);
