@@ -3,23 +3,6 @@ import axios from "axios"
 
 export const GET_DETAIL = 'GET_DETAIL'
 
-// //Accion de prueba para probar funcionalidad de redux
-// export function testAction(action){
-//     return {
-//         type: 'TEST_ACTION',
-//         payload: action
-//     }
-// }
-
-// export function getAllProducts(){
-//     const arrayAllProducts = arrayObjetos();
-//     return {
-//         type: 'GET_ALL_PRODUCTS',
-//         payload: arrayAllProducts,
-//     }
-// }
-
-
 export function getAllProducts(){
     return async (dispatch)=>{
         var data;
@@ -41,5 +24,26 @@ export function getDetail(id){
             type: GET_DETAIL,
             payload: json.data
         });
+    }
+}
+
+export function aplicarFiltros(categoriasYcolores){
+    return {
+        type: 'APLICAR_FILTROS',
+        payload: categoriasYcolores
+    }
+}
+
+export function addFavorites(producto){
+    return {
+        type: 'ADD_FAVORITES',
+        payload: producto
+    }
+}
+
+export function removeFavorites(producto){
+    return {
+        type: 'REMOVE_FAVORITES',
+        payload: producto
     }
 }
