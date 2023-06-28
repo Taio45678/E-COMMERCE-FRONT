@@ -87,6 +87,7 @@ const AboutUs = () => {
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
+                
               }}
             >
               <Typography sx={{ width: 200, h: 200, fontSize: 14 }}>
