@@ -1,8 +1,16 @@
-import { CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, CardActions } from '@mui/material';
-import { integrantes } from '../../Helpers/Helpers';
-import { createTheme } from '@mui/material/styles';
-import '../AboutUs/AboutUs.css';
-
+import {
+  CardContent,
+  CardHeader,
+  Link,
+  Typography,
+  Avatar,
+  Grid,
+  Card,
+  CardActions,
+} from "@mui/material";
+import { integrantes } from "../../Helpers/Helpers";
+import { createTheme } from "@mui/material/styles";
+import "../AboutUs/AboutUs.css";
 
 const AboutUs = () => {
   const theme = createTheme({
@@ -22,33 +30,40 @@ const AboutUs = () => {
       container
       spacing={5}
       sx={{
-        justifyContent: 'start',
-        display: 'space-between', 
-        alignItems: 'center', 
-        mt: 8, 
+        justifyContent: "start",
+        display: "space-between",
+        alignItems: "center",
+        mt: 8,
         margin: 0,
-        padding: '100px',
+        padding: "100px",
         width: {
-          mobile: '99.5%',
-          tablet: '99.5%',
-          laptop: '99.5%',
+          mobile: "99.5%",
+          tablet: "99.5%",
+          laptop: "99.5%",
         },
-        alignSelf: 'center',
+        alignSelf: "center",
         mb: 8,
       }}
     >
       {integrantes.map((integrante) => (
-        <Grid item mobile={12} tablet={6} laptop={6} desktop={6} key={integrante.id}>
+        <Grid
+          item
+          mobile={12}
+          tablet={6}
+          laptop={6}
+          desktop={6}
+          key={integrante.id}
+        >
           <Card
             sx={{
-              maxWidth: '100%',
-              minWidth: '200px',
+              maxWidth: "100%",
+              minWidth: "200px",
               padding: 2,
-              height: 'auto',
-              backgroundColor: '#40e0d0',
-              transition: 'transform 0.2s', 
-              '&:hover': {
-                transform: 'scale(1.05)', 
+              height: "auto",
+              backgroundColor: "#40e0d0",
+              transition: "transform 0.2s",
+              "&:hover": {
+                transform: "scale(1.05)",
               },
             }}
           >
@@ -56,38 +71,51 @@ const AboutUs = () => {
               avatar={
                 <Avatar
                   src={integrante.imagen}
-                  sx={{ width: 160, height: 160, bgcolor: theme.palette.primary.light }}
+                  sx={{
+                    width: 160,
+                    height: 160,
+                    bgcolor: theme.palette.primary.light,
+                  }}
                   aria-label="recipe"
                 >
                   {integrante.nombre
-                    .split(' ')
+                    .split(" ")
                     .map((ele) => ele[0])
-                    .join('')}
+                    .join("")}
                 </Avatar>
               }
               title={
-                <>
-                {/* <Typography variant="h9" sx={{ display: 'flex', flexWrap: 'wrap', fontWeight: 'bold' }}>
-                  {integrante.redes}
-                </Typography> */}
-                  <Typography sx={{ display: 'flex', width: '80px', 
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap', }} variant="h6">
+                <div>
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      width: "80px",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                    variant="h6"
+                  >
                     {integrante.nombre}
                   </Typography>
-                  
+
                   <Typography variant="h7">{integrante.area}</Typography>
-                  
-                </>
+                </div>
               }
             />
             <CardContent
               sx={{
+<<<<<<< HEAD
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
                 
+=======
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+>>>>>>> c6f5c1d0ca1bbf8eaa2e906fbcaf428d9be21640
               }}
             >
               <Typography sx={{ width: 200, h: 200, fontSize: 14 }}>
@@ -97,15 +125,26 @@ const AboutUs = () => {
             <CardActions
               sx={{
                 mt: 2,
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
               }}
             >
-              <Link href={integrante.linkedin} sx={{ fontSize: 12, textAlign: 'start', fontFamily: 'Arial', color: 'black' }}>
+              <Link
+                href={integrante.linkedin}
+                sx={{
+                  fontSize: 12,
+                  textAlign: "start",
+                  fontFamily: "Arial",
+                  color: "black",
+                }}
+              >
                 <Typography>LINKEDIN</Typography>
               </Link>
-              <Link href={integrante.github} sx={{ fontSize: 12, textAlign: 'start' }}>
+              <Link
+                href={integrante.github}
+                sx={{ fontSize: 12, textAlign: "start" }}
+              >
                 <Typography>GITHUB</Typography>
               </Link>
             </CardActions>
@@ -117,4 +156,3 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
-

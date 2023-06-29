@@ -4,12 +4,12 @@ import axios from "axios"
 export const GET_DETAIL = 'GET_DETAIL'
 
 export function getAllProducts(){
+    const linkFelipe = `https://e-commerce-back-production-de3f.up.railway.app/producto`
+    const linkBackLocal= 'http://localhost:3001/productos/productos'
     return async (dispatch)=>{
-        var data;
-        const response = await (fetch(`http://190.100.208.178:3001/fakeprod`));
-        if(response.ok){
-            data = await response.json()
-        } 
+        const data = (await axios.get(linkFelipe)).data
+        //.content;           //para el local
+        .productos;       //para el deploy
         return dispatch({
             type: 'GET_ALL_PRODUCTS',
             payload: data
