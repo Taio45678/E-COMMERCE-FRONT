@@ -30,7 +30,7 @@ export default function NavBar() {
       <div className="caja2">
         <div className="caja2B">
           <div className="home">
-            <Link to="/">
+            <Link to="/home">
               <img
                 src="https://scontent.fcor16-1.fna.fbcdn.net/v/t39.30808-6/356230708_1436119560543016_9206910051547847731_n.jpg?stp=dst-jpg_p526x296&_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=mBbIP6t34VgAX8WvQlV&_nc_ht=scontent.fcor16-1.fna&oh=00_AfDWGjo3WrOfAar84B1FZOdIt7Fr9laxB70faOIiwi2KsQ&oe=649D673A"
                 alt=""
