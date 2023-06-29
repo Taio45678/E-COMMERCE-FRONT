@@ -10,6 +10,7 @@ import Footer from "./Components/Footer/Footer";
 import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Carrito from "./Components/Carrito/Carrito";
+import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
 
 function App() {
   // const location = useLocation();
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <div>
-      {/* {location.pathname === '/' ? <LandingPage onClick={onClick}></LandingPage> : <NavBar></NavBar>} */}
+      
       <NavBar />
       <Routes>
         <Route path="/" element={<SwipeableTextMobileStepper />}></Route>
@@ -32,6 +33,7 @@ function App() {
         <Route path="/detailProducto/:id" element={<DetailProducto />}></Route>
         <Route path="/contacto" element={<Contacto />}></Route>
         <Route path="/carrito" element={<Carrito />}></Route>
+        <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
       </Routes>
       <Footer />
     </div>
