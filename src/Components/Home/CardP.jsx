@@ -5,7 +5,6 @@ import {
   Container,
   CardContent,
   CardHeader,
-  Link,
   Typography,
   Avatar,
   Grid,
@@ -28,6 +27,7 @@ import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../Redux/actions";
 import { addFavorites, removeFavorites } from "../../Redux/actions";
+import { Link } from "react-router-dom";
 
 export default function CardP({ producto }) {
   const dispatch = useDispatch();
@@ -69,6 +69,7 @@ export default function CardP({ producto }) {
   };
 
   return (
+    <Link to= {`/detailProducto/${producto.id}`}>
     <Card
       sx={{
         maxWidth: "100%",
@@ -161,5 +162,6 @@ export default function CardP({ producto }) {
         </Typography>
       </CardActions>
     </Card>
+    </Link>
   );
 }

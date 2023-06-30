@@ -24,7 +24,7 @@ const initialValues = {
       descproducto: "",
       precioproducto: "",
       colorproducto: [],
-      categori: "",
+      nombrecat: "",
       
 }
 
@@ -71,7 +71,7 @@ const handleImageUpload = async (file) => {
               .positive("El precio debe ser mayor a cero")
               .required("Campo requerido"),
       colorproducto: Yup.array().min(1, "Debe haber al menos un color añadido"),
-      categori: requiredString.min(1, "Debes ingresar al menos 1 caracter")
+      nombrecat: requiredString.min(1, "Debes ingresar al menos 1 caracter")
   })}
 
     onSubmit={async (values, {resetForm})=>{
@@ -84,12 +84,16 @@ const handleImageUpload = async (file) => {
       descproducto: values.descproducto,
       precioproducto: values.precioproducto,
       colorproducto: values.colorproducto,
-      categori: values.categori,
+      nombrecat: values.nombrecat,
       }
       var confirmar = window.confirm('Se enviará'+JSON.stringify(body))
       if(confirmar){
         try{
-        await axios.post('https://commerce-back-2025.up.railway.app/productoCrear', values)
+        await axios.post('https://commerce-back-2025.up.railway.app/productoCrear', body)
+        // const response = await fetch('https://commerce-back-2025.up.railway.app/productoCrear', {
+        //   method: "POST",
+        //   body: body
+        // })
         alert("Producto creado");
         resetForm();
         }catch(err){
@@ -186,13 +190,13 @@ const handleImageUpload = async (file) => {
 
           <Grid item>
           <TextField 
-            id="categori"
-            name="categori"
+            id="nombrecat"
+            name="nombrecat"
             label="Categoría:"
-            value={values.categori}
+            value={values.nombrecat}
             onChange={handleChange}
-            error={touched.categori && Boolean(errors.categori)}
-            helperText={touched.categori && errors.categori}
+            error={touched.nombrecat && Boolean(errors.nombrecat)}
+            helperText={touched.nombrecat && errors.nombrecat}
             />
           </Grid>
 
