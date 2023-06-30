@@ -9,13 +9,14 @@ import AboutUs from "./Components/AboutUs/AboutUs";
 import Footer from "./Components/Footer/Footer";
 import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Carrito from "./Components/Carrito/Carrito";
+import Carrito from "./Components/Carrito/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
+import { useLocation } from "react-router-dom";
 
 function App() {
   // const location = useLocation();
   const navigate = useNavigate();
-
+  const location = useLocation();
   //Funcion para salir de la landing page e ir al home
   function onClick() {
     navigate("/home");
@@ -23,7 +24,6 @@ function App() {
 
   return (
     <div>
-      
       <NavBar />
       <Routes>
         <Route path="/" element={<SwipeableTextMobileStepper />}></Route>

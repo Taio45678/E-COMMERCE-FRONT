@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import "./NavBar.css";
 import logo from "../Img/logoAll.png";
-//import carrito from "../Img/carrito.png";
 
 export default function NavBar() {
   return (
