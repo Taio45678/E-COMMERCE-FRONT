@@ -1,6 +1,8 @@
-import React, {} from 'react'
+import React, {useRef, useState} from 'react'
 import { Formik, FieldArray, Field } from "formik";
-import {TextField, Button, Grid } from '@mui/material';
+import {TextField, Button, Grid, Input} from '@mui/material';
+import { CloudinaryContext, Image, Transformation} from 'cloudinary-react';
+import {Cloudinary} from "@cloudinary/url-gen";
 import * as Yup from 'yup';
 import axios from 'axios'
 
@@ -8,6 +10,9 @@ import axios from 'axios'
 //Aqui se renderiza el formulario para crear un nuevo producto
 
 export default function FormProducto() {
+
+const fileRef = useRef(null);
+const cloudName = 'dmjkjz1oa'
 
 const requiredString = Yup.string().required("Campo requerido");
 
@@ -19,8 +24,27 @@ const initialValues = {
       descproducto: "",
       precioproducto: "",
       colorproducto: [],
-      categori: ""
+      categori: "",
+      
 }
+
+const [urlImagen, setUrlImagen] = useState("vacio");
+
+const handleImageUpload = async (file) => {
+  const formData = new FormData();
+  console.log('antes del append')
+  formData.append('file', file);
+  formData.append('upload_preset', 'shoppie'); // Reemplaza 'tu_upload_preset' por tu propio valor
+  try {
+    console.log('form data:',formData); 
+    const response = await axios.post( `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,  formData   );
+    console.log('response data:', response.data); 
+    console.log(response.data.url); 
+    setUrlImagen(response.data.url)
+    console.log(urlImagen)
+    alert("Imagen cargada")
+  } catch (error) {  alert(error.message)  }
+};
 
   return (
   <><Grid
@@ -34,7 +58,9 @@ const initialValues = {
 
     validationSchema={Yup.object().shape({
       nombreproducto: requiredString.min(1, "Debes ingresar al menos 1 caracter"),
-      fotoprinc: requiredString.matches(regexImg, 'La ruta debe ser una imagen válida (jpg, jpeg, png, gif, bmp)'),
+      fotoprinc: Yup.mixed().nullable().required()
+                .test('FILE_FORMAT', 'El archivo debe ser una imagen', (value) => {
+                  return value && value.type.startsWith('image/')}),
       disponibproducto: Yup.number()
               .integer("Ingresa un número entero")
               .positive("El stock debe ser mayor a cero")
@@ -49,19 +75,31 @@ const initialValues = {
   })}
 
     onSubmit={async (values, {resetForm})=>{
-      var confirmar = window.confirm('Se enviará'+JSON.stringify(values))
+      if(urlImagen === "vacio")alert("No ha cargado la imagen ")
+      else{
+      var body = {
+        nombreproducto: values.nombreproducto,
+      fotoprinc: urlImagen,
+      disponibproducto: values.disponibproducto,
+      descproducto: values.descproducto,
+      precioproducto: values.precioproducto,
+      colorproducto: values.colorproducto,
+      categori: values.categori,
+      }
+      var confirmar = window.confirm('Se enviará'+JSON.stringify(body))
       if(confirmar){
         try{
-        await axios.post('http://localhost:3001/productos/productos', values)
-        alert("Receta creada");
+        await axios.post('https://commerce-back-2025.up.railway.app/productoCrear', values)
+        alert("Producto creado");
+        resetForm();
         }catch(err){
           alert(err.message)
         }
       }
-      resetForm();
+      }
     }}>
 
-    {({handleSubmit, handleChange, values, errors, touched})=>(
+    {({handleSubmit, handleChange, values, errors, touched, setFieldValue})=>(
       <form onSubmit={handleSubmit}>
         <Grid
          container
@@ -84,16 +122,23 @@ const initialValues = {
           </Grid>     
 
           <Grid item>
-        <TextField
-          id="fotoprinc"
-          name="fotoprinc"
-          label="Ruta Imagen Producto:"
-          placeHolder="jpg, jpeg, png, gif, bmp"
-          value={values.fotoprinc}
-          onChange={handleChange}
+          <TextField 
+          name='fotoprinc'    
+          type='file'
+          ref={fileRef}
+          onChange={(e)=>{setFieldValue('fotoprinc', e.target.files[0])}}
           error={touched.fotoprinc && Boolean(errors.fotoprinc)}
           helperText={touched.fotoprinc && errors.fotoprinc}
           />
+          
+          {/* <input type="file" onChange={(e) => setImage(e.target.files[0])} /> */}
+          {values.fotoprinc && (
+        <div>
+          <Image hidden cloudName={cloudName} publicId={values.fotoprinc.name} />
+        </div>
+      )}
+          <Button variant="outlined" size="small" sx={{color: '#ff6e40', borderBlockColor: '#ff6e40'}} onClick={()=>handleImageUpload(values.fotoprinc)}>Cargar Imagen </Button>
+          {/* <button onClick={() => handleImageUpload(image)}>Subir imagen</button> */}
         </Grid>
 
         <Grid item>

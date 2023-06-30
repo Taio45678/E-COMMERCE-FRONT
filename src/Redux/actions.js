@@ -4,7 +4,7 @@ import axios from "axios"
 export const GET_DETAIL = 'GET_DETAIL'
 
 export function getAllProducts(){
-    const linkFelipe = `https://e-commerce-back-production-de3f.up.railway.app/producto`
+    const linkFelipe = `https://commerce-back-2025.up.railway.app/producto`
     const linkBackLocal= 'http://localhost:3001/productos/productos'
     return async (dispatch)=>{
         const data = (await axios.get(linkFelipe)).data
