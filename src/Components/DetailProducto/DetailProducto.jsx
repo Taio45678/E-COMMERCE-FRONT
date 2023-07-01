@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import GalaxyNote from "../../Archivos pruebas/galaxy note 10.jpg";
@@ -11,14 +11,31 @@ import ProductosDtl from "./Productos/ProductosDtl";
 import Pago from "./Pagos/Pagos";
 import Descripcion from "./Descripcion/Descripcion";
 //import { addCarrito } from "../../Redux/actions";
-
+import { getDetail, obtenerCategoriaPorId } from "../../Redux/actions";
 export default function DetailProducto() {
   // Las CALIFICACIONES sera un array acumulativo de estreñas x compras del producto
   const [value, setValue] = React.useState(3);
 
   let { id } = useParams();
   const dispatch = useDispatch();
+  const nameCatego = useSelector((state) => state.nombreCategoria);
+  console.log(nameCatego.nombrecat);
   const productDetails = useSelector((state) => state.details);
+  const {
+    nombreproducto,
+    descproducto,
+    colorproducto,
+    fotoprinc,
+    precioproducto,
+    disponibproducto,
+    categoriaId,
+  } = productDetails;
+  useEffect(() => {
+    dispatch(getDetail(id));
+  }, []);
+  useEffect(() => {
+    dispatch(obtenerCategoriaPorId(categoriaId));
+  }, []);
 
   // function handleSubmit(e) {
   //   e.preventDefault();
@@ -26,9 +43,6 @@ export default function DetailProducto() {
   //   alert(`Agregaste a tu carrito ${id.name}`)
   // }
 
-  //###############  Solo es una TEXTO para editar el diseño de la descripcion #################
-  var ladescripcion =
-    " Modelo de marcaSamsung Galaxy Note10 + N9750 / Note 10 PlusSistemaSO Android 9.0CPU Qualcomm Snapdragon 855 Octa Core 2.8GHzGPU Adreno640RAM 12 GBROM 256 GBExtend card MAX admite tarjeta de memoriaMicro SD clase 10 de 512 GB (tarjeta TF)PantallaTamaño de pantallaQuad HD + de 6,8 pulgadasResolución de pantalla 3040 x 1440Tipo depantalla Corning Gorilla GlassDimensiones 162,3x77,2x7,9mmPeso neto198gCámaraCámara frontal 10.0 megapíxelesCámara trasera 12.0megapíxeles 12.0 megapíxeles 16.0 megapíxeles Cámara de tres lentes";
   return (
     <div className={s.fondo}>
       <div className={s.producto}>Detalles del producto</div>
@@ -36,25 +50,29 @@ export default function DetailProducto() {
         <div className={s.cajaImagen}>
           <div className={s.imagenPosition}>
             <img
-              src={GalaxyNote}
+              src={fotoprinc}
               alt="image not found"
               className={s.imagen}
             ></img>
           </div>
           <div className={s.linea}></div>
           <h1>Descripcion :</h1>
-          <Descripcion descripcion={ladescripcion}></Descripcion>
+          <Descripcion descripcion={descproducto}></Descripcion>
         </div>
         <div className={s.datos}>
           <h1>{productDetails.name}</h1>
-          <h1>Nombre Usuario</h1>
-          <h2>Producto Aleatorio</h2>
-          <p>$250</p>
+          <h4>
+            Categoria : <h5 style={{ color: "red" }}>{nameCatego.nombrecat}</h5>
+          </h4>
+
+          <h2>{nombreproducto}</h2>
+          <p>${precioproducto}</p>
 
           {/* ###############  Boton para mostrar que tarjetas acepta All Market ################# */}
 
           <Pago></Pago>
-          <h4>Color:Rojo</h4>
+          <h4>Color:{colorproducto}</h4>
+          <h4>Stock disponible:{disponibproducto}</h4>
 
           {/* ###############  BOTON DEL CARRITO ################# */}
 

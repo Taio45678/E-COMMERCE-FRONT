@@ -40,7 +40,8 @@
   font-size: 23px;
 }
 .imagen {
-  width: 90%;
+  width: 65%;
+  height: 90%;
 }
 .imagenPosition {
   display: flex;

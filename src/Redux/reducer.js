@@ -2,6 +2,7 @@ import { GET_DETAIL } from "./actions";
 
 //Valores iniciales del estado global
 const initialState = {
+  nombreCategoria: "",
   allProducts: [],
   allProductsAux: [],
   details: [],
@@ -31,6 +32,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         categorias: payload,
+      };
+
+    case "NAME_CATEGORIA":
+      return {
+        ...state,
+        nombreCategoria: payload,
       };
 
     case GET_DETAIL:

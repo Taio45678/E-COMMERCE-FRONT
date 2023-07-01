@@ -70,3 +70,14 @@ export function addCarrito(producto) {
     payload: producto,
   };
 }
+export function obtenerCategoriaPorId(id) {
+  return async function (dispatch) {
+    const json = await axios(
+      `https://commerce-back-2025.up.railway.app/categorias/${id}`
+    );
+    return dispatch({
+      type: "NAME_CATEGORIA",
+      payload: json.data,
+    });
+  };
+}
