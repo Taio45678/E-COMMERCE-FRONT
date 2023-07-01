@@ -8,7 +8,8 @@ const initialState = {
     allProducts: [],
     allProductsAux: [],
     details: [],
-    favoritos: []
+    favoritos: [],
+    categorias: []
 }
 
 export default function rootReducer(state = initialState, {type, payload}){
@@ -26,6 +27,12 @@ export default function rootReducer(state = initialState, {type, payload}){
                 ...state,
                 allProducts: payload,
                 allProductsAux: payload
+            }
+
+        case 'GET_ALL_CATEGS':
+            return {
+                ...state,
+                categorias: payload
             }
 
         case GET_DETAIL:

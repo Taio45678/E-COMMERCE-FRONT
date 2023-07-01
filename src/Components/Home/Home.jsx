@@ -3,7 +3,7 @@ import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avat
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import {useSelector, useDispatch} from 'react-redux'
-import { getAllProducts } from '../../Redux/actions';
+import { getAllCategorias, getAllProducts } from '../../Redux/actions';
 import ContainerFiltros from './ContainerFiltros';
 import CardP from './CardP';
 
@@ -15,6 +15,7 @@ const Home = () => {
   // Función que trae los productos del back al store de redux 
   useEffect(()=>{
     dispatch(getAllProducts())
+    dispatch(getAllCategorias())
   },[])
   
   //Traemos todos los productos del store local 

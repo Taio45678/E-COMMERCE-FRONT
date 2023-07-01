@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Formik, FieldArray, Field } from "formik";
 import { TextField, Button, Grid, Input } from "@mui/material";
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
+import { Cloudinary } from "@cloudinary/url-gen";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -21,7 +22,7 @@ export default function FormProducto() {
     descproducto: "",
     precioproducto: "",
     colorproducto: [],
-    categori: "",
+    nombrecat: "",
   };
 
   const [urlImagen, setUrlImagen] = useState("vacio");
@@ -86,7 +87,7 @@ export default function FormProducto() {
               1,
               "Debe haber al menos un color añadido"
             ),
-            categori: requiredString.min(
+            nombrecat: requiredString.min(
               1,
               "Debes ingresar al menos 1 caracter"
             ),
@@ -101,7 +102,7 @@ export default function FormProducto() {
                 descproducto: values.descproducto,
                 precioproducto: values.precioproducto,
                 colorproducto: values.colorproducto,
-                categori: values.categori,
+                nombrecat: values.nombrecat,
               };
               var confirmar = window.confirm(
                 "Se enviará" + JSON.stringify(body)
@@ -110,8 +111,12 @@ export default function FormProducto() {
                 try {
                   await axios.post(
                     "https://commerce-back-2025.up.railway.app/productoCrear",
-                    values
+                    body
                   );
+                  // const response = await fetch('https://commerce-back-2025.up.railway.app/productoCrear', {
+                  //   method: "POST",
+                  //   body: body
+                  // })
                   alert("Producto creado");
                   resetForm();
                 } catch (err) {
@@ -237,13 +242,13 @@ export default function FormProducto() {
 
                 <Grid item>
                   <TextField
-                    id="categori"
-                    name="categori"
+                    id="nombrecat"
+                    name="nombrecat"
                     label="Categoría:"
-                    value={values.categori}
+                    value={values.nombrecat}
                     onChange={handleChange}
-                    error={touched.categori && Boolean(errors.categori)}
-                    helperText={touched.categori && errors.categori}
+                    error={touched.nombrecat && Boolean(errors.nombrecat)}
+                    helperText={touched.nombrecat && errors.nombrecat}
                   />
                 </Grid>
 

@@ -9,21 +9,24 @@ export default function ContainerFiltros() {
     const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
     const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
     const dispatch = useDispatch();
-    const {allProducts} = useSelector((state)=>state)
+    const {allProducts, categorias} = useSelector((state)=>state)
     const productos2 = allProducts;
 
     const handleCategoriasChange = (event) => {
-        const {
-          target: { value },
-        } = event;
-        setCategoriasSeleccionadas(value);
+        // const {
+        //   target: { value },
+        // } = event;
+       const categoria = event.target.value
+        setCategoriasSeleccionadas(categoria);
       };
       
       const handleColoresChange = (event) => {
-        const {
-          target: { value },
-        } = event;
-        setColoresSeleccionados(value);
+        // const {
+        //   target: { value },
+        // } = event;
+        const color = event.target.value
+      
+        setColoresSeleccionados(color);
       };  
 
       function getStyles(name, personName, theme) {
@@ -57,22 +60,10 @@ export default function ContainerFiltros() {
         },
       });
 
-      const aplicarFiltros = (categorias, colores) => {
-        // Filtrar los resultados en función de las categorías y colores seleccionados
-        // const resultadosFiltrados = productos2.filter((producto) => {
-        //   const categoriasSeleccionadas = Array.isArray(categorias) ? categorias : [categorias];
-        //   const coloresSeleccionados = Array.isArray(colores) ? colores : [colores];
-      
-        //   // Verificar si el producto pertenece a alguna de las categorías seleccionadas
-        //   const perteneceACategoria = categoriasSeleccionadas.includes(producto.categoría);
-      
-        //   // Verificar si el producto tiene alguno de los colores seleccionados
-        //   const tieneColor = coloresSeleccionados.some((color) => producto.colores.includes(color));
-          
-      
-        //   // Retornar true si el producto cumple con los filtros, de lo contrario false
-        //   return perteneceACategoria && tieneColor;
-        // });
+      const aplicarFiltros = () => {
+
+        alert('Se filtrara por categoria '+categoriasSeleccionadas[0] +"y color" + coloresSeleccionados[0])
+        //dispatch(aplicarFiltros());
         }
         const limpiarFiltros = () => {
             setCategoriasSeleccionadas([]); 
@@ -94,13 +85,13 @@ export default function ContainerFiltros() {
             input={<OutlinedInput label="Categoría" />}
             MenuProps={MenuProps}
           >
-          {productos2?.map((producto) => (
+          {categorias?.map((categoria) => (
             <MenuItem
-              key={producto.id}
-              value={producto.categoria}
-              style={getStyles(producto.categoria, categoriasSeleccionadas, theme)}
+              key={categoria.id}
+              value={categoria.nombrecat}
+              style={getStyles(categoria.nombrecat, categoriasSeleccionadas, theme)}
             >
-              {producto.categoria}
+              {categoria.nombrecat}
             </MenuItem>
           ))}
         </Select>
@@ -120,7 +111,7 @@ export default function ContainerFiltros() {
           MenuProps={MenuProps}
         >
           {productos2.reduce((colores, producto) => {
-            producto.colorproducto?.split(",").forEach((color) => {
+            producto.colorproducto?.forEach((color) => {
               if (!colores.includes(color)) {
                 colores.push(color);
               }
