@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import ProductosDtl from "./Productos/ProductosDtl";
 //Aquí se renderiza el detalle de cada producto
 import Pago from "./Pagos/Pagos";
+import Descripcion from "./Descripcion/Descripcion";
 //import { addCarrito } from "../../Redux/actions";
 
 export default function DetailProducto() {
@@ -25,6 +26,9 @@ export default function DetailProducto() {
   //   alert(`Agregaste a tu carrito ${id.name}`)
   // }
 
+  //###############  Solo es una TEXTO para editar el diseño de la descripcion #################
+  var ladescripcion =
+    " Modelo de marcaSamsung Galaxy Note10 + N9750 / Note 10 PlusSistemaSO Android 9.0CPU Qualcomm Snapdragon 855 Octa Core 2.8GHzGPU Adreno640RAM 12 GBROM 256 GBExtend card MAX admite tarjeta de memoriaMicro SD clase 10 de 512 GB (tarjeta TF)PantallaTamaño de pantallaQuad HD + de 6,8 pulgadasResolución de pantalla 3040 x 1440Tipo depantalla Corning Gorilla GlassDimensiones 162,3x77,2x7,9mmPeso neto198gCámaraCámara frontal 10.0 megapíxelesCámara trasera 12.0megapíxeles 12.0 megapíxeles 16.0 megapíxeles Cámara de tres lentes";
   return (
     <div className={s.fondo}>
       <div className={s.producto}>Detalles del producto</div>
@@ -39,27 +43,25 @@ export default function DetailProducto() {
           </div>
           <div className={s.linea}></div>
           <h1>Descripcion :</h1>
-          <h4>
-            Modelo de marcaSamsung Galaxy Note10 + N9750 / Note 10 PlusSistemaSO
-            Android 9.0CPU Qualcomm Snapdragon 855 Octa Core 2.8GHzGPU Adreno
-            640RAM 12 GBROM 256 GBExtend card MAX admite tarjeta de memoria
-            Micro SD clase 10 de 512 GB (tarjeta TF)PantallaTamaño de pantalla
-            Quad HD + de 6,8 pulgadasResolución de pantalla 3040 x 1440Tipo de
-            pantalla Corning Gorilla GlassDimensiones 162,3x77,2x7,9mmPeso neto
-            198gCámaraCámara frontal 10.0 megapíxelesCámara trasera 12.0
-            megapíxeles 12.0 megapíxeles 16.0 megapíxeles Cámara de tres lentes
-          </h4>
+          <Descripcion descripcion={ladescripcion}></Descripcion>
         </div>
         <div className={s.datos}>
           <h1>{productDetails.name}</h1>
           <h1>Nombre Usuario</h1>
           <h2>Producto Aleatorio</h2>
           <p>$250</p>
+
+          {/* ###############  Boton para mostrar que tarjetas acepta All Market ################# */}
+
           <Pago></Pago>
           <h4>Color:Rojo</h4>
+
+          {/* ###############  BOTON DEL CARRITO ################# */}
+
           <button className={s.agregar}>Agregar al carrito</button>
+
           <h3>Calificaciones:</h3>
-          {/* Deberan ser mapeadar cada calificacion  */}
+          {/* ###############   Deberan ser mapeadar cada calificacion ################# */}
           <Box
             sx={{
               "& > legend": { mt: 2 },

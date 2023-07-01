@@ -1,13 +1,16 @@
 .fondo {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 1450px;
-  margin-top: px;
+  height: 100%;
 }
 .producto {
-  background-color: rgb(90, 90, 90);
+  background-image: url("https://wallpaperaccess.com/full/221443.jpg");
+  background-position: center;
+  background-size: cover;
   width: 62%;
   height: 55px;
   display: flex;
