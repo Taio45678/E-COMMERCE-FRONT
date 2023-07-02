@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Grid, useMediaQuery } from '@mui/material';
 import { validacionesContacto } from './validaciones';
-import contact from '../../Assets/contact.jpg';
+import contact from '../../assets/contact.jpg';
 import { styled } from '@mui/system';
 
 const Contacto = () => {
