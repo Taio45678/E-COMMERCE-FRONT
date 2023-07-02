@@ -1,50 +1,110 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import NavBar from '../NavBar/NavBar';
-import GalaxyNote from '../../Archivos pruebas/galaxy note 10.jpg'
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import GalaxyNote from "../../Archivos pruebas/galaxy note 10.jpg";
+import s from "./DetailProducto.module.css";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+import ProductosDtl from "./Productos/ProductosDtl";
 //Aquí se renderiza el detalle de cada producto
-
+import Pago from "./Pagos/Pagos";
+import Descripcion from "./Descripcion/Descripcion";
+//import { addCarrito } from "../../Redux/actions";
+import { getDetail, obtenerCategoriaPorId } from "../../Redux/actions";
 export default function DetailProducto() {
+  // Las CALIFICACIONES sera un array acumulativo de estreñas x compras del producto
+  const [value, setValue] = React.useState(3);
 
-  let {id} = useParams();
+  let { id } = useParams();
   const dispatch = useDispatch();
+  const nameCatego = useSelector((state) => state.nombreCategoria);
+  console.log(nameCatego.nombrecat);
   const productDetails = useSelector((state) => state.details);
-  console.log(productDetails);
+  const {
+    nombreproducto,
+    descproducto,
+    colorproducto,
+    fotoprinc,
+    precioproducto,
+    disponibproducto,
+    categoriaId,
+  } = productDetails;
+  useEffect(() => {
+    dispatch(getDetail(id));
+  }, []);
+  useEffect(() => {
+    dispatch(obtenerCategoriaPorId(categoriaId));
+  }, []);
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   dispatch(addCarrito(id));
+  //   alert(`Agregaste a tu carrito ${id.name}`)
+  // }
 
   return (
-      <div className='flex w-full h-screen flex bg-gray-200'>
-        <div className='w-1/2 h-96 m-2 flex justify-center'> 
-          <img className='w-4/5 rounded-md' src={GalaxyNote} alt="image not found"></img>
+    <div className={s.fondo}>
+      <div className={s.producto}>Detalles del producto</div>
+      <div className={s.cajaInterna}>
+        <div className={s.cajaImagen}>
+          <div className={s.imagenPosition}>
+            <img
+              src={fotoprinc}
+              alt="image not found"
+              className={s.imagen}
+            ></img>
+          </div>
+          <div className={s.linea}></div>
+          <h1>Descripcion :</h1>
+          <Descripcion descripcion={descproducto}></Descripcion>
         </div>
-        <div className='w-1/2 h-250 m-1 bg-gray-200 '> 
-          <div className='mt-5 border-b-2 border-black'>
-            <h1 className='text-3xl'>Samsung Galaxy Note 10</h1>
-            <p className='my-2'>3/5</p>
-            <p className='text-3xl text-red-600 font-semibold'>$250</p>
-            <h4 className='text-lg my-3'>Modelo de marcaSamsung Galaxy Note10 + N9750 / Note 10 PlusSistemaSO Android 9.0CPU Qualcomm Snapdragon 855 Octa Core 2.8GHzGPU Adreno 640RAM 12 GBROM 256 GBExtend card MAX admite tarjeta de memoria Micro SD clase 10 de 512 GB (tarjeta TF)PantallaTamaño de pantalla Quad HD + de 6,8 pulgadasResolución de pantalla 3040 x 1440Tipo de pantalla Corning Gorilla GlassDimensiones 162,3x77,2x7,9mmPeso neto 198gCámaraCámara frontal 10.0 megapíxelesCámara trasera 12.0 megapíxeles 12.0 megapíxeles 16.0 megapíxeles Cámara de tres lentes</h4>
-          </div>
-          <div className='mt-4 flex flex row'>
-            <div className='flex flex-row'>
-              <div className='w-12 '>
-                <p className='ml-1'>Color:</p>
-              </div>
-              <div className='w-full rounded-lg bg-gray-500 border-gray-700 border-2 ml-1'>
-                <p className='mx-1'>Rojo</p>
-              </div>
-            </div>
-            <div className='flex flex-row ml-3'>
-              <div className='w-full'>
-                <p className='ml-1'>Category:</p>
-              </div>
-              <div className='w-full rounded-lg bg-gray-500 border-gray-700 border-2 ml-1'>
-                <p className='mx-1'>Camera</p>
-              </div>
-            </div>
-          </div>
+        <div className={s.datos}>
+          <h1>{productDetails.name}</h1>
+          <h4>
+            Categoria : <h5 style={{ color: "red" }}>{nameCatego.nombrecat}</h5>
+          </h4>
+
+          <h2>{nombreproducto}</h2>
+          <p>${precioproducto}</p>
+
+          {/* ###############  Boton para mostrar que tarjetas acepta All Market ################# */}
+
+          <Pago></Pago>
+          <h4>Color:{colorproducto}</h4>
+          <h4>Stock disponible:{disponibproducto}</h4>
+
+          {/* ###############  BOTON DEL CARRITO ################# */}
+
+          <button className={s.agregar}>Agregar al carrito</button>
+
+          <h3>Calificaciones:</h3>
+          {/* ###############   Deberan ser mapeadar cada calificacion ################# */}
+          <Box
+            sx={{
+              "& > legend": { mt: 2 },
+            }}
+          >
+            <Typography component="legend"></Typography>
+            <Rating
+              name="simple-controlled"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+            />
+          </Box>
+          <a
+            href="https://www.soyhenry.com/?utm_source=google&utm_medium=cpc&utm_campaign=GADS_SEARCH_ARG_BRAND&utm_content=Brand&gad=1&gclid=Cj0KCQjwtO-kBhDIARIsAL6LorcDR-GnZb0eUPEkd6yyO2cXte6yEokKM93fcVlckILE3eU0a3JxTB8aAht3EALw_wcB"
+            target="_blank"
+          >
+            <div className={s.propaganda}></div>
+          </a>
         </div>
       </div>
-  
-  )
+      <div className={s.productos5}>
+        <ProductosDtl />
+      </div>
+    </div>
+  );
 }
