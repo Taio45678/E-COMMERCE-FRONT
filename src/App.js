@@ -9,17 +9,22 @@ import AboutUs from "./Components/AboutUs/AboutUs";
 import Footer from "./Components/Footer/Footer";
 import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Carrito from "./Components/Carrito/Carrito";
+import Carrito from "./Components/Carrito/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
+<<<<<<< HEAD
 import  Profile  from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { log_in } from "./Redux/actions";
 
+=======
+import { useLocation } from "react-router-dom";
+>>>>>>> 1dde97410e7421c66600cbae4f08d31cc284b56d
 
 function App() {
   // const location = useLocation();
   const navigate = useNavigate();
+<<<<<<< HEAD
 
   const {isAuthenticated, user} = useAuth0();
   
@@ -29,6 +34,9 @@ function App() {
     }
   }, [])
 
+=======
+  const location = useLocation();
+>>>>>>> 1dde97410e7421c66600cbae4f08d31cc284b56d
   //Funcion para salir de la landing page e ir al home
   function onClick() {
     navigate("/home");
@@ -36,7 +44,6 @@ function App() {
 
   return (
     <div>
-      
       <NavBar />
       <Routes>
         <Route path="/" element={<SwipeableTextMobileStepper />}></Route>

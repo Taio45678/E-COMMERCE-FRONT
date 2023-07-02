@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import "./NavBar.css";
 import logo from "../Img/logoAll.png";
+<<<<<<< HEAD
 import Login from "../Login/Login";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogOut from "../LogOut/LogOut";
 //import carrito from "../Img/carrito.png";
+=======
+>>>>>>> 1dde97410e7421c66600cbae4f08d31cc284b56d
 
 export default function NavBar() {
   
