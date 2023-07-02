@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 import arrayObjetos from "../Helpers/arrayObjetos"
 import axios from "axios"
 import AuthService from "../Services/AuthService"
-=======
 import arrayObjetos from "../Helpers/arrayObjetos";
 import axios from "axios";
->>>>>>> 1dde97410e7421c66600cbae4f08d31cc284b56d
 
 export const GET_DETAIL = "GET_DETAIL";
 
