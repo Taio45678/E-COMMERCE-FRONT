@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.1",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.10.1",
     "@emotion/react": "^11.11.1",
@@ -53,6 +54,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-proposal-private-property-in-object": "*",
     "tailwindcss": "^3.3.2"
   }
 }
