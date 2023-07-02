@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, CardActions, IconButton, OutlinedInput, InputLabel, MenuItem, FormControl, FormControlLabel, Checkbox, Select, Chip, useTheme, Stack } from '@mui/material';
+import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, Pagination} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import {useSelector, useDispatch} from 'react-redux'
 import { getAllCategorias, getAllProducts } from '../../Redux/actions';
 import ContainerFiltros from './ContainerFiltros';
 import CardP from './CardP';
+
 
 const Home = () => {
 
@@ -14,12 +15,17 @@ const Home = () => {
   const dispatch = useDispatch();
   // Función que trae los productos del back al store de redux 
   useEffect(()=>{
-    dispatch(getAllProducts())
+    dispatch(getAllProducts(1))
     dispatch(getAllCategorias())
   },[])
+  function handleChangePagina(e, value){
+    
+    dispatch(getAllProducts(value))
+  
+  }
   
   //Traemos todos los productos del store local 
-  const {allProducts} = useSelector((state)=>state)
+  const {allProducts, paginas} = useSelector((state)=>state)
 
   const [productosMostrados, setProductosMostrados] = useState(3);
 
@@ -65,8 +71,11 @@ const Home = () => {
           Mostrar más
         </Button>
       </Grid>
-  
+      <Grid>
+      <Pagination count={paginas} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+      </Grid>
     </Grid>
+    
   );
 };
     

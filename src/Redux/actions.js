@@ -6,13 +6,13 @@ import axios from "axios";
 
 export const GET_DETAIL = "GET_DETAIL";
 
-export function getAllProducts() {
-  const linkFelipe = `https://commerce-back-2025.up.railway.app/producto`;
+export function getAllProducts(pagina) {
+  const linkFelipe = `https://commerce-back-2025.up.railway.app/producto?page=${pagina}`;
   const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data =
       //.content;           //para el local
-      (await axios.get(linkFelipe)).data.productos; //para el deploy
+      (await axios.get(linkFelipe)).data//para el deploy
     return dispatch({
       type: "GET_ALL_PRODUCTS",
       payload: data,
