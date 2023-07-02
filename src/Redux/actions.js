@@ -1,3 +1,6 @@
+import arrayObjetos from "../Helpers/arrayObjetos"
+import axios from "axios"
+import AuthService from "../Services/AuthService"
 import arrayObjetos from "../Helpers/arrayObjetos";
 import axios from "axios";
 
@@ -55,6 +58,10 @@ export function addFavorites(producto) {
     type: "ADD_FAVORITES",
     payload: producto,
   };
+}
+
+export const log_in = (data) => (dispatch) => {
+    return AuthService.Login(data)
 }
 
 export function removeFavorites(producto) {

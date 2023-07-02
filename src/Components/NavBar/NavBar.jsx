@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import "./NavBar.css";
 import logo from "../Img/logoAll.png";
+import Login from "../Login/Login";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogOut from "../LogOut/LogOut";
+//import carrito from "../Img/carrito.png";
 
 export default function NavBar() {
+  
+  const {isAuthenticated} = useAuth0()
+
   return (
     <div className="navbar">
       <div className="caja1">
@@ -61,12 +68,15 @@ export default function NavBar() {
             </Link>
           </div>
           <div className="actividades">
-            <Link to="/micuenta" style={{ textDecoration: "none" }}>
+            {isAuthenticated ? <Link to="/profile" style={{ textDecoration: "none" }}>
               <p style={{ color: "white" }}>Mi cuenta</p>
-            </Link>
+            </Link> : null
+              
+              }
             <Link to="/formProducto" style={{ textDecoration: "none" }}>
               <p style={{ color: "red" }}>Vender</p>
             </Link>
+            {isAuthenticated ?  <LogOut /> : <Login/>}
           </div>
         </div>
       </div>
