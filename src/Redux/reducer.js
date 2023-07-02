@@ -9,6 +9,7 @@ const initialState = {
   favoritos: [],
   categorias: [],
   carrito: [],
+  paginas: 0
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -24,8 +25,9 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case "GET_ALL_PRODUCTS":
       return {
         ...state,
-        allProducts: payload,
-        allProductsAux: payload,
+        allProducts: payload.productos,
+        allProductsAux: payload.productos,
+        paginas: payload.totalPages
       };
 
     case "GET_ALL_CATEGS":
