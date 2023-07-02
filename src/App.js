@@ -11,10 +11,23 @@ import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Carrito from "./Components/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
+import  Profile  from "./Components/Profile/Profile";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { log_in } from "./Redux/actions";
+
 
 function App() {
   // const location = useLocation();
   const navigate = useNavigate();
+
+  const {isAuthenticated, user} = useAuth0();
+  
+  useEffect(() => {
+    if(isAuthenticated){
+      log_in(user)
+    }
+  }, [])
 
   //Funcion para salir de la landing page e ir al home
   function onClick() {
@@ -34,6 +47,7 @@ function App() {
         <Route path="/contacto" element={<Contacto />}></Route>
         <Route path="/carrito" element={<Carrito />}></Route>
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
+        <Route path="/profile" element={<Profile/>}></Route>
       </Routes>
       <Footer />
     </div>

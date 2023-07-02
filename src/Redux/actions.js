@@ -1,5 +1,6 @@
 import arrayObjetos from "../Helpers/arrayObjetos"
 import axios from "axios"
+import AuthService from "../Services/AuthService"
 
 export const GET_DETAIL = 'GET_DETAIL'
 
@@ -62,3 +63,8 @@ export function removeFavorites(producto){
         payload: producto
     }
 }
+
+export const log_in = (data) => (dispatch) => {
+    return AuthService.Login(data)
+}
+
