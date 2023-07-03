@@ -17,7 +17,7 @@ export default function NavBar() {
       <div className="caja1">
         <div className="caja1A">
           <div className="cajaLogo">
-            <img src={logo} alt="" className="logo" />
+            <Link to="/"><img src={logo} alt="" className="logo" /></Link>
           </div>
           <div className="busqueda">
             <SearchBar></SearchBar>
