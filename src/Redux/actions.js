@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 import axios from "axios"
 import AuthService from "../Services/AuthService"
 // import arrayObjetos from "../Helpers/arrayObjetos";
+=======
+//import arrayObjetos from "../Helpers/arrayObjetos"
+//import axios from "axios"
+import AuthService from "../Services/AuthService"
+//import arrayObjetos from "../Helpers/arrayObjetos";
+import axios from "axios";
+>>>>>>> 91d9506382b8458278eda2fa1d817ec56c265bc1
 
 export const GET_DETAIL = "GET_DETAIL";
 
@@ -35,6 +43,7 @@ export function getAllCategorias() {
 export function getDetail(id) {
   return async function (dispatch) {
     const json = await axios(
+      //https://commerce-back-2025.up.railway.app/producto/3
       `https://commerce-back-2025.up.railway.app/producto/${id}`
     );
     return dispatch({
@@ -85,4 +94,25 @@ export function obtenerCategoriaPorId(id) {
       payload: json.data,
     });
   };
+}
+
+export function buscarProducto(pagina, producto) {
+  const linkFelipe = `https://commerce-back-2025.up.railway.app/producto/buscar?prod=${producto}&cate=&page=${pagina}`;
+  const linkBackLocal = "http://localhost:3001/productos/productos";
+  return async (dispatch) => {
+    const data =
+      //.content;           //para el local
+      (await axios.get(linkFelipe)).data//para el deploy
+    return dispatch({
+      type: "BUSCAR_PRODUCTO",
+      payload: {data: data,
+      prod: producto}
+    });
+  };
+}
+
+export function limpiarFiltroyBusqueda(){
+  return {
+    type: "LIMPIAR_TODO"
+  }
 }

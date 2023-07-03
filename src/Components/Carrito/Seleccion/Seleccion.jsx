@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./Seleccion.module.css";
 
-export default function Seleccion({ pokes, updateQuantity }) {
-  const { id, name, imagen, cantidad, precio } = pokes;
+export default function Seleccion({ pokes, updateQuantity, deleteProduct }) {
+  const { id, nombre, imagen, cantidad, precio } = pokes;
 
   const handleIncrement = () => {
     // Verificar límite máximo de cantidad
@@ -20,6 +20,11 @@ export default function Seleccion({ pokes, updateQuantity }) {
     }
   };
 
+  const handleDelete = () => {
+    // Eliminar el producto del carrito
+    deleteProduct(id);
+  };
+
   const precioTotal = cantidad * precio; // Calcula el precio total
 
   return (
@@ -28,8 +33,10 @@ export default function Seleccion({ pokes, updateQuantity }) {
         <img src={imagen} alt="" className={s.imagen} />
       </div>
       <div className={s.caja2}>
-        <h1>{name}</h1>
-        <button className={s.eliminar}>Eliminar</button>
+        <h1>{nombre}</h1>
+        <button className={s.eliminar} onClick={handleDelete}>
+          Eliminar
+        </button>
       </div>
       <div className={s.cantidad}>
         <div className={s.botones}>
