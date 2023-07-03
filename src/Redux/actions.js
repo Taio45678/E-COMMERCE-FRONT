@@ -1,8 +1,6 @@
-import arrayObjetos from "../Helpers/arrayObjetos"
 import axios from "axios"
 import AuthService from "../Services/AuthService"
-import arrayObjetos from "../Helpers/arrayObjetos";
-import axios from "axios";
+// import arrayObjetos from "../Helpers/arrayObjetos";
 
 export const GET_DETAIL = "GET_DETAIL";
 

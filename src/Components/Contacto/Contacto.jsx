@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Grid, useMediaQuery } from '@mui/material';
 import { validacionesContacto } from './validaciones';
-import contact from '../../assets/contact.jpg';
 import { styled } from '@mui/system';
 
 const Contacto = () => {
@@ -60,10 +59,10 @@ const Contacto = () => {
     <Grid
       container
       sx={{
-        backgroundImage: `url(${contact})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
+        // backgroundImage: `url(${contact})`,
+        // backgroundSize: 'cover',
+        // backgroundRepeat: 'no-repeat',
+        // backgroundPosition: 'center center',
         mt: -0.9,
         height: '110vh',
         width: '100%',
