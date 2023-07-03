@@ -31,6 +31,7 @@ export default function SearchBar() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        
       }}
     >
       <FormControl sx={{ width: "50ch" }}>
