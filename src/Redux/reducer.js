@@ -9,7 +9,10 @@ const initialState = {
   favoritos: [],
   categorias: [],
   carrito: [],
-  paginas: 0
+  paginas: 0,
+  busquedaProducto: [],
+  pagsBusqueda: 0
+  
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -87,6 +90,19 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         carrito: [...state.carrito, payload],
       };
+    case "BUSCAR_PRODUCTO":
+      return{
+        ...state,
+        busquedaProducto: payload.data.productos,
+        pagsBusqueda: payload.data.totalPages,
+        
+      }
+    case "LIMPIAR_TODO":
+      return {
+        ...state,
+        allProducts: state.allProductsAux,
+        
+      } 
 
     default:
       return state;

@@ -5,7 +5,7 @@ import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import {useSelector, useDispatch} from 'react-redux'
 import { getAllProducts, limpiarFiltroyBusqueda } from '../../Redux/actions';
 
-export default function ContainerFiltros() {
+export default function FiltrosBusqueda() {
     const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
     const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
     const dispatch = useDispatch();

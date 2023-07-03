@@ -5,6 +5,7 @@ import FormProducto from "./Components/FormProducto/FormProducto";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import SwipeableTextMobileStepper from "./Components/LandingPage/LandingPage";
 import Home from "./Components/Home/Home";
+import HomeBusqueda from "./Components/HomeBusqueda/HomeBusqueda";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Footer from "./Components/Footer/Footer";
 import Contacto from "./Components/Contacto/Contacto";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />}></Route>
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
         <Route path="/profile" element={<Profile/>}></Route>
+        <Route path="/busqueda/:producto" element={<HomeBusqueda></HomeBusqueda>}></Route>
       </Routes>
       <Footer />
     </div>

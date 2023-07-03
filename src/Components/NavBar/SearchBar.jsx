@@ -1,15 +1,27 @@
 import * as React from "react";
 import { Button, Container, FormControl, OutlinedInput } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { buscarProducto } from "../../Redux/actions";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 export default function SearchBar() {
   const [producto, setProducto] = React.useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
+  const {productoBuscado} = useSelector((state)=>state)  
   function handleChange(e) {
     setProducto(e.target.value);
   }
 
   function handleClick(e) {
-    // Aquí puedes agregar la lógica para manejar el clic del botón
+    if(producto===""){
+
+    }else{
+    dispatch(buscarProducto(1, producto))
+    navigate(`/busqueda/${producto}`)
+    }
   }
 
   return (
