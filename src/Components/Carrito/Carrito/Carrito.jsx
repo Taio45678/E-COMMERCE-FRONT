@@ -3,34 +3,11 @@ import Total from "../Total/Total";
 import s from "./Carrito.module.css";
 import Mensaje from "../Mensaje/Mensaje";
 import Seleccion from "../Seleccion/Seleccion";
+import { useSelector } from "react-redux";
 
 const Carrito = () => {
-  const [productos, setProductos] = useState([
-    {
-      id: 1,
-      name: "Producto Aleatorio",
-      imagen:
-        "https://www.computron.com.ec/wp-content/uploads/2023/05/SAM-A135ML-BL-1.jpg",
-      cantidad: 1,
-      precio: 50,
-    },
-    {
-      id: 2,
-      name: "Producto Aleatorio",
-      imagen:
-        "https://www.computron.com.ec/wp-content/uploads/2023/05/SAM-A135ML-BL-1.jpg",
-      cantidad: 1,
-      precio: 50,
-    },
-    {
-      id: 3,
-      name: "Producto Aleatorio",
-      imagen:
-        "https://www.computron.com.ec/wp-content/uploads/2023/05/SAM-A135ML-BL-1.jpg",
-      cantidad: 1,
-      precio: 50,
-    },
-  ]);
+  let elCarrito = useSelector((state) => state.carrito);
+  const [productos, setProductos] = useState(elCarrito);
 
   const updateQuantity = (id, quantity) => {
     const updatedProducts = productos.map((producto) => {
@@ -39,6 +16,11 @@ const Carrito = () => {
       }
       return producto;
     });
+    setProductos(updatedProducts);
+  };
+
+  const deleteProduct = (id) => {
+    const updatedProducts = productos.filter((producto) => producto.id !== id);
     setProductos(updatedProducts);
   };
 
@@ -60,6 +42,7 @@ const Carrito = () => {
                   key={producto.id}
                   pokes={producto}
                   updateQuantity={updateQuantity}
+                  deleteProduct={deleteProduct}
                 />
               ))
             )}
