@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import axios from "axios"
-import AuthService from "../Services/AuthService"
-// import arrayObjetos from "../Helpers/arrayObjetos";
-=======
 //import arrayObjetos from "../Helpers/arrayObjetos"
 //import axios from "axios"
-import AuthService from "../Services/AuthService"
+import AuthService from "../Services/AuthService";
 //import arrayObjetos from "../Helpers/arrayObjetos";
 import axios from "axios";
->>>>>>> 91d9506382b8458278eda2fa1d817ec56c265bc1
 
 export const GET_DETAIL = "GET_DETAIL";
 
@@ -18,7 +12,7 @@ export function getAllProducts(pagina) {
   return async (dispatch) => {
     const data =
       //.content;           //para el local
-      (await axios.get(linkFelipe)).data//para el deploy
+      (await axios.get(linkFelipe)).data; //para el deploy
     return dispatch({
       type: "GET_ALL_PRODUCTS",
       payload: data,
@@ -68,8 +62,8 @@ export function addFavorites(producto) {
 }
 
 export const log_in = (data) => (dispatch) => {
-    return AuthService.Login(data)
-}
+  return AuthService.Login(data);
+};
 
 export function removeFavorites(producto) {
   return {
@@ -102,17 +96,16 @@ export function buscarProducto(pagina, producto) {
   return async (dispatch) => {
     const data =
       //.content;           //para el local
-      (await axios.get(linkFelipe)).data//para el deploy
+      (await axios.get(linkFelipe)).data; //para el deploy
     return dispatch({
       type: "BUSCAR_PRODUCTO",
-      payload: {data: data,
-      prod: producto}
+      payload: { data: data, prod: producto },
     });
   };
 }
 
-export function limpiarFiltroyBusqueda(){
+export function limpiarFiltroyBusqueda() {
   return {
-    type: "LIMPIAR_TODO"
-  }
+    type: "LIMPIAR_TODO",
+  };
 }
