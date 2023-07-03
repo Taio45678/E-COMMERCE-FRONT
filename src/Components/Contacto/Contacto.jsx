@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Grid, useMediaQuery } from '@mui/material';
-import { validacionesContacto } from './validaciones';
-import contact from '../../assets/contact.jpg';
-import { styled } from '@mui/system';
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Grid,
+  useMediaQuery,
+} from "@mui/material";
+import { validacionesContacto } from "./validaciones";
+import { styled } from "@mui/system";
 
 const Contacto = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleNameChange = (event) => {
@@ -30,43 +36,42 @@ const Contacto = () => {
       setErrors(validationErrors);
     } else {
       // Lógica para enviar el formulario si no hay errores de validación
-      console.log('Name:', name);
-      console.log('Email:', email);
-      console.log('Message:', message);
+      console.log("Name:", name);
+      console.log("Email:", email);
+      console.log("Message:", message);
       // Resetear los campos del formulario
-      setName('');
-      setEmail('');
-      setMessage('');
+      setName("");
+      setEmail("");
+      setMessage("");
       setErrors({});
     }
   };
 
-   const StyledContainer = styled(Container)(({ theme }) => ({
-      justifyContent: 'center',
-      display: 'flex',
-      alignItems: 'center',
-      height: '60%',
-      width: '40%',
-      [theme.breakpoints.down('sm')]: {
-        width: '100%',
-      },
-      mt: 20,
-      borderRadius: '3%',
-      background: 'linear-gradient(to right, #c5e1a5, #f0f4c3)',
-    }));
-
+  const StyledContainer = styled(Container)(({ theme }) => ({
+    justifyContent: "center",
+    display: "flex",
+    alignItems: "center",
+    height: "60%",
+    width: "40%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    mt: 20,
+    borderRadius: "3%",
+    background: "linear-gradient(to right, #c5e1a5, #f0f4c3)",
+  }));
 
   return (
     <Grid
       container
       sx={{
-        backgroundImage: `url(${contact})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
+        // backgroundImage: `url(${contact})`,
+        // backgroundSize: 'cover',
+        // backgroundRepeat: 'no-repeat',
+        // backgroundPosition: 'center center',
         mt: -0.9,
-        height: '110vh',
-        width: '100%',
+        height: "110vh",
+        width: "100%",
       }}
     >
       {/* <Container
@@ -81,15 +86,14 @@ const Contacto = () => {
           background: 'linear-gradient(to right, #c5e1a5, #f0f4c3)',
         }}
       > */}
-        <StyledContainer>
-
+      <StyledContainer>
         <form onSubmit={handleSubmit}>
           <Typography
             variant="h4"
             sx={{
-              justifyContent: 'center',
-              display: 'flex',
-              alignItems: 'center',
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
               mb: 5,
               mt: 1,
             }}
@@ -145,10 +149,10 @@ const Contacto = () => {
             type="submit"
             fullWidth
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '22%',
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "22%",
               ml: 1,
               mt: 1,
             }}
@@ -162,4 +166,3 @@ const Contacto = () => {
 };
 
 export default Contacto;
-
