@@ -83,11 +83,9 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case "AGREGAR_AL_CARRITO":
-      var carrito = state.carrito;
-      carrito.push(payload);
       return {
         ...state,
-        carrito: resultFavs,
+        carrito: [...state.carrito, payload],
       };
 
     default:
