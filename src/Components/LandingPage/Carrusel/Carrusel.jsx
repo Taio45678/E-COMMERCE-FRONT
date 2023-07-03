@@ -15,19 +15,19 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
   {
     imgPath:
-      "https://images.pexels.com/photos/6234962/pexels-photo-6234962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://img.global.news.samsung.com/ar/wp-content/uploads/2022/10/BANNER-Gen%C3%A9rico_1280x490px.jpg",
   },
   {
     imgPath:
-      "https://images.pexels.com/photos/2294342/pexels-photo-2294342.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://electrhogar.com.ar/wp-content/uploads/2023/04/Banner-Calefaccion-1536x449.jpg",
   },
   {
     imgPath:
-      "https://images.pexels.com/photos/10689440/pexels-photo-10689440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://bosque.vteximg.com.br/arquivos/ids/170617/banner-garantia-ext.jpg?v=638157022758400000",
   },
   {
     imgPath:
-      "https://images.pexels.com/photos/8369590/pexels-photo-8369590.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://www.shutterstock.com/image-vector/promo-banner-healthy-lifestyle-natural-260nw-1996820612.jpg",
   },
 ];
 
