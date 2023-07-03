@@ -24,9 +24,10 @@ export default function Total({ productos }) {
         <h1>Total</h1>
         <p>${total}</p>
       </div>
-      <button className={s.button}>
+      <button className={s.button} >
         <span>Comprar</span>
       </button>
     </div>
   );
 }
+

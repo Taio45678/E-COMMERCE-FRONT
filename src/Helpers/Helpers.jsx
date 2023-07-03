@@ -33,14 +33,6 @@ export const integrantes = [
     },
     {
         id: 1,
-        nombre: 'Bruno',
-        area: 'Full Stack',
-        imagen: 'https://acortar.link/5w7eiR',
-        redes: 'linkedin',
-        github: 'bruno',
-    },
-    {
-        id: 1,
         nombre: 'Marcos',
         area: 'Full Stack',
         imagen: 'https://acortar.link/QUZlC0',
@@ -51,7 +43,7 @@ export const integrantes = [
         id: 1,
         nombre: 'Claudio',
         area: 'Full Stack',
-        imagen: 'https://acortar.link/3dxYuS',
+        imagen: 'https://acortar.link/2VbPEZ',
         redes: 'linkedin',
         github: 'felipe',
     },
