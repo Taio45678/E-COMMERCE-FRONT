@@ -19,7 +19,7 @@ export default function Total({ productos }) {
   const redirectToMercadoPago = async () => {
     try {
       // Realizar una solicitud al backend para obtener la URL de pago de Mercado Pago
-      const response = await fetch("http://localhost:3001/create-order", {
+      const response = await fetch("http://localhost:3000/create-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
