@@ -1,115 +1,146 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-// import logo from "../Img/logoAll.png";
+import "./NavBar.css";
+import logo from "../Img/logoAll.png";
 import Login from "../Login/Login";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogOut from "../LogOut/LogOut";
-import {
-  AppBar,
-  Toolbar,
-  Box,
-  Button,
-  Container,
-  IconButton,
-  Typography,
-  Grid,
-  Stack,
-  Hidden,
-} from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import HomeIcon from "@mui/icons-material/Home";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+//import carrito from "../Img/carrito.png";
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
+  "Tecnologia",
+  "Electrodomesticos",
+  "Hogar y Muebles",
+  "Herramientas",
+  "Moda",
+  "Juguetes",
+  "Construccionr",
+  "Otros",
+];
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
 
-  const [showCategories, setShowCategories] = React.useState(true);
-  const handleArrowButtonClick = () => {
-    setShowCategories(!showCategories);
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
   };
 
   return (
-    <AppBar position="static" className="navbar-container" sx={{ backgroundColor: 'grey' }}>
-      <Toolbar >
-        <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", width: '40%', heigth: '10%' }}>
-          {/* <img src={logo} alt="" className="logo" sx={{ height: '40px', }}/> */}
-          <Box display="flex" justifyContent="center" width="100%">
+    <div className="navbar-container">
+      <div className="caja1">
+        <div className="caja1A">
+          <Link to="/">
+            <div className="cajaLogo">
+              <img src={logo} alt="" className="logo" />
+            </div>
+          </Link>
+          <div className="busqueda">
             <SearchBar></SearchBar>
-          </Box>
-        </Box>
-  
-        <IconButton color="inherit" component={Link} to="/carrito">
-          <ShoppingCartIcon sx={{ fontSize: 40 }}/>
-        </IconButton>
-      </Toolbar>
-      <Toolbar>
-        <Grid container justifyContent="space-between">
-        <Box item xs={6} md={2} sx={{ width: 40, }}>
-          <Box display="flex" justifyContent="center" >
-            <IconButton color="inherit" component={Link} to="/home">
-              <HomeIcon sx={{ fontSize: 40 }} />
-            </IconButton>
-          </Box>
-        </Box>
-
-        <Grid item xs={6} md={4}>
-  <Box display="space-between" justifyContent="start" sx={{ alignSelf: "center", }}>
-    <Box className="categorias">
-      <Stack direction="row" spacing={5}>
-        <Hidden smDown={!showCategories}>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Tecnologia</Typography>
-          </Link>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Electrodomesticos</Typography>
-          </Link>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Hogar y muebles</Typography>
-          </Link>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Herramientas</Typography>
-          </Link>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Moda</Typography>
-          </Link>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Juguetes</Typography>
-          </Link>
-          <Link to="" style={{ textDecoration: "none", color: "white" }}>
-            <Typography variant="body1">Construcion</Typography>
-          </Link>
-        </Hidden>
-      </Stack>
-    </Box>
-  </Box>
-</Grid>
-
-          <Box item xs={6} md={2} sx={{ width: 150, }}>
-            <Box display="flex" justifyContent="flex-end">
-              <Stack direction="row" spacing={2}>
-                <Hidden mdUp>
-                  <IconButton color="inherit" onClick={handleArrowButtonClick}>
-                    <KeyboardArrowRightIcon />
-                  </IconButton>
-                </Hidden>
-                {isAuthenticated ? (
-                  <Link to="/profile" style={{ textDecoration: "none", color: "white" }}>
-                    <Typography variant="body1">Mi cuenta</Typography>
-                  </Link>
-                ) : null}
-                <Link to="/formProducto" style={{ textDecoration: "none", color: "red", marginLeft: "10px" }}>
-                  <Typography variant="body1">Vender</Typography>
-                </Link>
-                {isAuthenticated ? <LogOut /> : <Login />}
-              </Stack>
-            </Box>
-          </Box>
-
-        </Grid>
-      </Toolbar>
-    </AppBar>
+          </div>
+          <div className="carrito">
+            <Link to="/carrito">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/014/873/880/non_2x/store-flat-icon-design-shop-icon-design-shop-icon-isolated-on-grey-background-shop-sign-vector.jpg"
+                alt=""
+                className="carritoLogo"
+              />
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="caja2-container">
+        <div className="caja2B">
+          <div className="home">
+            <Link to="/home">
+              <img
+                src="https://scontent.fcor16-1.fna.fbcdn.net/v/t39.30808-6/356230708_1436119560543016_9206910051547847731_n.jpg?stp=dst-jpg_p526x296&_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=mBbIP6t34VgAX8WvQlV&_nc_ht=scontent.fcor16-1.fna&oh=00_AfDWGjo3WrOfAar84B1FZOdIt7Fr9laxB70faOIiwi2KsQ&oe=649D673A"
+                alt=""
+                className="imagenHome"
+              />
+            </Link>
+          </div>
+          <div className="categorias">
+            <FormControl sx={{ m: 1, width: 300 }}>
+              <InputLabel
+                id="demo-multiple-name-label"
+                style={{ color: "white", border: "none" }}
+              >
+                Categorias
+              </InputLabel>
+              <Select
+                labelId="demo-multiple-name-label"
+                id="demo-multiple-name"
+                multiple
+                value={personName}
+                onChange={handleChange}
+                input={<OutlinedInput label="Name" />}
+                MenuProps={MenuProps}
+                style={{ background: "dark", color: "white" }}
+              >
+                {names.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personName, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Link to="/Favoritos">Favoritos</Link>
+            <Link to="/aboutus">Nosotros</Link>
+            <Link to="/contacto">Contacto</Link>
+          </div>
+          <div className="actividades">
+            {isAuthenticated ? (
+              <Link to="/profile" style={{ textDecoration: "none" }}>
+                <p style={{ color: "white" }}>Mi cuenta</p>
+              </Link>
+            ) : null}
+            <Link to="/formProducto" style={{ textDecoration: "none" }}>
+              <p style={{ color: "red" }}>Vender</p>
+            </Link>
+            {isAuthenticated ? <LogOut /> : <Login />}
+          </div>
+        </div>
+      </div>
+    </div>
   );
-  
 }
-
