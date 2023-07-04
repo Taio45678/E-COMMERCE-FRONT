@@ -13,6 +13,7 @@ const domain = 'dev-jzsyp78gzn6fdoo4.us.auth0.com';
 const clientID = 'xc1IRD9X4IyoX9RQFGpyFZ9EL8NQEKLl';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
