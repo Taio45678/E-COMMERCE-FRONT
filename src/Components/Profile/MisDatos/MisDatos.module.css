@@ -42,6 +42,8 @@
 .cerrarCuenta {
   display: flex;
   justify-content: end;
+  border: none;
+  background-color: rgb(255, 255, 255);
 }
 .cerrarCuenta h1 {
   background-color: red;

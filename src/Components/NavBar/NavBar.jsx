@@ -25,17 +25,9 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
 
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+  const [showCategories, setShowCategories] = React.useState(true);
+  const handleArrowButtonClick = () => {
+    setShowCategories(!showCategories);
   };
 
   return (

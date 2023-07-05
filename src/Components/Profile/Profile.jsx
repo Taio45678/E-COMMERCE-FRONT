@@ -119,12 +119,11 @@ export default function Profile() {
                 alt=""
                 className={s.avatar}
               />
-              <h1>Nombre Apellido</h1>
-              <p>Rol: Usuario</p>
+              <h4>Nombre Apellido</h4>
+              <h5>Rol: Usuario</h5>
             </div>
             <TabPanel value={value} index={0} className={s.caja1}>
               <div className={s.cajaInterna1}>
-                {/* <div className={s.tituloC}>Compras</div> */}
                 <Compras></Compras>
               </div>
             </TabPanel>
