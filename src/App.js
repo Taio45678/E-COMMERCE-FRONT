@@ -15,7 +15,7 @@ import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
 import  Profile  from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
-import { log_in } from "./Redux/actions";
+import  {log_in}  from "./Redux/actions";
 
 import { useLocation } from "react-router-dom";
 
@@ -28,6 +28,7 @@ function App() {
   useEffect(() => {
     if(isAuthenticated){
       log_in(user)
+      console.log(user);
     }
   }, [])
 
