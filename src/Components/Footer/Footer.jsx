@@ -14,7 +14,7 @@ export default function Footer() {
         left: 0,
         width: '100%',
         height: 150,
-        backgroundColor: '#ff8a65',
+        backgroundColor: '#ff7043',
       }}
     >
       <Grid container justifyContent="center" alignItems="center" height="100%">
@@ -25,7 +25,7 @@ export default function Footer() {
             setValue(newValue);
           }}
           sx={{
-            backgroundColor: '#ff8a65',
+            backgroundColor: '#ff7043',
           }}
         >
           <BottomNavigationAction
@@ -54,7 +54,7 @@ export default function Footer() {
 
       <Grid
         container
-        bgcolor="#ff6e40"
+        bgcolor="#e64a19"
         justifyContent="center"
         bottom={0}
         left={0}
@@ -66,7 +66,7 @@ export default function Footer() {
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '70px',
+                fontSize: '40px',
               }}
             />
           </a>
@@ -78,7 +78,7 @@ export default function Footer() {
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '70px',
+                fontSize: '40px',
               }}
             />
           </a>
@@ -90,7 +90,7 @@ export default function Footer() {
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '70px',
+                fontSize: '40px',
               }}
             />
           </a>

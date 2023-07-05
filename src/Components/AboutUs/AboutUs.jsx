@@ -4,7 +4,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 //Aqui se mostraran los integrantes del equipo 10
 
-export default function Loading() {
+export default function AboutUs() {
   return (
     <div className={s.fondo}>
       <div className={s.cajaInterna}>
