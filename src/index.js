@@ -7,42 +7,24 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/core/styles";
 const domain = "dev-jzsyp78gzn6fdoo4.us.auth0.com";
 const clientID = "xc1IRD9X4IyoX9RQFGpyFZ9EL8NQEKLl";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#f44336", // Cambia el color primario
-    },
-    secondary: {
-      main: "#00FF00", // Cambia el color secundario
-    },
-    text: {
-      primary: "#000000", // Cambia el color de texto primario
-      secondary: "#FFFFFF", // Cambia el color de texto secundario
-    },
-  },
-});
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <BrowserRouter>
-        <React.StrictMode>
-          <Auth0Provider
-            domain={domain}
-            clientId={clientID}
-            redirectUri={window.location.origin}
-          >
-            <App />
-          </Auth0Provider>
-        </React.StrictMode>
-      </BrowserRouter>
-    </Provider>
-  </ThemeProvider>
+  <Provider store={store}>
+    <BrowserRouter>
+      <React.StrictMode>
+        <Auth0Provider
+          domain={domain}
+          clientId={clientID}
+          redirectUri={window.location.origin}
+        >
+          <App />
+        </Auth0Provider>
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
