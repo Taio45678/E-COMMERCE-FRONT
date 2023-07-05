@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { integrantes } from "../../Helpers/Helpers";
 import { createTheme } from "@mui/material/styles";
-import "../AboutUs/AboutUs.css";
+
 
 const AboutUs = () => {
   const theme = createTheme({
@@ -31,16 +31,13 @@ const AboutUs = () => {
       spacing={5}
       sx={{
         justifyContent: "start",
-        display: "space-between",
+        display: "flex",
+        flexWrap: "wrap",
         alignItems: "center",
         mt: 8,
         margin: 0,
         padding: "100px",
-        width: {
-          mobile: "99.5%",
-          tablet: "99.5%",
-          laptop: "99.5%",
-        },
+        width:  "100%",
         alignSelf: "center",
         mb: 8,
       }}
@@ -60,7 +57,8 @@ const AboutUs = () => {
               minWidth: "200px",
               padding: 2,
               height: "auto",
-              backgroundColor: "#40e0d0",
+              background: "linear-gradient(45deg, #6a1b9a, #ce93d8)",
+
               transition: "transform 0.2s",
               "&:hover": {
                 transform: "scale(1.05)",
@@ -149,3 +147,5 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
+
