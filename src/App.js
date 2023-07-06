@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { log_in } from "./Redux/actions";
 import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
+import Admin from "./Components/Admin/Admin";
 
 function App() {
   // const location = useLocation();
@@ -51,6 +52,7 @@ function App() {
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/favoritos" element={<Favoritos />}></Route>
+        <Route path="/admin" element={<Admin />}></Route>
         <Route
           path="/busqueda/:producto"
           element={<HomeBusqueda></HomeBusqueda>}
