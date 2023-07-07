@@ -11,7 +11,9 @@ const initialState = {
   carrito: [],
   paginas: 0,
   busquedaProducto: [],
-  pagsBusqueda: 0
+  busquedaProductoAux: [],
+  pagsBusqueda: 0,
+  productoBuscado: ""
   
 };
 
@@ -52,19 +54,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case "APLICAR_FILTROS":
-      var arrayFiltrado = [];
-      var arrayCatYColor = payload;
-      state.allProducts.forEach((producto) => {
-        var arrayColores = producto.colorproducto.split(",");
-        arrayCatYColor.forEach((param) => {
-          if (arrayColores.includes(param) || producto.categoria === param) {
-            arrayFiltrado.push(producto);
-          }
-        });
-      });
+      
       return {
-        ...state,
-        allProducts: arrayFiltrado,
+        busquedaProducto: payload.productos,
+        pagsBusqueda: payload.totalPages,
+        busquedaProductoAux: payload.productos
       };
 
     case "ADD_FAVORITES":
@@ -95,6 +89,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         busquedaProducto: payload.data.productos,
         pagsBusqueda: payload.data.totalPages,
+        busquedaProductoAux: payload.data.prductos
         
       }
     case "LIMPIAR_TODO":

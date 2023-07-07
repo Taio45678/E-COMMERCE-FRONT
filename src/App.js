@@ -19,12 +19,19 @@ import { log_in } from "./Redux/actions";
 import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
+import axios from 'axios'
+import { useLocation } from "react-router-dom";
+import ArrayObjetos from "./Helpers/ArrayObjetos";
+
 
 function App() {
   // const location = useLocation();
   const navigate = useNavigate();
+axios.defaults.baseURL = 'http://localhost:3001/' // para trabajar en local 
+//axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado 
 
-  const { isAuthenticated, user } = useAuth0();
+
+  const {isAuthenticated, user} = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -50,13 +57,11 @@ function App() {
         <Route path="/contacto" element={<Contacto />}></Route>
         <Route path="/carrito" element={<Carrito />}></Route>
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/favoritos" element={<Favoritos />}></Route>
+        <Route path="/profile" element={<Profile/>}></Route>
+        <Route path="/busqueda/:producto" element={<HomeBusqueda></HomeBusqueda>}></Route>
+        <Route path="/helper" element = {<ArrayObjetos/>}></Route>
         <Route path="/admin" element={<Admin />}></Route>
-        <Route
-          path="/busqueda/:producto"
-          element={<HomeBusqueda></HomeBusqueda>}
-        ></Route>
+
       </Routes>
       <Footer />
     </div>
