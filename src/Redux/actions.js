@@ -5,6 +5,8 @@ import AuthService from "../Services/AuthService";
 import axios from "axios";
 
 export const GET_DETAIL = "GET_DETAIL";
+export const SET_USUARIO_DETAIL = "SET_USUARIO_DETAIL";
+export const CLEAR_USUARIO_DETAIL = "CLEAR_USUARIO_DETAIL";
 
 export function getAllProducts(pagina) {
   const linkFelipe = `https://commerce-back-2025.up.railway.app/producto?page=${pagina}`;
@@ -109,3 +111,16 @@ export function limpiarFiltroyBusqueda() {
     type: "LIMPIAR_TODO",
   };
 }
+
+export const setUsuarioDetail = (usuario) => {
+  return {
+    type: "SET_USUARIO_DETAIL",
+    payload: usuario,
+  };
+};
+
+export const clearUsuarioDetail = () => {
+  return {
+    type: "CLEAR_USUARIO_DETAIL",
+  };
+};

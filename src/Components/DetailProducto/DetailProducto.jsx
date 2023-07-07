@@ -43,7 +43,6 @@ export default function DetailProducto() {
   useEffect(() => {
     dispatch(getDetail(id));
   }, []);
-
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
     e.preventDefault();

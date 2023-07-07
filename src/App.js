@@ -19,6 +19,7 @@ import { log_in } from "./Redux/actions";
 import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
+import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
 
 function App() {
   // const location = useLocation();
@@ -42,7 +43,7 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<SwipeableTextMobileStepper />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/aboutus" element={<AboutUs />}></Route>
         <Route path="/formProducto" element={<FormProducto />}></Route>
@@ -53,6 +54,10 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/favoritos" element={<Favoritos />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
+        <Route
+          path="/admin/perfilUsuario/id"
+          element={<PerfilUsuario />}
+        ></Route>
         <Route
           path="/busqueda/:producto"
           element={<HomeBusqueda></HomeBusqueda>}
