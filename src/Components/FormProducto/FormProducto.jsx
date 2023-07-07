@@ -113,7 +113,7 @@ export default function FormProducto() {
                   if (confirmar) {
                     try {
                       await axios.post(
-                        "https://commerce-back-2025.up.railway.app/productoCrear",
+                        "/productoCrear",
                         body
                       );
                       // const response = await fetch('https://commerce-back-2025.up.railway.app/productoCrear', {

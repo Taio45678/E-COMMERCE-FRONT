@@ -30,6 +30,17 @@ export default function DetailProducto() {
 
   const productDetails = useSelector((state) => state.details);
 
+ 
+
+  useEffect(() => {
+    
+      dispatch(getDetail(id));
+      // setTimeout(()=>{
+      //   dispatch(obtenerCategoriaPorId(categoriaId))    
+      // }, 500)
+   
+    
+  }, []);
   const {
     nombreproducto,
     descproducto,
@@ -37,15 +48,11 @@ export default function DetailProducto() {
     fotoprinc,
     precioproducto,
     disponibproducto,
-    categoriaId,
+    nombrecat,
   } = productDetails;
-
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, []);
-  useEffect(() => {
-    dispatch(obtenerCategoriaPorId(categoriaId));
-  }, []);
+  
+  //const nombrecate = categoria[0]?.nombrecat
+  
 
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
@@ -54,7 +61,7 @@ export default function DetailProducto() {
       id: id,
       nombre: nombreproducto,
       precio: precioproducto,
-      cantidad: disponibproducto,
+      cantidad: 1,
       imagen: fotoprinc,
     };
     dispatch(addCarrito(productToAdd));
@@ -82,7 +89,7 @@ export default function DetailProducto() {
             <h1>{productDetails.name}</h1>
             <h4>
               Categoria :{" "}
-              <h5 style={{ color: "red" }}>{nameCatego.nombrecat}</h5>
+              <h5 style={{ color: "red" }}>{nombrecat}</h5>
             </h4>
 
             <h2>{nombreproducto}</h2>

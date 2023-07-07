@@ -16,12 +16,17 @@ import  Profile  from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { log_in } from "./Redux/actions";
-
+import axios from 'axios'
 import { useLocation } from "react-router-dom";
+import ArrayObjetos from "./Helpers/ArrayObjetos";
 
 function App() {
   // const location = useLocation();
   const navigate = useNavigate();
+
+axios.defaults.baseURL = 'http://localhost:3001/' // para trabajar en local 
+//axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado 
+
 
   const {isAuthenticated, user} = useAuth0();
   
@@ -51,6 +56,7 @@ function App() {
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
         <Route path="/profile" element={<Profile/>}></Route>
         <Route path="/busqueda/:producto" element={<HomeBusqueda></HomeBusqueda>}></Route>
+        <Route path="/helper" element = {<ArrayObjetos/>}></Route>
       </Routes>
       <Footer />
     </div>

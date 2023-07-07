@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
-  Box,
-  Button,
-  Container,
+  
   CardContent,
   CardHeader,
   Typography,
   Avatar,
-  Grid,
   Card,
   CardActions,
   IconButton,
-  OutlinedInput,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  FormControlLabel,
-  Checkbox,
-  Select,
-  Chip,
-  useTheme,
-  Stack,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
@@ -114,7 +101,7 @@ export default function CardP({ producto }) {
               {producto.nombreproducto}
             </Typography>
             <Typography variant="h7" sx={{ color: "blue" }}>
-              {producto.categoria}
+              {producto.nombrecat}
             </Typography>
           </>
         }
