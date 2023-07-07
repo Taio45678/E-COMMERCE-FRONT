@@ -23,7 +23,7 @@ export default function DetailProducto() {
 
   let { id } = useParams();
   const dispatch = useDispatch();
-  const nameCatego = useSelector((state) => state.nombreCategoria);
+
   const elCarrito = useSelector((state) => state.carrito);
   const [carrito, setCarrito] = useState([]);
   console.log(elCarrito);
@@ -50,9 +50,7 @@ export default function DetailProducto() {
     disponibproducto,
     nombrecat,
   } = productDetails;
-  
-  //const nombrecate = categoria[0]?.nombrecat
-  
+
 
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
@@ -90,6 +88,7 @@ export default function DetailProducto() {
             <h4>
               Categoria :{" "}
               <h5 style={{ color: "red" }}>{nombrecat}</h5>
+
             </h4>
 
             <h2>{nombreproducto}</h2>

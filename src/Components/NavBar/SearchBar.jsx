@@ -31,10 +31,11 @@ export default function SearchBar() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        
+        ml: -4,
+        width: '90%'
       }}
     >
-      <FormControl sx={{ width: "50ch" }}>
+      <FormControl sx={{ width: "500px" }}>
         <OutlinedInput
           placeholder="Producto"
           value={producto}

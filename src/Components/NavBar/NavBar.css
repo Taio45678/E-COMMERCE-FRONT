@@ -3,6 +3,7 @@
   margin-bottom: 20px;
 }
 .cajaLogo {
+  padding-top: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,7 +166,7 @@
     display: block;
     width: 100%; /* Ocupar todo el ancho disponible */
   }
-  
+
   .categorias {
     width: 100%; /* Ocupar todo el ancho disponible */
     margin: 0; /* Eliminar márgenes laterales */

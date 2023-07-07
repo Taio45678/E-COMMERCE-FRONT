@@ -12,29 +12,32 @@ import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Carrito from "./Components/Carrito/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
-import  Profile  from "./Components/Profile/Profile";
+import Profile from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { log_in } from "./Redux/actions";
+import Favoritos from "./Components/Favoritos/Favoritos";
+import { useLocation } from "react-router-dom";
+import Admin from "./Components/Admin/Admin";
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
 import ArrayObjetos from "./Helpers/ArrayObjetos";
 
+
 function App() {
   // const location = useLocation();
   const navigate = useNavigate();
-
 axios.defaults.baseURL = 'http://localhost:3001/' // para trabajar en local 
 //axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado 
 
 
   const {isAuthenticated, user} = useAuth0();
-  
+
   useEffect(() => {
-    if(isAuthenticated){
-      log_in(user)
+    if (isAuthenticated) {
+      log_in(user);
     }
-  }, [])
+  }, []);
 
   const location = useLocation();
   //Funcion para salir de la landing page e ir al home
@@ -57,6 +60,8 @@ axios.defaults.baseURL = 'http://localhost:3001/' // para trabajar en local
         <Route path="/profile" element={<Profile/>}></Route>
         <Route path="/busqueda/:producto" element={<HomeBusqueda></HomeBusqueda>}></Route>
         <Route path="/helper" element = {<ArrayObjetos/>}></Route>
+        <Route path="/admin" element={<Admin />}></Route>
+
       </Routes>
       <Footer />
     </div>
