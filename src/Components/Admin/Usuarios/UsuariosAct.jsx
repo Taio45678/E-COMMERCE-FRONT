@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setUsuarioDetail } from "../../../Redux/actions";
 
+// ######################################
+
 export default function UsuariosAct() {
   const losUsuarios = useSelector((state) => state.usuariosHabilidatos);
 
@@ -17,7 +19,12 @@ export default function UsuariosAct() {
 
   return (
     <div className={s.fondo}>
-      <p>Usuarios Habilitados</p>
+      <div className={s.cabezera}>
+        <p>Usuarios Habilitados</p>
+        <Link to={"/admin/crearUsuariosAdmin"}>
+          <button>Crear Usuario</button>
+        </Link>
+      </div>
       <div className={s.barra}>
         <p>Imagen</p>
         <p>Usuario</p>

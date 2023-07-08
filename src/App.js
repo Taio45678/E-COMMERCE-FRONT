@@ -12,6 +12,7 @@ import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Carrito from "./Components/Carrito/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
+import FormCrearUsuarioAdmin from "./Components/Admin/Usuarios/CrearUsuario/CrearUsuario";
 import Profile from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
@@ -20,11 +21,13 @@ import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
 import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
+import Publicaciones from "./Components/Admin/Publicaciones/Publicaciones";
+import Ventas from "./Components/Admin/Ventas/Ventas";
+import MisDatos from "./Components/Admin/MisDatos/MisDatos";
+import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 
 function App() {
-  // const location = useLocation();
   const navigate = useNavigate();
-
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
@@ -33,8 +36,6 @@ function App() {
     }
   }, []);
 
-  const location = useLocation();
-  //Funcion para salir de la landing page e ir al home
   function onClick() {
     navigate("/home");
   }
@@ -43,25 +44,28 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/aboutus" element={<AboutUs />}></Route>
-        <Route path="/formProducto" element={<FormProducto />}></Route>
-        <Route path="/detailProducto/:id" element={<DetailProducto />}></Route>
-        <Route path="/contacto" element={<Contacto />}></Route>
-        <Route path="/carrito" element={<Carrito />}></Route>
-        <Route path="/formCrearUsuario" element={<FormCrearUsuario />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/favoritos" element={<Favoritos />}></Route>
-        <Route path="/admin" element={<Admin />}></Route>
-        <Route
-          path="/admin/perfilUsuario/id"
-          element={<PerfilUsuario />}
-        ></Route>
-        <Route
-          path="/busqueda/:producto"
-          element={<HomeBusqueda></HomeBusqueda>}
-        ></Route>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/formProducto" element={<FormProducto />} />
+        <Route path="/detailProducto/:id" element={<DetailProducto />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/formCrearUsuario" element={<FormCrearUsuario />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/admin" element={<Admin />}>
+          <Route path="publicaciones" element={<Publicaciones />} />
+          <Route path="ventas" element={<Ventas />} />
+          <Route path="usuarios" element={<UsuariosAct />} />
+          <Route
+            path="crearUsuariosAdmin"
+            element={<FormCrearUsuarioAdmin />}
+          />
+          <Route path="mis-datos" element={<MisDatos />} />
+          <Route path="perfilUsuario/:id" element={<PerfilUsuario />} />
+        </Route>
+        <Route path="/busqueda/:producto" element={<HomeBusqueda />} />
       </Routes>
       <Footer />
     </div>

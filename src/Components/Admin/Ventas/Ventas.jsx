@@ -241,10 +241,10 @@ export default function Ventas() {
   );
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", marginLeft: "190px", display: "flex" }}>
       <Paper
         sx={{
-          width: "100%",
+          width: "60%",
           mb: 2,
           height: "530px",
           border: "0.1em solid black",
@@ -333,6 +333,10 @@ export default function Ventas() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      <div className={s.total}>
+        <div className={s.suma}>total:</div>
+        <div className={s.pesos}>$000</div>
+      </div>
     </Box>
   );
 }

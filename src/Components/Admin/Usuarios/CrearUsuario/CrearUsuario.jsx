@@ -3,7 +3,9 @@ import { Formik, FieldArray, Field } from "formik";
 import { TextField, Button, Grid } from "@mui/material";
 import * as Yup from "yup";
 import axios from "axios";
-import s from "./FormCrearUsuario.module.css";
+import s from "./CrearUsuario.module.css";
+import { Link } from "react-router-dom";
+
 //Aqui se renderiza el formulario para crear un usuario nuevo
 
 export default function FormCrearUsuario() {
@@ -162,13 +164,17 @@ export default function FormCrearUsuario() {
                       />
                     </Grid>
                     <div className={s.caja5}>
-                      <Button
-                        sx={{ backgroundColor: "#ff8a65" }}
-                        variant="contained"
-                        type="submit"
-                      >
+                      <Button variant="contained" type="submit">
                         Enviar
                       </Button>
+                      <Link
+                        to={"/admin/usuarios"}
+                        style={{ color: "white", textDecoration: "none" }}
+                      >
+                        <Button variant="contained" type="submit">
+                          VOLVER
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </Grid>

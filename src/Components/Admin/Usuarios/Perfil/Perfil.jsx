@@ -39,7 +39,7 @@ export default function Perfil() {
           </div>
         </div>
         <button className={s.cerrarCuenta}>
-          <Link to="/admin">
+          <Link to="/admin/usuarios">
             <h1>Volver</h1>
           </Link>
         </button>

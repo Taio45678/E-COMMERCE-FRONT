@@ -7,6 +7,18 @@
 .fondo p {
   font-size: 20px;
 }
+.cabezera {
+  display: flex;
+  align-items: center;
+}
+.cabezera button {
+  color: aliceblue;
+  background-color: rgb(255, 0, 0);
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 20px;
+}
 .imagen {
   border-radius: 50px;
   width: 50px;

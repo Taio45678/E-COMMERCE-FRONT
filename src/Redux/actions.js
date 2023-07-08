@@ -112,15 +112,23 @@ export function limpiarFiltroyBusqueda() {
   };
 }
 
+export function getAllUsuarios(pagina) {
+  const linkFelipe = `?page=${pagina}`;
+
+  return async (dispatch) => {
+    const data =
+      //.content;           //para el local
+      (await axios.get(linkFelipe)).data; //para el deploy
+    return dispatch({
+      type: "GET_ALL_PRODUCTS",
+      payload: data,
+    });
+  };
+}
+
 export const setUsuarioDetail = (usuario) => {
   return {
     type: "SET_USUARIO_DETAIL",
     payload: usuario,
-  };
-};
-
-export const clearUsuarioDetail = () => {
-  return {
-    type: "CLEAR_USUARIO_DETAIL",
   };
 };
