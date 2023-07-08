@@ -131,10 +131,11 @@ export default function NavBar() {
                   </IconButton>
                 </Hidden>
                 {isAuthenticated ? (
+                  <>
                   <Link
                     to="/profile"
                     style={{ textDecoration: "none", color: "white" }}
-                  >
+                    >
                     <Button
                       variant="outlined"
                       sx={{
@@ -152,8 +153,7 @@ export default function NavBar() {
                       </Typography>
                     </Button>
                   </Link>
-                ) : null}
-                <Link
+                  <Link
                   to="/formProducto"
                   style={{
                     textDecoration: "none",
@@ -172,10 +172,12 @@ export default function NavBar() {
                       width: "95px",
                       height: "40px",
                     }}
-                  >
+                    >
                     <Typography sx={{ fontSize: "12px" }}>Vender</Typography>
                   </Button>
                 </Link>
+                    </>
+                ) : null}
 
                 {isAuthenticated ? <LogOut /> : <Login />}
               </Stack>

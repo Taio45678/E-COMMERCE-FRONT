@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import s from "./Total.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Total({ productos }) {
+
+  const {isAuthenticated, loginWithRedirect} = useAuth0();
+
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -18,22 +22,28 @@ export default function Total({ productos }) {
 
   const redirectToMercadoPago = async () => {
     try {
-      // Realizar una solicitud al backend para obtener la URL de pago de Mercado Pago
-      const response = await fetch("http://localhost:3000/create-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productos }),
-      });
+      //Chequeamos si está logeado el usuario
+      if(isAuthenticated){
 
-      if (response.ok) {
-        const data = await response.json();
-        // Redirigir al usuario a la URL de pago proporcionada por el backend
-        window.location.href = data.init_point;
-      } else {
-        console.log("Error al crear la orden de pago");
-      }
+        // Realizar una solicitud al backend para obtener la URL de pago de Mercado Pago
+        const response = await fetch("http://localhost:3000/create-order", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ productos }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          // Redirigir al usuario a la URL de pago proporcionada por el backend
+          window.location.href = data.init_point;
+        } else {
+          console.log("Error al crear la orden de pago");
+        }
+    } else {
+      loginWithRedirect()
+    }
     } catch (error) {
       console.log(error);
     }

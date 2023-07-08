@@ -20,7 +20,6 @@ import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
 import axios from 'axios'
-import { useLocation } from "react-router-dom";
 import ArrayObjetos from "./Helpers/ArrayObjetos";
 
 
