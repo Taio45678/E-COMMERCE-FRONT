@@ -46,7 +46,9 @@ export default function NavBar() {
             heigth: "20%",
           }}
         >
-          <img src={logo} alt="" className="logo" sx={{ height: "40px" }} />
+          <IconButton color="inherit" component={Link} to="/">
+            <img src={logo} alt="" className="logo" sx={{ height: "40px" }} />
+          </IconButton>
           <Box display="flex" justifyContent="center" width="100%">
             <SearchBar></SearchBar>
           </Box>
@@ -67,7 +69,7 @@ export default function NavBar() {
             </Box>
           </Box>
 
-          <Grid item xs={6} md={4} sx={{ width: "80%", mr: "1%", mt: 3 }}>
+          <Grid item xs={6} md={4} sx={{ width: "80%", mr: 18, mt: 3 }}>
             <Box display="flex" justifyContent="start" alignItems="center">
               <Box className="categorias">
                 {showCategories && (
@@ -75,43 +77,43 @@ export default function NavBar() {
                     sx={{ display: "flex", alignItems: "center", gap: "20px" }}
                   >
                     <Link
-                      to=""
+                      to="/home?categorias=Tecnología"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Tecnología</Typography>
                     </Link>
                     <Link
-                      to=""
+                      to="/home?categorias=Electrodomésticos"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Electrodomésticos</Typography>
                     </Link>
                     <Link
-                      to=""
+                      to="/home?categorias=Hogar"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Hogar </Typography>
                     </Link>
                     <Link
-                      to=""
+                      to="/home?categorias=Herramientas"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Herramientas</Typography>
                     </Link>
                     <Link
-                      to=""
+                      to="/home?categorias=Moda"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Moda</Typography>
                     </Link>
                     <Link
-                      to=""
+                      to="/home?categorias=Juguetes"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Juguetes</Typography>
                     </Link>
                     <Link
-                      to=""
+                      to="/home?categorias=Construcción"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Construcción</Typography>

@@ -19,10 +19,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 200px;
+  width: 120%;
   height: 92%;
   border-radius: 13px;
   border: 0.12em solid rgb(182, 182, 182);
+  margin-left: 20px;
 }
 .cajaImagen {
   display: flex;
@@ -33,6 +34,7 @@
   height: 200px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  
 }
 .titulo {
   display: flex;

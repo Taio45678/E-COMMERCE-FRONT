@@ -20,8 +20,8 @@ import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
 import axios from 'axios'
-import { useLocation } from "react-router-dom";
-import ArrayObjetos from "./Helpers/ArrayObjetos";
+import ArrayObjetos from "./Helpers/arrayObjetos";
+import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 
 
 function App() {
@@ -61,6 +61,7 @@ axios.defaults.baseURL = 'http://localhost:3001/' // para trabajar en local
         <Route path="/busqueda/:producto" element={<HomeBusqueda></HomeBusqueda>}></Route>
         <Route path="/helper" element = {<ArrayObjetos/>}></Route>
         <Route path="/admin" element={<Admin />}></Route>
+        <Route path="*" element={<NotFound />} /> {/* Ruta de captura para páginas no encontradas */}
 
       </Routes>
       <Footer />
