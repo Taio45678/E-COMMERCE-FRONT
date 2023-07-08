@@ -83,12 +83,11 @@ export default function Admin() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const { user, isAuthenticated } = useAuth0();
-
-  console.log(user);
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
-    isAuthenticated && (
+    <>
+    {isAuthenticated ? 
       <div className={s.fondo}>
         <ThemeProvider theme={theme}>
           <Box
@@ -97,7 +96,7 @@ export default function Admin() {
               display: "flex",
               height: 680,
             }}
-          >
+            >
             <Tabs
               orientation="vertical"
               variant="scrollable"
@@ -111,7 +110,7 @@ export default function Admin() {
                 background: "black",
                 paddingTop: "340px",
               }}
-            >
+              >
               <Tab label="Publicaciones" {...a11yProps(0)} />
               <Tab label="Ventas" {...a11yProps(1)} />
               <Tab label="Usuarios" {...a11yProps(2)} />
@@ -143,6 +142,8 @@ export default function Admin() {
           </Box>
         </ThemeProvider>
       </div>
-    )
+      : loginWithRedirect()}
+    
+    </>
   );
 }

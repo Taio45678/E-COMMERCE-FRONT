@@ -6,10 +6,14 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import * as Yup from "yup";
 import axios from "axios";
 import s from "./FormProducto.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //Aqui se renderiza el formulario para crear un nuevo producto
 
 export default function FormProducto() {
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
   const fileRef = useRef(null);
   const cloudName = "dmjkjz1oa";
 
@@ -51,6 +55,7 @@ export default function FormProducto() {
 
   return (
     <>
+      {isAuthenticated ? 
       <div className={s.fondo}>
         <div className={s.cajaInterna}>
           <Grid
@@ -58,7 +63,7 @@ export default function FormProducto() {
             direction="column"
             justifyContent="center"
             alignItems="center"
-          >
+            >
             <h2 className={s.crearProducto}>Crear Producto</h2>
             <Formik
               initialValues={initialValues}
@@ -66,33 +71,33 @@ export default function FormProducto() {
                 nombreproducto: requiredString.min(
                   1,
                   "Debes ingresar al menos 1 caracter"
-                ),
+                  ),
                 fotoprinc: Yup.mixed()
-                  .nullable()
-                  .required()
-                  .test(
-                    "FILE_FORMAT",
-                    "El archivo debe ser una imagen",
-                    (value) => {
+                .nullable()
+                .required()
+                .test(
+                  "FILE_FORMAT",
+                  "El archivo debe ser una imagen",
+                  (value) => {
                       return value && value.type.startsWith("image/");
                     }
-                  ),
-                disponibproducto: Yup.number()
-                  .integer("Ingresa un número entero")
-                  .positive("El stock debe ser mayor a cero")
-                  .required("Campo requerido"),
-                descproducto: requiredString,
-                precioproducto: Yup.number()
-                  .integer("Ingresa un número entero")
-                  .positive("El precio debe ser mayor a cero")
-                  .required("Campo requerido"),
-                colorproducto: Yup.array().min(
-                  1,
-                  "Debe haber al menos un color añadido"
-                ),
-                nombrecat: requiredString.min(
-                  1,
-                  "Debes ingresar al menos 1 caracter"
+                    ),
+                    disponibproducto: Yup.number()
+                    .integer("Ingresa un número entero")
+                    .positive("El stock debe ser mayor a cero")
+                    .required("Campo requerido"),
+                    descproducto: requiredString,
+                    precioproducto: Yup.number()
+                    .integer("Ingresa un número entero")
+                    .positive("El precio debe ser mayor a cero")
+                    .required("Campo requerido"),
+                    colorproducto: Yup.array().min(
+                      1,
+                      "Debe haber al menos un color añadido"
+                      ),
+                      nombrecat: requiredString.min(
+                        1,
+                        "Debes ingresar al menos 1 caracter"
                 ),
               })}
               onSubmit={async (values, { resetForm }) => {
@@ -109,17 +114,17 @@ export default function FormProducto() {
                   };
                   var confirmar = window.confirm(
                     "Se enviará" + JSON.stringify(body)
-                  );
-                  if (confirmar) {
-                    try {
-                      await axios.post(
+                    );
+                    if (confirmar) {
+                      try {
+                        await axios.post(
                         "/productoCrear",
                         body
-                      );
-                      // const response = await fetch('https://commerce-back-2025.up.railway.app/productoCrear', {
-                      //   method: "POST",
-                      //   body: body
-                      // })
+                        );
+                        // const response = await fetch('https://commerce-back-2025.up.railway.app/productoCrear', {
+                          //   method: "POST",
+                          //   body: body
+                          // })
                       alert("Producto creado");
                       resetForm();
                     } catch (err) {
@@ -128,7 +133,7 @@ export default function FormProducto() {
                   }
                 }
               }}
-            >
+              >
               {({
                 handleSubmit,
                 handleChange,
@@ -209,7 +214,7 @@ export default function FormProducto() {
                               hidden
                               cloudName={cloudName}
                               publicId={values.fotoprinc.name}
-                            />
+                              />
                           </div>
                         )}
                         <Button
@@ -305,7 +310,7 @@ export default function FormProducto() {
                             width: "100%",
                             background: "white",
                           }}
-                        />
+                          />
                       </Grid>
                     </div>
 
@@ -373,7 +378,7 @@ export default function FormProducto() {
                               width: "100%",
                               background: "white",
                             }}
-                          />
+                            />
                         </Grid>
                       </div>
                       {/* ############### CREAR PUBLICACION ############*/}
@@ -385,7 +390,7 @@ export default function FormProducto() {
                           style={{
                             width: "60%",
                           }}
-                        >
+                          >
                           Crear Publicacion
                         </Button>
                       </div>
@@ -397,6 +402,8 @@ export default function FormProducto() {
           </Grid>
         </div>
       </div>
+    : loginWithRedirect()
+    }
     </>
   );
 }
