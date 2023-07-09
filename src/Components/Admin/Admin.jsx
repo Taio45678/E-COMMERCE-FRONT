@@ -20,25 +20,51 @@ export default function Admin() {
         <div className={s.caja2}>
           <Link
             to="/admin/publicaciones"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+              textDecoration: "none",
+              marginBottom: "20px",
+            }}
           >
             PUBLICACIONES
           </Link>
           <Link
             to="/admin/ventas"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+              textDecoration: "none",
+              marginBottom: "20px",
+            }}
           >
             VENTAS
           </Link>
           <Link
             to="/admin/usuarios"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+              textDecoration: "none",
+              marginBottom: "20px",
+            }}
           >
-            USUARIOS
+            USUARIOS HAB.
+          </Link>
+          <Link
+            to="/admin/baneados"
+            style={{
+              color: "white",
+              textDecoration: "none",
+              marginBottom: "20px",
+            }}
+          >
+            USUARIOS DES.
           </Link>
           <Link
             to="/admin/mis-datos"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+              textDecoration: "none",
+              marginBottom: "20px",
+            }}
           >
             MIS DATOS
           </Link>

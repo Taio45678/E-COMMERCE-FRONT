@@ -1,83 +1,110 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, Pagination} from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
-import {useSelector, useDispatch} from 'react-redux'
-import { getAllCategorias, getAllProducts } from '../../Redux/actions';
-import ContainerFiltros from './ContainerFiltros';
-import CardP from './CardP';
-
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  CardContent,
+  CardHeader,
+  Link,
+  Typography,
+  Avatar,
+  Grid,
+  Card,
+  Pagination,
+} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCategorias, getAllProducts } from "../../Redux/actions";
+import ContainerFiltros from "./ContainerFiltros";
+import CardP from "./CardP";
 
 const Home = () => {
-
   const [productosFiltrados, setProductosFiltrados] = useState([]); // Agrega esta línea para declarar el estado productos
 
   const dispatch = useDispatch();
-  // Función que trae los productos del back al store de redux 
-  useEffect(()=>{
-    dispatch(getAllProducts(1))
-    dispatch(getAllCategorias())
-  },[])
-  function handleChangePagina(e, value){
-    
-    dispatch(getAllProducts(value))
-  
+  // Función que trae los productos del back al store de redux
+  useEffect(() => {
+    dispatch(getAllProducts(1));
+    dispatch(getAllCategorias());
+  }, []);
+  function handleChangePagina(e, value) {
+    dispatch(getAllProducts(value));
   }
-  
-  //Traemos todos los productos del store local 
-  const {allProducts, paginas} = useSelector((state)=>state)
+
+  //Traemos todos los productos del store local
+  const { allProducts, paginas } = useSelector((state) => state);
 
   const [productosMostrados, setProductosMostrados] = useState(3);
 
-
   const productos2 = allProducts;
 
-
   const mostrarMasProductos = () => {
-    setProductosMostrados((prevProductosMostrados) => prevProductosMostrados + 3);
+    setProductosMostrados(
+      (prevProductosMostrados) => prevProductosMostrados + 3
+    );
   };
 
-  
-    
   return (
     <Grid
       container
       spacing={8}
       sx={{
-        justifyContent: 'center',
-        padding: '5%',
+        justifyContent: "center",
+        padding: "5%",
         width: {
-          mobile: '99.5%',
-          tablet: '99.5%',
-          laptop: '99.5%',
+          mobile: "99.5%",
+          tablet: "99.5%",
+          laptop: "99.5%",
         },
-        alignSelf: 'center',
+        alignSelf: "center",
         mb: 8,
         mt: 1,
       }}
     >
-      <ContainerFiltros/>
-            
-      {productos2?.slice(0, productosMostrados).map((producto) => (
-        <Grid item mobile={12} tablet={6} laptop={6} desktop={6} key={producto.id}>
+      <ContainerFiltros />
 
-          <CardP producto = {producto}/>
-          
+      {productos2?.slice(0, productosMostrados).map((producto) => (
+        <Grid
+          item
+          mobile={12}
+          tablet={6}
+          laptop={6}
+          desktop={6}
+          key={producto.id}
+        >
+          <CardP producto={producto} />
         </Grid>
       ))}
 
-      <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0,}}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={6}
+        lg={6}
+        sx={{
+          display: "space-between",
+          justifyContent: "center",
+          alignItems: "center",
+          mt: 8,
+          margin: 0,
+        }}
+      >
         <Button variant="contained" onClick={mostrarMasProductos}>
           Mostrar más
         </Button>
       </Grid>
       <Grid>
-      <Pagination count={paginas} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+        <Pagination
+          count={paginas}
+          showFirstButton
+          showLastButton
+          onChange={handleChangePagina}
+        ></Pagination>
       </Grid>
     </Grid>
-    
   );
 };
-    
+
 export default Home;
-    

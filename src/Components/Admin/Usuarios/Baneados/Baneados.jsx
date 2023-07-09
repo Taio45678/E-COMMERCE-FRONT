@@ -1,27 +1,28 @@
 import React, { useEffect } from "react";
-import s from "./UsuariosAct.module.css";
+import s from "./Baneados.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-//import { setUsuarioDetail } from "../../../Redux/actions";
+import { setUsuarioDetail } from "../../../../Redux/actions";
 import { Pagination } from "@mui/material";
-import { getAllUsuarios } from "../../../Redux/actions";
+//import { getAllUsuarios } from "../../../Redux/actions";
 
 // ######################################
 
-export default function UsuariosAct() {
-  // const losUsuarios = useSelector((state) => state.usuariosHabilidatos);
-  // const paginas = useSelector((state) => state.pagina);
-
+export default function Baneados() {
+  const losUsuarios = useSelector((state) => state.usuariosDesabilitados);
   const dispatch = useDispatch();
-  const { usuariosHabilidatos, paginas } = useSelector((state) => state);
-  const losUsuarios = usuariosHabilidatos;
-  useEffect(() => {
-    dispatch(getAllUsuarios(1));
-  }, []);
+  //const {usuariosHabilidatos, paginas} = useSelector((state)=>state)
+  //const losUsuarios = usuariosHabilidatos;
+  // useEffect(() => {
+  //   dispatch(getAllUsuarios(1));
+  // }, []);
 
-  function handleChangePagina(e, value) {
-    dispatch(getAllUsuarios(value));
-  }
+  // function handleChangePagina(e, value) {
+  //   dispatch(getAllUsuarios(value));
+  // }
+  const handleVerClick = (usuario) => {
+    dispatch(setUsuarioDetail(usuario));
+  };
 
   return (
     <div className={s.fondo}>
@@ -42,14 +43,14 @@ export default function UsuariosAct() {
         {losUsuarios.map((usuario) => (
           <div className={s.usuarios} key={usuario.id}>
             <div className={s.cajaImagen}>
-              <img src={usuario.picture} alt="" className={s.imagen} />
+              <img src={usuario.img} alt="" className={s.imagen} />
             </div>
-            <div className={s.username}>{usuario.name}</div>
+            <div className={s.username}>{usuario.username}</div>
             <div className={s.rol}>{usuario.rol}</div>
             <div className={s.accion}>
-              <button>Desabilitar</button>
+              <button>Habilitar</button>
               <Link
-                to={`/admin/perfilUsuario/${usuario.id}`}
+                to={"/admin/perfilUsuario/id"}
                 className={s.accion}
                 style={{ textDecoration: "none" }}
               >
@@ -61,10 +62,10 @@ export default function UsuariosAct() {
       </div>
       <div className={s.pagination}>
         <Pagination
-          count={paginas}
+          count={""}
           showFirstButton
           showLastButton
-          onChange={handleChangePagina}
+          onChange={""}
         ></Pagination>
       </div>
     </div>

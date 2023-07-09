@@ -112,16 +112,44 @@ export function limpiarFiltroyBusqueda() {
   };
 }
 
+// export function getAllUsuarios(pagina) {
+//   const linkFelipe = `?page=${pagina}`;
+
+//   return async (dispatch) => {
+//     const data =
+//       //.content;           //para el local
+//       (await axios.get(linkFelipe)).data; //para el deploy
+//     return dispatch({
+//       type: "GET_ALL_USUARIOS",
+//       payload: data,
+//     });
+//   };
+// }
+
 export function getAllUsuarios(pagina) {
-  const linkFelipe = `?page=${pagina}`;
+  const linkFelipe = `https://commerce-back-2025.up.railway.app/usuarios?page=${pagina}`;
 
   return async (dispatch) => {
     const data =
       //.content;           //para el local
       (await axios.get(linkFelipe)).data; //para el deploy
+
     return dispatch({
-      type: "GET_ALL_PRODUCTS",
+      type: "GET_ALL_USUARIOS",
       payload: data,
+    });
+  };
+}
+
+export function usuarioId(id) {
+  return async function (dispatch) {
+    const json = await axios(
+      `https://commerce-back-2025.up.railway.app/usuarios/${id}`
+    );
+    console.log(json.data);
+    return dispatch({
+      type: "USUARIO_ID",
+      payload: json.data,
     });
   };
 }

@@ -25,6 +25,7 @@ import Publicaciones from "./Components/Admin/Publicaciones/Publicaciones";
 import Ventas from "./Components/Admin/Ventas/Ventas";
 import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
+import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
 
 function App() {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ function App() {
           <Route path="publicaciones" element={<Publicaciones />} />
           <Route path="ventas" element={<Ventas />} />
           <Route path="usuarios" element={<UsuariosAct />} />
+          <Route path="baneados" element={<Baneados />} />
           <Route
             path="crearUsuariosAdmin"
             element={<FormCrearUsuarioAdmin />}
