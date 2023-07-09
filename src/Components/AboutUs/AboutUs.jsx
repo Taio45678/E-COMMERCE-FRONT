@@ -23,7 +23,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/theinventor1">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
@@ -46,7 +46,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/Maxi-95">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
@@ -69,7 +69,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/Taio45678">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
@@ -92,7 +92,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/caparada1366">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
@@ -115,7 +115,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/MEC-97">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
@@ -138,7 +138,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/Akadus23">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
@@ -161,7 +161,7 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="">
+              <a href="https://github.com/dalegaz404">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
