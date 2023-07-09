@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <>
       <Button onClick={() => loginWithRedirect()} variant="outlined" sx={{ borderColor: "#757575", color: "white", borderWidth: 1, backgroundColor: "grey",  borderRadius: "10%", width: "90px", height: "40px" }}>
-        Log in
+        Iniciar sesión
       </Button>
     </>
   );

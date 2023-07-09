@@ -3,10 +3,8 @@ import s from "./Total.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Total({ productos }) {
-
-  const {isAuthenticated, loginWithRedirect} = useAuth0();
-
   const [total, setTotal] = useState(0);
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     const calculateTotal = () => {

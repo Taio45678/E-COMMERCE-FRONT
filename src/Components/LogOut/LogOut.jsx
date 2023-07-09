@@ -8,7 +8,7 @@ export default function LogOut() {
   return (
     <>
       <Button onClick={() => logout()} variant="outlined" sx={{ borderColor: "#757575", color: "white", borderWidth: 1, backgroundColor: "grey",  borderRadius: "10%", width: "90px", height: "40px" }}>
-        <Typography sx={{ fontSize: "12px" }}>Log Out</Typography>
+        <Typography sx={{ fontSize: "12px" }}>Cerrar sesión</Typography>
       </Button>
     </>
   );

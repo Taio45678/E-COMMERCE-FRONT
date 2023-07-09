@@ -1,5 +1,4 @@
-//import arrayObjetos from "../Helpers/arrayObjetos"
-//import axios from "axios"
+
 import AuthService from "../Services/AuthService";
 //import arrayObjetos from "../Helpers/arrayObjetos";
 import axios from "axios";
@@ -8,13 +7,16 @@ export const GET_DETAIL = "GET_DETAIL";
 export const SET_USUARIO_DETAIL = "SET_USUARIO_DETAIL";
 export const CLEAR_USUARIO_DETAIL = "CLEAR_USUARIO_DETAIL";
 
-export function getAllProducts(pagina) {
-  const linkFelipe = `https://commerce-back-2025.up.railway.app/producto?page=${pagina}`;
-  const linkBackLocal = "http://localhost:3001/productos/productos";
+export function getAllProducts(pagina, producto, color, cate, precio ) {
+  if(!producto) producto = ""
+  const queryColor = color?.length >0 ?color.join("&color="): ""
+  const queryCate = cate?.length >0 ?cate.join("&cate="): ""
+  const link = `/producto/buscar?prod=${producto}&page=${pagina}&price=${precio}&color=${queryColor}&cate=${queryCate}`
+  
   return async (dispatch) => {
     const data =
       //.content;           //para el local
-      (await axios.get(linkFelipe)).data; //para el deploy
+      (await axios.get(link)).data; //para el deploy
     return dispatch({
       type: "GET_ALL_PRODUCTS",
       payload: data,
@@ -23,7 +25,7 @@ export function getAllProducts(pagina) {
 }
 
 export function getAllCategorias() {
-  const linkFelipe = `https://commerce-back-2025.up.railway.app/categorias`;
+  const linkFelipe = `/categorias`;
   const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data = (await axios.get(linkFelipe)).data;
@@ -40,7 +42,7 @@ export function getDetail(id) {
   return async function (dispatch) {
     const json = await axios(
       //https://commerce-back-2025.up.railway.app/producto/3
-      `https://commerce-back-2025.up.railway.app/producto/${id}`
+      `/producto/${id}`
     );
     return dispatch({
       type: GET_DETAIL,
@@ -49,10 +51,20 @@ export function getDetail(id) {
   };
 }
 
-export function aplicarFiltros(categoriasYcolores) {
-  return {
-    type: "APLICAR_FILTROS",
-    payload: categoriasYcolores,
+export function aplicarFiltros(pagina, producto, color, cate, precio) {
+  if(!producto) producto = ""
+  const queryColor = color?.length >0 ?color.join("&color="): ""
+  const queryCate = cate?.length >0 ?cate.join("&"): ""
+  const link = `/producto/buscar?prod=${producto}&page=${pagina}&price=${precio}&color=${queryColor}&cate=${queryCate}`
+  
+  return async (dispatch) => {
+    const data =
+      //.content;           //para el local
+      (await axios.get(link)).data; //para el deploy
+    return dispatch({
+      type: "APLICAR_FILTROS",
+      payload: data,
+    });
   };
 }
 
@@ -83,7 +95,7 @@ export function addCarrito(producto) {
 export function obtenerCategoriaPorId(id) {
   return async function (dispatch) {
     const json = await axios(
-      `https://commerce-back-2025.up.railway.app/categorias/${id}`
+      `/categorias/${id}`
     );
     return dispatch({
       type: "NAME_CATEGORIA",
@@ -92,8 +104,8 @@ export function obtenerCategoriaPorId(id) {
   };
 }
 
-export function buscarProducto(pagina, producto) {
-  const linkFelipe = `https://commerce-back-2025.up.railway.app/producto/buscar?prod=${producto}&cate=&page=${pagina}`;
+export function buscarProducto(pagina, producto,) {
+  const linkFelipe = `/producto/buscar?prod=${producto}&cate=&page=${pagina}`;
   const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data =

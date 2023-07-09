@@ -26,9 +26,14 @@ import Ventas from "./Components/Admin/Ventas/Ventas";
 import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
+import axios from "axios";
+import ArrayObjetos from "./Helpers/ArrayObjetos";
 
 function App() {
   const navigate = useNavigate();
+  axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
+  //axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado
+
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
@@ -55,6 +60,7 @@ function App() {
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/helper" element={<ArrayObjetos />}></Route>
         <Route path="/admin" element={<Admin />}>
           <Route path="publicaciones" element={<Publicaciones />} />
           <Route path="ventas" element={<Ventas />} />
