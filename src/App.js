@@ -20,12 +20,8 @@ import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
 import axios from 'axios'
-<<<<<<< HEAD
 import ArrayObjetos from "./Helpers/arrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
-=======
-import ArrayObjetos from "./Helpers/ArrayObjetos";
->>>>>>> f99c9794fc7022f4c0193958b771c136168c9a58
 
 
 function App() {
