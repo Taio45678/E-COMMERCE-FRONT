@@ -13,23 +13,24 @@ const Home = () => {
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
   const [ordenPrecio, setOrdenPrecio]= useState("")
+  const[page, setPage] = useState(1);
   const producto = ""
   const dispatch = useDispatch();
   // Función que trae los productos del back al store de redux 
   useEffect(()=>{
-    dispatch(getAllProducts(1))
+    dispatch(getAllProducts(1, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
     dispatch(getAllCategorias())
   },[])
   function handleChangePagina(e, value){
     
     dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
-  
+    setPage(value)
   }
   
   //Traemos todos los productos del store local 
   const {allProducts, paginas, categorias} = useSelector((state)=>state)
 
-  const [productosMostrados, setProductosMostrados] = useState(3);
+  const [productosMostrados, setProductosMostrados] = useState(5);
 
 
   const productos2 = allProducts;
@@ -44,7 +45,7 @@ const Home = () => {
   }
 
   const mostrarMasProductos = () => {
-    setProductosMostrados((prevProductosMostrados) => prevProductosMostrados + 3);
+    setProductosMostrados((prevProductosMostrados) => prevProductosMostrados + 5);
   };
 
   const handleOrdenPrecio = (e) =>{
@@ -100,8 +101,9 @@ const Home = () => {
       setCategoriasSeleccionadas([]); 
       setColoresSeleccionados([]);
       setOrdenPrecio("")
-      dispatch(limpiarFiltroyBusqueda);
+      //dispatch(limpiarFiltroyBusqueda);
       dispatch(getAllProducts(1, producto))
+      setPage(1)
        // Restablecer las selecciones de categorías y colores
       // Otros pasos para limpiar los filtros si es necesario
 };  
@@ -237,7 +239,7 @@ const Home = () => {
           </Button>
         </Grid>
         <Grid>
-        <Pagination count={paginas} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+        <Pagination count={paginas} showFirstButton showLastButton page={page} onChange={handleChangePagina} ></Pagination>
         </Grid>
       </Grid>
     

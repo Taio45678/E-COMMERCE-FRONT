@@ -14,6 +14,7 @@ export default function HomeBusqueda() {
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
   const [ordenPrecio, setOrdenPrecio]= useState("")
+  const[page, setPage] = useState(1);
   const navigate = useNavigate();
     const producto = useParams().producto;
     if(!producto) producto = ""
@@ -29,7 +30,7 @@ export default function HomeBusqueda() {
     function handleChangePagina(e, value){
       
       dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
-    
+      setPage(value)
     }
     
     //Traemos todos los productos del store local 
@@ -106,8 +107,9 @@ export default function HomeBusqueda() {
             setCategoriasSeleccionadas([]); 
             setColoresSeleccionados([]);
             setOrdenPrecio("")
-            dispatch(limpiarFiltroyBusqueda);
+            //dispatch(limpiarFiltroyBusqueda);
             dispatch(getAllProducts(1, producto))
+            setPage(1)
              // Restablecer las selecciones de categorías y colores
             // Otros pasos para limpiar los filtros si es necesario
       };  
