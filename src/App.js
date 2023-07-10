@@ -30,6 +30,7 @@ import axios from "axios";
 import ArrayObjetos from "./Helpers/ArrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
+import LandingPage from "./Components/LandingPage/LandingPage";
 
 function App() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
         <Route path="/home" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/formProducto" element={<FormProducto />} />
@@ -61,7 +62,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/favoritos" element={<Favoritos />} />
+        {/* <Route path="/favoritos" element={<Favoritos />} /> */}
         <Route path="/helper" element={<ArrayObjetos />}></Route>
         <Route path="*" element={<NotFound />} />{" "}
         {/* Ruta de captura para páginas no encontradas */}
