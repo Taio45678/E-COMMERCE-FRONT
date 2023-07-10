@@ -39,14 +39,16 @@ export function getAllCategorias() {
 
 export function getDetail(id) {
   return async function (dispatch) {
+    
     const json = await axios(
-      //https://commerce-back-2025.up.railway.app/producto/3
+      // `https://e-commerce-back-2025.up.railway.app/producto/3`
       `/producto/${id}`
     );
     return dispatch({
       type: GET_DETAIL,
       payload: json.data,
     });
+  
   };
 }
 

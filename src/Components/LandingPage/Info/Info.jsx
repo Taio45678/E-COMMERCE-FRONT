@@ -19,7 +19,7 @@ export default function Info() {
         <div className={s.info}>
           <div className={s.icono2}></div>
           <div className={s.data}>
-            <h3>Envío gratis desde $ 8.000</h3>
+            <h3>Envío sin costo adicional</h3>
             <p>
               Solo por estar registrado en All Market tenés envíos gratis en
               miles de productos. Es un beneficio de All Market.
@@ -32,8 +32,8 @@ export default function Info() {
           <div className={s.data}>
             <h3>Seguridad, de principio a fin</h3>
             <p>
-              ¿No te gusta? ¡Devolvelo! En All Mrket, no hay nada que no puedas
-              hacer, porque estás siempre protegido.
+              ¿No te gusta? ¡Devolvelo! En All Market, no hay nada que no puedas
+              hacer, porque estás siempre protegido. Hacé click en Contacto.
             </p>
           </div>
         </div>

@@ -21,6 +21,7 @@
   font-size: 25px;
   color: aliceblue;
   margin-bottom: 18px;
+  margin-top: 10%;
 }
 .cajaInterna {
   display: flex;
@@ -28,6 +29,7 @@
 }
 .cajaImagen {
   width: 68%;
+  margin-top: 20px;
 }
 .cajaImagen h4 {
   margin-top: 19px;
@@ -62,6 +64,8 @@
   width: 32%;
   padding: 10px;
   padding-bottom: 20px;
+  margin-bottom: 10%;
+  margin-top: 20px;
 }
 .datos h1 {
   margin-left: 7px;

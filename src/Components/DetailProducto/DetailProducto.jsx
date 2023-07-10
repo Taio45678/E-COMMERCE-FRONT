@@ -123,7 +123,7 @@ export default function DetailProducto() {
           </div>
         </div>
 
-        <ProductosDtl />
+        <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px' }} />
       </form>
     </div>
   );
