@@ -30,16 +30,11 @@ export default function DetailProducto() {
 
   const productDetails = useSelector((state) => state.details);
 
- 
-
   useEffect(() => {
-    
-      dispatch(getDetail(id));
-      // setTimeout(()=>{
-      //   dispatch(obtenerCategoriaPorId(categoriaId))    
-      // }, 500)
-   
-    
+    dispatch(getDetail(id));
+    // setTimeout(()=>{
+    //   dispatch(obtenerCategoriaPorId(categoriaId))
+    // }, 500)
   }, []);
   const {
     nombreproducto,
@@ -50,7 +45,6 @@ export default function DetailProducto() {
     disponibproducto,
     nombrecat,
   } = productDetails;
-
 
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
@@ -86,9 +80,7 @@ export default function DetailProducto() {
           <div className={s.datos}>
             <h1>{productDetails.name}</h1>
             <h4>
-              Categoria :{" "}
-              <h5 style={{ color: "red" }}>{nombrecat}</h5>
-
+              Categoria : <h5 style={{ color: "red" }}>{nombrecat}</h5>
             </h4>
 
             <h2>{nombreproducto}</h2>
