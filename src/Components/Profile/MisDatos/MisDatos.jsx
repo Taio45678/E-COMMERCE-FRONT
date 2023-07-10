@@ -62,7 +62,7 @@ export default function MisDatos() {
         </div>
       </div>
       <button className={s.cerrarCuenta}>
-        <h1>Cerrar cuenta</h1>
+        <h1>Guardar cambios</h1>
       </button>
     </div>
   );

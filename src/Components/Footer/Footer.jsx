@@ -14,10 +14,10 @@ export default function Footer() {
         left: 0,
         width: '100%',
         height: 150,
-        backgroundColor: '#ff7043',
+        backgroundColor: '#ff8a65',
       }}
     >
-      <Grid container justifyContent="center" alignItems="center" height="100%">
+      <Grid container justifyContent="center" alignItems="center" height="100%" >
         <BottomNavigation
           showLabels
           value={value}
@@ -25,7 +25,7 @@ export default function Footer() {
             setValue(newValue);
           }}
           sx={{
-            backgroundColor: '#ff7043',
+            backgroundColor: '#ff8a65',
           }}
         >
           <BottomNavigationAction
@@ -34,6 +34,7 @@ export default function Footer() {
             value="home"
             component={Link}
             href="/"
+            sx={{ mx: 1, }}
           />
           <BottomNavigationAction
             label="About Us"
@@ -41,6 +42,7 @@ export default function Footer() {
             value="about"
             component={Link}
             href="/aboutus"
+            sx={{ mx: 1, }}
           />
           <BottomNavigationAction
             label="Contacto"
@@ -48,18 +50,19 @@ export default function Footer() {
             value="contacto"
             component={Link}
             href="/contacto"
+            sx={{ mx: 1, }}
           />
         </BottomNavigation>
       </Grid>
 
       <Grid
         container
-        bgcolor="#e64a19"
+        bgcolor="#ff6e40"
         justifyContent="center"
         bottom={0}
         left={0}
       >
-        <Box item>
+        <Box item sx={{ mx: 1, }}>
           <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
             <LinkedIn
               sx={{
@@ -71,7 +74,7 @@ export default function Footer() {
             />
           </a>
         </Box>
-        <Box item>
+        <Box item sx={{ mx: 1, }}>
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
             <Instagram
               sx={{
@@ -83,7 +86,7 @@ export default function Footer() {
             />
           </a>
         </Box>
-        <Box item>
+        <Box item sx={{ mx: 1, }}>
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
             <Facebook
               sx={{
@@ -99,3 +102,4 @@ export default function Footer() {
     </Box>
   );
 }
+

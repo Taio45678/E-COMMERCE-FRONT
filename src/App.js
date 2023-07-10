@@ -2,7 +2,7 @@ import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
 import DetailProducto from "./Components/DetailProducto/DetailProducto";
 import FormProducto from "./Components/FormProducto/FormProducto";
-import LandingPage from "./Components/LandingPage/LandingPage";
+// import LandingPage from "./Components/LandingPage/LandingPage";
 import SwipeableTextMobileStepper from "./Components/LandingPage/LandingPage";
 import Home from "./Components/Home/Home";
 import HomeBusqueda from "./Components/HomeBusqueda/HomeBusqueda";
@@ -16,12 +16,13 @@ import Profile from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { log_in } from "./Redux/actions";
-import Favoritos from "./Components/Favoritos/Favoritos";
+// import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
 import axios from 'axios'
-import ArrayObjetos from "./Helpers/ArrayObjetos";
-
+import ArrayObjetos from "./Helpers/arrayObjetos";
+import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
+import  Reviews  from "./Components/Reviews/Reviews";
 
 function App() {
   // const location = useLocation();
@@ -60,7 +61,8 @@ axios.defaults.baseURL = 'http://localhost:3001/' // para trabajar en local
         <Route path="/busqueda/:producto" element={<HomeBusqueda></HomeBusqueda>}></Route>
         <Route path="/helper" element = {<ArrayObjetos/>}></Route>
         <Route path="/admin" element={<Admin />}></Route>
-
+        <Route path="*" element={<NotFound />} /> {/* Ruta de captura para páginas no encontradas */}
+        <Route path="/reviews" element={<Reviews />}></Route>
       </Routes>
       <Footer />
     </div>
