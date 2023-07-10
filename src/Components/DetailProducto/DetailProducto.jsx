@@ -19,17 +19,24 @@ import {
 
 export default function DetailProducto() {
   // Las CALIFICACIONES sera un array acumulativo de estreñas x compras del producto
-  const [value, setValue] = React.useState(3);
+  
 
   let { id } = useParams();
   const dispatch = useDispatch();
-  const nameCatego = useSelector((state) => state.nombreCategoria);
+
   const elCarrito = useSelector((state) => state.carrito);
   const [carrito, setCarrito] = useState([]);
+  
   console.log(elCarrito);
 
   const productDetails = useSelector((state) => state.details);
 
+  useEffect(() => {
+    dispatch(getDetail(id));
+    // setTimeout(()=>{
+    //   dispatch(obtenerCategoriaPorId(categoriaId))
+    // }, 500)
+  }, []);
   const {
     nombreproducto,
     descproducto,
@@ -37,15 +44,17 @@ export default function DetailProducto() {
     fotoprinc,
     precioproducto,
     disponibproducto,
-    categoriaId,
+    nombrecat,
+    reviews
   } = productDetails;
 
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, []);
-  useEffect(() => {
-    dispatch(obtenerCategoriaPorId(categoriaId));
-  }, []);
+  //######### OBTENER EL VALOR DE LA REVIEW###########
+  const arrayReview = []
+  reviews?.forEach(review => {
+    arrayReview.push(review.rating)
+  });
+  const suma = arrayReview.reduce((ac, nu)=> ac+nu, 0)
+  const calificacion = suma/arrayReview.length
 
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
@@ -54,7 +63,7 @@ export default function DetailProducto() {
       id: id,
       nombre: nombreproducto,
       precio: precioproducto,
-      cantidad: disponibproducto,
+      cantidad: 1,
       imagen: fotoprinc,
     };
     dispatch(addCarrito(productToAdd));
@@ -81,8 +90,7 @@ export default function DetailProducto() {
           <div className={s.datos}>
             <h1>{productDetails.name}</h1>
             <h4>
-              Categoria :{" "}
-              <h5 style={{ color: "red" }}>{nameCatego.nombrecat}</h5>
+              Categoria : <h5 style={{ color: "red" }}>{nombrecat}</h5>
             </h4>
 
             <h2>{nombreproducto}</h2>
@@ -109,11 +117,9 @@ export default function DetailProducto() {
             >
               <Typography component="legend"></Typography>
               <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
+                name="read-only"
+                value={calificacion}
+                readOnly
               />
             </Box>
             <a
@@ -125,7 +131,7 @@ export default function DetailProducto() {
           </div>
         </div>
 
-        <ProductosDtl />
+        <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px' }} />
       </form>
     </div>
   );

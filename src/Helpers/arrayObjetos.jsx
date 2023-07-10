@@ -1,117 +1,197 @@
+import axios from 'axios'
+import React from 'react'
 
-// const arrayObjetos = [
+export default function ArrayObjetos() {
 
-// {
-//     id: 1,
-//     name: "gafas",
-//     image: 'https://www.xiaomiadictos.com/wp-content/uploads/2022/04/xiaomi-gafas-sol-aviador-pilot-768x405.jpg',
-//     stock: "15",
-//     description: "gafas de sol",
-//     price: "50",
-//     colores: ["Verde", "Negro", "Dorado"]
-// },
-// {
-//     id: 2,
-//     name: "pantalon",
-//     image: "https://estaticos-cdn.sport.es/clip/657b54ac-90fd-42fe-9b86-8529e59d7803_media-libre-aspect-ratio_default_0.jpg",
-//     stock: "5",
-//     description: "Pantalon de hombre",
-//     price: "25",
-//     colores: ["Verde", "Azul"]
-// },
-// {
-//     id: 3,
-//     name: "pelota",
-//     image: 'https://ep01.epimg.net/verne/imagenes/2015/09/11/articulo/1441988783_165642_1442161238_sumario_normal.jpg',
-//     stock: "100",
-//     description: "Pelota para jugar futbol",
-//     price: "150",
-//     colores: ['Unicolor']
-// },
-// {
-//     id: 4,
-//     name: "taza",
-//     image: 'https://images.pexels.com/photos/1585850/pexels-photo-1585850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-//     stock: "15",
-//     description: "gafas de sol",
-//     price: "50",
-//     colores: ["Verde", "Negro", "Dorado"]
-// },
-// {
-//     id: 5,
-//     name: "gorra",
-//     image: "https://images.pexels.com/photos/1878821/pexels-photo-1878821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-//     stock: "5",
-//     description: "Pantalon de hombre",
-//     price: "25",
-//     colores: ["Verde", "Azul"]
-// },
-// {
-//     id: 6,
-//     name: "mochila",
-//     image: 'https://images.pexels.com/photos/1102874/pexels-photo-1102874.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     stock: "100",
-//     description: "Pelota para jugar futbol",
-//     price: "150",
-//     colores: ['Unicolor']
-// },
-// {
-//     id: 7,
-//     name: "gafas",
-//     image: 'https://www.xiaomiadictos.com/wp-content/uploads/2022/04/xiaomi-gafas-sol-aviador-pilot-768x405.jpg',
-//     stock: "15",
-//     description: "gafas de sol",
-//     price: "50",
-//     colores: ["Verde", "Negro", "Dorado"]
-// },
-// {
-//     id: 8, 
-//     name: "camara",
-//     image: "https://images.pexels.com/photos/16389485/pexels-photo-16389485/free-photo-of-camara-tecnologia-dispositivo-telefono-movil.jpeg?auto=compress&cs=tinysrgb&w=1600",
-//     stock: "5",
-//     description: "Pantalon de hombre",
-//     price: "25",
-//     colores: ["Verde", "Azul"]
-// },
-// {
-//     id: 9,
-//     name: "pelota",
-//     image: 'https://ep01.epimg.net/verne/imagenes/2015/09/11/articulo/1441988783_165642_1442161238_sumario_normal.jpg',
-//     stock: "100",
-//     description: "Pelota para jugar futbol",
-//     price: "150",
-//     colores: ['Unicolor']
-// },
-// {
-//     id: 10,
-//     name: "calzado",
-//     image: 'https://images.pexels.com/photos/2529146/pexels-photo-2529146.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     stock: "15",
-//     description: "gafas de sol",
-//     price: "50",
-//     colores: ["Verde", "Negro", "Dorado"]
-// },
-// {
-//     id: 11, 
-//     name: "bicicleta",
-//     image: "https://images.pexels.com/photos/4542852/pexels-photo-4542852.jpeg?auto=compress&cs=tinysrgb&w=1600",
-//     stock: "5",
-//     description: "Pantalon de hombre",
-//     price: "25",
-//     colores: ["Verde", "Azul"]
-// },
-// {
-//     id: 12,
-//     name: "auriculares",
-//     image: 'https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     stock: "100",
-//     description: "Pelota para jugar futbol",
-//     price: "150",
-//     colores: ['Unicolor']
-// },
-// ]
+  const arrayObjetos = [
+    {
+    nombreproducto: "reloj antiguo",
+    fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
+    disponibproducto:155,
+    descproducto: "Telefono inteligente"
+    ,precioproducto:5,
+    colorproducto:["dorado"],
+    nombrecat:"Hogar"
+    },
+    {    nombreproducto: "Boligrafos",
+        descproducto: "Bolígrafos de varios colores para que puedas escribir todo lo que quieras ",
+        colorproducto: [
+          "Rojo",
+          "Negro",
+          "Azul"
+        ],
+        fotoprinc: "http://res.cloudinary.com/dmjkjz1oa/image/upload/v1688138607/shoppieimg/dwi6vcxhcdjkxfm3kxgi.jpg",
+        precioproducto: 6,
+        disponibproducto: 1000,
+        nombrecat:"Papelería"
+    },
+    {
+      "nombreproducto": "Perrito negro",
+          "descproducto": "Perrito amigable y acompañante ",
+          "colorproducto": [
+            "negro"
+          ],
+          "fotoprinc": "https://www.pakainfo.com/wp-content/uploads/2021/09/image-url-for-testing.jpg",
+          "precioproducto": 9,
+          "disponibproducto": 1,
+    "nombrecat":"Animales"
+    },
+    {
+      "nombreproducto": "Decorador extraño",
+           "descproducto": "Decorador con forma extraña",
+           "colorproducto": [
+             "Unico"
+           ],
+           "fotoprinc": "https://www.pakainfo.com/wp-content/uploads/2021/09/test-image-online-300x148.jpg",
+           "precioproducto": 1,
+           "disponibproducto": 15,
+     "nombrecat":"Hogar"	
+     },
+     {"nombreproducto": "TV Antiguo",
+     "descproducto": "TV con diseño antiguo en blanco y negro",
+     "colorproducto": [
+       "Unico"
+     ],
+     "fotoprinc": "https://cdn.pixabay.com/photo/2013/07/13/14/02/tv-162002_640.png",
+     "precioproducto": 20,
+     "disponibproducto": 10,
+    "nombrecat":"Hogar"
+    },
+    {
+      "nombreproducto": "Fresas",
+            "descproducto": "Fresas buenas para comer ",
+            "colorproducto": [
+              "Rojo"
+            ],
+            "fotoprinc": "https://cdn.pixabay.com/photo/2016/04/15/08/04/strawberry-1330459_640.jpg",
+            "precioproducto": 2,
+            "disponibproducto": 100,
+      "nombrecat":"Alimentos"},
+      {"nombreproducto": "Cerezas",
+          "descproducto": "cerezas buenas para comer ",
+          "colorproducto": [
+            "Rojo"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2021/06/04/06/09/cherries-6308871_640.jpg",
+          "precioproducto": 7,
+          "disponibproducto": 100,
+    "nombrecat":"Alimentos"},
+    { "nombreproducto": "Miel",
+          "descproducto": "Miel dulce directamente del panal ",
+          "colorproducto": [
+            "miel"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2017/01/06/17/49/honey-1958464_640.jpg",
+          "precioproducto": 15,
+          "disponibproducto": 10,
+    "nombrecat":"Alimentos"},
+    {"nombreproducto": "Pan",
+          "descproducto": "Pan recien hecho ",
+          "colorproducto": [
+            "Unico"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2018/06/10/20/30/bread-3467243_640.jpg",
+          "precioproducto": 10,
+          "disponibproducto": 100,
+    "nombrecat":"Alimentos"},
+    {"nombreproducto": "Labial",
+          "descproducto": "Labial color intenso para mujer",
+          "colorproducto": [
+            "Rojo"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2021/10/10/21/52/makeup-6698881_640.jpg",
+          "precioproducto": 11,
+          "disponibproducto": 50,
+    "nombrecat":"Belleza"},
+    {"nombreproducto": "Kit belleza",
+          "descproducto": "Kit belleza completo ",
+          "colorproducto": [
+            "Rojo",
+            "azul"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2017/09/13/16/08/cosmetics-2746013_640.jpg",
+          "precioproducto": 12,
+          "disponibproducto": 40,
+    "nombrecat":"Belleza"},
+    {"nombreproducto": "Cerezas premium",
+          "descproducto": "cerezas buenas para comer ",
+          "colorproducto": [
+            "Rojo"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2021/06/04/06/09/cherries-6308871_640.jpg",
+          "precioproducto": 18,
+          "disponibproducto": 100,
+    "nombrecat":"Alimentos"},
+    { "nombreproducto": "Miel",
+          "descproducto": "Miel dulce directamente del panal ",
+          "colorproducto": [
+            "miel"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2017/01/06/17/49/honey-1958464_640.jpg",
+          "precioproducto": 4,
+          "disponibproducto": 10,
+    "nombrecat":"Alimentos"},
+    {"nombreproducto": "Pan",
+          "descproducto": "Pan recien hecho ",
+          "colorproducto": [
+            "Unico"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2018/06/10/20/30/bread-3467243_640.jpg",
+          "precioproducto": 8,
+          "disponibproducto": 100,
+    "nombrecat":"Alimentos"},
+    {
+      nombreproducto: "reloj antiguo",
+      fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
+      disponibproducto:155,
+      descproducto: "Telefono inteligente"
+      ,precioproducto:11,
+      colorproducto:["dorado"],
+      nombrecat:"Hogar"
+      },
+      {    nombreproducto: "Boligrafos",
+          descproducto: "Bolígrafos de varios colores para que puedas escribir todo lo que quieras ",
+          colorproducto: [
+            "Rojo",
+            "Negro",
+            
+          ],
+          fotoprinc: "http://res.cloudinary.com/dmjkjz1oa/image/upload/v1688138607/shoppieimg/dwi6vcxhcdjkxfm3kxgi.jpg",
+          precioproducto: 17,
+          disponibproducto: 1000,
+          nombrecat:"Papelería"
+      },
+      {"nombreproducto": "Labial",
+          "descproducto": "Labial color intenso para mujer",
+          "colorproducto": [
+            "Rojo"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2021/10/10/21/52/makeup-6698881_640.jpg",
+          "precioproducto": 11,
+          "disponibproducto": 50,
+    "nombrecat":"Cosmeticos"},
+    {"nombreproducto": "Kit belleza",
+          "descproducto": "Kit belleza completo ",
+          "colorproducto": [
+            "Rojo",
+            "azul"
+          ],
+          "fotoprinc": "https://cdn.pixabay.com/photo/2017/09/13/16/08/cosmetics-2746013_640.jpg",
+          "precioproducto": 19,
+          "disponibproducto": 40,
+    "nombrecat":"Cosmeticos"},
+        ]
+    
 
-// export default arrayObjetos;
-
+function handleClick(e){
+  arrayObjetos.forEach(objeto=>{
+    axios.post("/productoCrear", objeto)
+  })
   
-  
+}
+
+  return (
+    <div>
+      <button onClick={handleClick}>arrayObjetos</button></div>
+  )
+}

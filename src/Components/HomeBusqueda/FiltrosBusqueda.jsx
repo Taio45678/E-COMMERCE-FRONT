@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, CardActions, IconButton, OutlinedInput, InputLabel, MenuItem, FormControl, FormControlLabel, Checkbox, Select, Chip, useTheme, Stack } from '@mui/material';
+import { Box, Button, Container, OutlinedInput, InputLabel, MenuItem, FormControl, Select,  } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import {useSelector, useDispatch} from 'react-redux'
@@ -8,10 +8,15 @@ import { getAllProducts, limpiarFiltroyBusqueda } from '../../Redux/actions';
 export default function FiltrosBusqueda() {
     const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
     const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
+    const [ordenPrecio, setOrdenPrecio]= useState("")
     const dispatch = useDispatch();
-    const {allProducts, categorias} = useSelector((state)=>state)
-    const productos2 = allProducts;
+    const {busquedaProducto, categorias, productoBuscado} = useSelector((state)=>state)
+    const productos2 = busquedaProducto;
 
+    const handleOrdenPrecio = (e) =>{
+      const orden = e.target.value
+      setOrdenPrecio(orden)
+    }   
     const handleCategoriasChange = (event) => {
         // const {
         //   target: { value },
@@ -62,17 +67,18 @@ export default function FiltrosBusqueda() {
 
       const aplicarFiltros = () => {
 
-        alert('Se filtrara por categoria '+categoriasSeleccionadas[0] +"y color" + coloresSeleccionados[0])
-        //dispatch(aplicarFiltros());
-        }
-        const limpiarFiltros = () => {
+        alert('Se filtrara por categoria '+categoriasSeleccionadas[0] +"y colorgfdasgsfdhsa" + coloresSeleccionados[0])
+
+        dispatch(aplicarFiltros());
+      }
+      const limpiarFiltros = () => {
             setCategoriasSeleccionadas([]); 
             setColoresSeleccionados([]);
             dispatch(limpiarFiltroyBusqueda);
             dispatch(getAllProducts(1))
              // Restablecer las selecciones de categorías y colores
             // Otros pasos para limpiar los filtros si es necesario
-          };  
+      };  
 
   return (
     <Container sx={{ display: 'space-between', justifyContent: 'center',}}>
@@ -131,6 +137,31 @@ export default function FiltrosBusqueda() {
           ))}
         </Select>
       </FormControl>
+      </Box>
+      <Box xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
+      <FormControl sx={{ m: 1, width: 200 }}>
+        <Select
+        labelId="Orden precio"
+        label="Orden precio"
+        id="price"
+        value={ordenPrecio}
+        onChange={handleOrdenPrecio}
+        input={<OutlinedInput label="Orden" />}
+        MenuProps={MenuProps}>
+        <MenuItem
+        key={"Ascendente"}
+        value={"up"}
+        >
+          Ascendente
+        </MenuItem>  
+        <MenuItem
+        key={"down"}
+        value={"down"}
+        >
+          Descendente
+        </MenuItem> 
+        </Select>
+        </FormControl>
       </Box>
       
       <Box sx={{ textAlign: 'right', mt: 2 }}>
