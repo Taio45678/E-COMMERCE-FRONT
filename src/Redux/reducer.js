@@ -19,11 +19,16 @@ const initialState = {
   pagsBusqueda: 0,
   productoBuscado: "",
   usuarioDetail: [],
-  usuariosHabilidatos: [],
+  error: null,
+  usuarios: [],
+  loading: false,
+  paginaActual: 1,
+  totalPages: 0,
+  totalUsuarios: 0,
   usuariosHabilidatosAux: [],
   usuariosDesabilitados: [],
 };
-
+console.log(initialState.totalPages);
 export default function rootReducer(state = initialState, { type, payload }) {
   switch (type) {
     //aca van las acciones que se requieran hacer de redux
@@ -41,12 +46,41 @@ export default function rootReducer(state = initialState, { type, payload }) {
         allProductsAux: payload.productos,
         paginas: payload.totalPages,
       };
-    case "GET_ALL_USUARIOS":
+
+    case "FETCH_USUARIOS_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+
+    case "FETCH_USUARIOS_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        usuarios: payload.usuarios,
+        totalPages: payload.totalPages,
+        totalUsuarios: state.totalUsuarios, // Mantener el número total de usuarios en el estado
+      };
+
+    case "FETCH_USUARIOS_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+
+    case "GET_ALL_USUARIOS_SUCCESS":
       return {
         ...state,
         usuariosHabilidatos: payload,
-        usuariosHabilidatosAux: payload,
-        paginas: payload.totalPages,
+        error: null,
+      };
+    case "GET_ALL_USUARIOS_FAILURE":
+      return {
+        ...state,
+        usuariosHabilidatos: [],
+        error: payload,
       };
 
     case "GET_ALL_CATEGS":
