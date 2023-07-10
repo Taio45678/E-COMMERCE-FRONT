@@ -27,7 +27,7 @@ import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
 import axios from "axios";
-import ArrayObjetos from "./Helpers/ArrayObjetos";
+import ArrayObjetos from "./Helpers/arrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
@@ -53,7 +53,7 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        {/* <Route path="/" element={<LandingPage />} /> */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/formProducto" element={<FormProducto />} />
