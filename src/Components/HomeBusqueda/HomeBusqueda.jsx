@@ -192,6 +192,7 @@ export default function HomeBusqueda() {
       </Box>
       <Box xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
       <FormControl sx={{ m: 1, width: 200 }}>
+      <InputLabel id="demo-multiple-name-label">Precio</InputLabel>
         <Select
         labelId="Orden precio"
         label="Orden precio"

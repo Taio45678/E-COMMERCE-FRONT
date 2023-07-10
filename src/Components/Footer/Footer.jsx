@@ -17,7 +17,7 @@ export default function Footer() {
         backgroundColor: '#ff8a65',
       }}
     >
-      <Grid container justifyContent="center" alignItems="center" height="100%">
+      <Grid container justifyContent="center" alignItems="center" height="100%" >
         <BottomNavigation
           showLabels
           value={value}
@@ -34,6 +34,7 @@ export default function Footer() {
             value="home"
             component={Link}
             href="/"
+            sx={{ mx: 1, }}
           />
           <BottomNavigationAction
             label="About Us"
@@ -41,6 +42,7 @@ export default function Footer() {
             value="about"
             component={Link}
             href="/aboutus"
+            sx={{ mx: 1, }}
           />
           <BottomNavigationAction
             label="Contacto"
@@ -48,6 +50,7 @@ export default function Footer() {
             value="contacto"
             component={Link}
             href="/contacto"
+            sx={{ mx: 1, }}
           />
         </BottomNavigation>
       </Grid>
@@ -59,38 +62,38 @@ export default function Footer() {
         bottom={0}
         left={0}
       >
-        <Box item>
+        <Box item sx={{ mx: 1, }}>
           <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
             <LinkedIn
               sx={{
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '70px',
+                fontSize: '40px',
               }}
             />
           </a>
         </Box>
-        <Box item>
+        <Box item sx={{ mx: 1, }}>
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
             <Instagram
               sx={{
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '70px',
+                fontSize: '40px',
               }}
             />
           </a>
         </Box>
-        <Box item>
+        <Box item sx={{ mx: 1, }}>
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
             <Facebook
               sx={{
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '70px',
+                fontSize: '40px',
               }}
             />
           </a>
@@ -99,3 +102,4 @@ export default function Footer() {
     </Box>
   );
 }
+
