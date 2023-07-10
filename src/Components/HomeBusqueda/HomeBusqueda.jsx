@@ -14,6 +14,7 @@ export default function HomeBusqueda() {
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
   const [ordenPrecio, setOrdenPrecio]= useState("")
+  const[page, setPage] = useState(1);
   const navigate = useNavigate();
     const producto = useParams().producto;
     if(!producto) producto = ""
@@ -24,12 +25,12 @@ export default function HomeBusqueda() {
       
         dispatch(getAllProducts(1, producto))
         dispatch(getAllCategorias())
-    },[])
+    },[dispatch])
       
     function handleChangePagina(e, value){
       
       dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
-    
+      setPage(value)
     }
     
     //Traemos todos los productos del store local 
@@ -106,8 +107,9 @@ export default function HomeBusqueda() {
             setCategoriasSeleccionadas([]); 
             setColoresSeleccionados([]);
             setOrdenPrecio("")
-            dispatch(limpiarFiltroyBusqueda);
+            //dispatch(limpiarFiltroyBusqueda);
             dispatch(getAllProducts(1, producto))
+            setPage(1)
              // Restablecer las selecciones de categorías y colores
             // Otros pasos para limpiar los filtros si es necesario
       };  
@@ -115,6 +117,7 @@ export default function HomeBusqueda() {
     
       
     return (
+      
       <Grid
         container
         spacing={8}
@@ -131,123 +134,125 @@ export default function HomeBusqueda() {
           mt: 1,
         }}
       >
-         <Container sx={{ display: 'space-between', justifyContent: 'center',}}>
-        <Box  xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
+        {productos2.length === 0 ? <h1>Ups!! no se encontraron productos en esta busqueda</h1>:
+          
+          <Container sx={{ display: 'space-between', justifyContent: 'center',}}>
+          <Box  xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="demo-multiple-producto-label">Categoría</InputLabel>
+            <Select
+              labelId="demo-multiple-producto-label"
+              id="demo-multiple-producto"
+              multiple
+              value={categoriasSeleccionadas}
+              onChange={handleCategoriasChange}
+              input={<OutlinedInput label="Categoría" />}
+              MenuProps={MenuProps}
+            >
+            {arrayCats()?.map((cate) => (
+              <MenuItem
+                key={cate}
+                value={cate}
+                style={getStyles(cate, categoriasSeleccionadas, theme)}
+              >
+                {cate}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        </Box>
+
+        <Box xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-producto-label">Categoría</InputLabel>
+          <InputLabel id="demo-multiple-name-label">Colores</InputLabel>
           <Select
-            labelId="demo-multiple-producto-label"
-            id="demo-multiple-producto"
+            labelId="demo-multiple-colores-label"
+            id="demo-multiple-colores"
             multiple
-            value={categoriasSeleccionadas}
-            onChange={handleCategoriasChange}
-            input={<OutlinedInput label="Categoría" />}
+            value={coloresSeleccionados}
+            onChange={handleColoresChange}
+            input={<OutlinedInput label="Colores" />}
             MenuProps={MenuProps}
           >
-          {arrayCats()?.map((cate) => (
-            <MenuItem
-              key={cate}
-              value={cate}
-              style={getStyles(cate, categoriasSeleccionadas, theme)}
-            >
-              {cate}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      </Box>
-
-      <Box xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Colores</InputLabel>
-        <Select
-          labelId="demo-multiple-colores-label"
-          id="demo-multiple-colores"
-          multiple
-          value={coloresSeleccionados}
-          onChange={handleColoresChange}
-          input={<OutlinedInput label="Colores" />}
-          MenuProps={MenuProps}
-        >
-          {productos2?.reduce((colores, producto) => {
-            producto.colorproducto?.forEach((color) => {
-              if (!colores.includes(color)) {
-                colores.push(color);
-              }
-            });
-            return colores;
-          }, []).map((color, index) => (
-            <MenuItem
-              key={index}
-              value={color}
-              style={getStyles(color, coloresSeleccionados, theme)}
-            >
-              {color}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      </Box>
-      <Box xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
-      <FormControl sx={{ m: 1, width: 200 }}>
-      <InputLabel id="demo-multiple-name-label">Precio</InputLabel>
-        <Select
-        labelId="Orden precio"
-        label="Orden precio"
-        id="price"
-        value={ordenPrecio}
-        onChange={handleOrdenPrecio}
-        input={<OutlinedInput label="Orden" />}
-        MenuProps={MenuProps}>
-          <MenuItem
-        key={"undefined"}
-        value={undefined}
-        >
-          ---
-        </MenuItem>  
-        <MenuItem
-        key={"Ascendente"}
-        value={"up"}
-        >
-          Ascendente
-        </MenuItem>  
-        <MenuItem
-        key={"down"}
-        value={"down"}
-        >
-          Descendente
-        </MenuItem> 
-        </Select>
+            {productos2?.reduce((colores, producto) => {
+              producto.colorproducto?.forEach((color) => {
+                if (!colores.includes(color)) {
+                  colores.push(color);
+                }
+              });
+              return colores;
+            }, []).map((color, index) => (
+              <MenuItem
+                key={index}
+                value={color}
+                style={getStyles(color, coloresSeleccionados, theme)}
+              >
+                {color}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
-      </Box>
-      
-      <Box sx={{ textAlign: 'right', mt: 2 }}>
-        <Button variant="contained" onClick={aplicarFiltrado} sx={{ ml: 2 }} >
-          Aplicar
-        </Button>
-        <Button variant="contained" onClick={limpiarFiltros} sx={{ marginLeft: 2 }}>
-          Limpiar
-        </Button>
-      </Box>
-    </Container>  
-              
-        {productos2?.slice(0, productosMostrados).map((prods) => (
-        <Grid item mobile={12} tablet={6} laptop={6} desktop={6} key={prods.id}>
-          
-          <CardP producto = {prods}/>
+        </Box>
+        <Box xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
+        <FormControl sx={{ m: 1, width: 200 }}>
+        <InputLabel id="demo-multiple-name-label">Precio</InputLabel>
+          <Select
+          labelId="Orden precio"
+          label="Orden precio"
+          id="price"
+          value={ordenPrecio}
+          onChange={handleOrdenPrecio}
+          input={<OutlinedInput label="Orden" />}
+          MenuProps={MenuProps}>
+            <MenuItem
+          key={"undefined"}
+          value={undefined}
+          >
+            ---
+          </MenuItem>  
+          <MenuItem
+          key={"Ascendente"}
+          value={"up"}
+          >
+            Ascendente
+          </MenuItem>  
+          <MenuItem
+          key={"down"}
+          value={"down"}
+          >
+            Descendente
+          </MenuItem> 
+          </Select>
+          </FormControl>
+        </Box>
         
-        </Grid>
-      ))}
-    
-        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0,}}>
-          <Button variant="contained" onClick={mostrarMasProductos}>
-            Mostrar más
+        <Box sx={{ textAlign: 'right', mt: 2 }}>
+          <Button variant="contained" onClick={aplicarFiltrado} sx={{ ml: 2 }} >
+            Aplicar
           </Button>
+          <Button variant="contained" onClick={limpiarFiltros} sx={{ marginLeft: 2 }}>
+            Limpiar
+          </Button>
+        </Box>
+      </Container>  }
+                
+          {productos2?.slice(0, productosMostrados).map((prods) => (
+          <Grid item mobile={12} tablet={6} laptop={6} desktop={6} key={prods.id}>
+            
+            <CardP producto = {prods}/>
+          
+          </Grid>
+        ))}
+      
+          <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0,}}>
+            <Button variant="contained" onClick={mostrarMasProductos}>
+              Mostrar más
+            </Button>
+          </Grid>
+          <Grid>
+          <Pagination count={pagsBusqueda} page={page} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+          </Grid>
         </Grid>
-        <Grid>
-        <Pagination count={pagsBusqueda} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
-        </Grid>
-      </Grid>
       
     );
 }
