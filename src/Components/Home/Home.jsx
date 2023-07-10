@@ -21,34 +21,36 @@ import {
 } from "../../Redux/actions";
 import ContainerFiltros from "./ContainerFiltros";
 import CardP from "./CardP";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
-  const [ordenPrecio, setOrdenPrecio] = useState("");
-  const producto = "";
+  const [ordenPrecio, setOrdenPrecio]= useState("")
+  const producto = ""
+  var {categoria} = useParams()
+  if(!categoria){
+    categoria =""
+  }else {
+    setCategoriasSeleccionadas([categoria])} 
   const dispatch = useDispatch();
-  // Función que trae los productos del back al store de redux
-  useEffect(() => {
-    dispatch(getAllProducts(1));
-    dispatch(getAllCategorias());
-  }, []);
-  function handleChangePagina(e, value) {
-    dispatch(
-      getAllProducts(
-        value,
-        producto,
-        coloresSeleccionados,
-        categoriasSeleccionadas,
-        ordenPrecio
-      )
-    );
+  const[page, setPage] = useState(1);
+  // Función que trae los productos del back al store de redux 
+  useEffect(()=>{
+    dispatch(getAllProducts(1, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
+    dispatch(getAllCategorias())
+  },[])
+  function handleChangePagina(e, value){
+    
+    dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
+    setPage(value)
   }
 
   //Traemos todos los productos del store local
   const { allProducts, paginas, categorias } = useSelector((state) => state);
 
   const [productosMostrados, setProductosMostrados] = useState(3);
+
 
   const productos2 = allProducts;
 
@@ -61,9 +63,7 @@ const Home = () => {
   };
 
   const mostrarMasProductos = () => {
-    setProductosMostrados(
-      (prevProductosMostrados) => prevProductosMostrados + 3
-    );
+    setProductosMostrados((prevProductosMostrados) => prevProductosMostrados + 3);
   };
 
   const handleOrdenPrecio = (e) => {
@@ -123,16 +123,17 @@ const Home = () => {
     dispatch(getAllCategorias());
   };
 
-  const limpiarFiltros = () => {
-    setCategoriasSeleccionadas([]);
-    setColoresSeleccionados([]);
-    setOrdenPrecio("");
-    dispatch(limpiarFiltroyBusqueda);
-    dispatch(getAllProducts(1, producto));
-    // Restablecer las selecciones de categorías y colores
-    // Otros pasos para limpiar los filtros si es necesario
-  };
-
+    const limpiarFiltros = () => {
+      setCategoriasSeleccionadas([]); 
+      setColoresSeleccionados([]);
+      setOrdenPrecio("")
+      //dispatch(limpiarFiltroyBusqueda);
+      dispatch(getAllProducts(1, producto))
+      setPage(1)
+       // Restablecer las selecciones de categorías y colores
+      // Otros pasos para limpiar los filtros si es necesario
+};  
+    
   return (
     <Grid
       container
@@ -288,34 +289,18 @@ const Home = () => {
           <CardP producto={prods} />
         </Grid>
       ))}
+    
 
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={6}
-        lg={6}
-        sx={{
-          display: "space-between",
-          justifyContent: "center",
-          alignItems: "center",
-          mt: 8,
-          margin: 0,
-        }}
-      >
-        <Button variant="contained" onClick={mostrarMasProductos}>
-          Mostrar más
-        </Button>
+    <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0,}}>
+          <Button variant="contained" onClick={mostrarMasProductos}>
+            Mostrar más
+          </Button>
+        </Grid>
+        <Grid>
+        <Pagination count={paginas} page={page} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+        </Grid>
       </Grid>
-      <Grid>
-        <Pagination
-          count={paginas}
-          showFirstButton
-          showLastButton
-          onChange={handleChangePagina}
-        ></Pagination>
-      </Grid>
-    </Grid>
+    
   );
 };
 

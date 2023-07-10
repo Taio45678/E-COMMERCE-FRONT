@@ -77,43 +77,43 @@ export default function NavBar() {
                     sx={{ display: "flex", alignItems: "center", gap: "20px" }}
                   >
                     <Link
-                      to="/home?categorias=Tecnología"
+                      to="/busqueda/tecnologia"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Tecnología</Typography>
                     </Link>
                     <Link
-                      to="/home?categorias=Electrodomésticos"
+                      to="/busqueda/electrodomesticos"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Electrodomésticos</Typography>
                     </Link>
                     <Link
-                      to="/home?categorias=Hogar"
+                      to="/busqueda/hogar"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Hogar </Typography>
                     </Link>
                     <Link
-                      to="/home?categorias=Herramientas"
+                      to="/busqueda/herramientas"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Herramientas</Typography>
                     </Link>
                     <Link
-                      to="/home?categorias=Moda"
+                      to="/busqueda/moda"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Moda</Typography>
                     </Link>
                     <Link
-                      to="/home?categorias=Juguetes"
+                      to="/busqueda/Juguetes"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Juguetes</Typography>
                     </Link>
                     <Link
-                      to="/home?categorias=Construcción"
+                      to="/busqueda/construccion"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <Typography variant="body1">Construcción</Typography>
