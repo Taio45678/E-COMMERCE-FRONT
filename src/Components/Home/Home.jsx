@@ -21,22 +21,29 @@ import {
 } from "../../Redux/actions";
 import ContainerFiltros from "./ContainerFiltros";
 import CardP from "./CardP";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [coloresSeleccionados, setColoresSeleccionados] = useState([]);
   const [ordenPrecio, setOrdenPrecio]= useState("")
   const producto = ""
+  var {categoria} = useParams()
+  if(!categoria){
+    categoria =""
+  }else {
+    setCategoriasSeleccionadas([categoria])} 
   const dispatch = useDispatch();
+  const[page, setPage] = useState(1);
   // Función que trae los productos del back al store de redux 
   useEffect(()=>{
-    dispatch(getAllProducts(1))
+    dispatch(getAllProducts(1, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
     dispatch(getAllCategorias())
   },[])
   function handleChangePagina(e, value){
     
     dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
-  
+    setPage(value)
   }
 
   //Traemos todos los productos del store local
@@ -120,8 +127,9 @@ const Home = () => {
       setCategoriasSeleccionadas([]); 
       setColoresSeleccionados([]);
       setOrdenPrecio("")
-      dispatch(limpiarFiltroyBusqueda);
+      //dispatch(limpiarFiltroyBusqueda);
       dispatch(getAllProducts(1, producto))
+      setPage(1)
        // Restablecer las selecciones de categorías y colores
       // Otros pasos para limpiar los filtros si es necesario
 };  
@@ -289,10 +297,10 @@ const Home = () => {
           </Button>
         </Grid>
         <Grid>
-        <Pagination count={paginas} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+        <Pagination count={paginas} page={page} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
         </Grid>
       </Grid>
-    </Grid>
+    
   );
 };
 
