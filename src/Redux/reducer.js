@@ -2,6 +2,9 @@ import {
   GET_DETAIL,
   SET_USUARIO_DETAIL,
   CLEAR_USUARIO_DETAIL,
+  FETCH_VENTAS_REQUEST,
+  FETCH_VENTAS_SUCCESS,
+  FETCH_VENTAS_FAILURE,
 } from "./actions";
 
 //Valores iniciales del estado global
@@ -27,6 +30,8 @@ const initialState = {
   totalUsuarios: 0,
   usuariosHabilidatosAux: [],
   usuariosDesabilitados: [],
+  productosVentas: [],
+  totalPagesVentas: 1,
 };
 console.log(initialState.totalPages);
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -37,6 +42,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case "TEST_ACTION":
       return {
         ...state,
+      };
+
+    case "FETCH_PRODUCTOS_SUCCESS":
+      return {
+        ...state,
+        productosVentas: payload,
       };
 
     case "GET_ALL_PRODUCTS":

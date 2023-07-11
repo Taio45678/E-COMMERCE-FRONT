@@ -5,6 +5,9 @@ import axios from "axios";
 export const GET_DETAIL = "GET_DETAIL";
 export const SET_USUARIO_DETAIL = "SET_USUARIO_DETAIL";
 export const CLEAR_USUARIO_DETAIL = "CLEAR_USUARIO_DETAIL";
+export const FETCH_VENTAS_REQUEST = "FETCH_VENTAS_REQUEST";
+export const FETCH_VENTAS_SUCCESS = "FETCH_VENTAS_SUCCESS";
+export const FETCH_VENTAS_FAILURE = "FETCH_VENTAS_FAILURE";
 
 export function getAllProducts(pagina, producto, color, cate, precio) {
   if (!producto) producto = "";
@@ -39,16 +42,14 @@ export function getAllCategorias() {
 
 export function getDetail(id) {
   return async function (dispatch) {
-    
     const json = await axios(
-      // `https://e-commerce-back-2025.up.railway.app/producto/3`
+      //https://commerce-back-2025.up.railway.app/producto/3
       `/producto/${id}`
     );
     return dispatch({
       type: GET_DETAIL,
       payload: json.data,
     });
-  
   };
 }
 
@@ -202,5 +203,30 @@ export const setUsuarioDetail = (usuario) => {
   return {
     type: "SET_USUARIO_DETAIL",
     payload: usuario,
+  };
+};
+
+export const fetchProductosSuccess = (productos) => {
+  return {
+    type: "FETCH_PRODUCTOS_SUCCESS",
+    payload: productos,
+  };
+};
+
+export const fetchProductos = (page, limit) => {
+  return (dispatch) => {
+    axios
+      .get(
+        `https://commerce-back-2025.up.railway.app/ocs?page=${page}&limit=${limit}`
+      )
+      .then((response) => {
+        //const productos = response.data.ocs;
+        const detalle = response.data.ocs.map((obj) => obj.detalleocs[0]);
+        console.log(detalle);
+        dispatch(fetchProductosSuccess(detalle));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
