@@ -3,7 +3,7 @@ import s from "./UsuariosAct.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 //import { setUsuarioDetail } from "../../../Redux/actions";
-import { Pagination } from "@mui/material";
+import { Button, Typography, Box, Pagination, } from "@mui/material";
 import { getAllUsuarios, fetchUsuarios } from "../../../Redux/actions";
 
 // ######################################
@@ -49,20 +49,23 @@ if (deshabilitarBtn) {
       };
 
       // Realizar la solicitud
-        fetch(url, 
-          // local,
-          options)
-        .then(response => response.json())
-        .then(data => {
-          // Manejar la respuesta del servidor
-          console.log(data);
-          alert('Usuario deshabilitado correctamente');
-        })
-        .catch(error => {
-          // Manejar errores en la solicitud
-          console.error('Error:', error);
-          alert('Error al deshabilitar al usuario');
-        });
+  fetch(url, options)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error en la solicitud');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Manejar la respuesta del servidor
+    console.log(data);
+    alert('Usuario deshabilitado correctamente');
+  })
+  .catch(error => {
+    // Manejar errores en la solicitud
+    console.error('Error:', error);
+    alert('Error al deshabilitar al usuario');
+  });
       }
 
   const dispatch = useDispatch();
@@ -76,55 +79,54 @@ if (deshabilitarBtn) {
 
   
   return (
-    <div className={s.fondo}>
-      <div className={s.cabezera}>
-        <p>Usuarios Habilitados</p>
+    <Box className={s.fondo}>
+      <Box className={s.cabezera}>
+        <Typography variant="h6">Usuarios Habilitados</Typography>
         <Link to={"/admin/crearUsuariosAdmin"}>
-          <button>Crear Usuario</button>
+          <Button
+            style={{ borderRadius: "5px", backgroundColor: "#795548", color: "white" }}
+          >
+            Crear nuevo
+          </Button>
         </Link>
-      </div>
-      <div className={s.barra}>
-        <p className={s.barraimagen}>Imagen</p>
-        <p className={s.barrausername}>Usuario</p>
-        <p className={s.barrarol}>Rol</p>
-        <p className={s.barraaccion}>Acción</p>
-        <p className={s.barraaccion}>Perfil</p>
-      </div>
-      <div className={s.cajaUsuarios}>
+      </Box>
+      <Box className={s.barra}>
+        <Typography className={s.barraimagen}>Imagen</Typography>
+        <Typography className={s.barrausername}>Usuario</Typography>
+        <Typography className={s.barrarol}>Rol</Typography>
+        <Typography className={s.barraaccion}>Acción</Typography>
+        <Typography className={s.barraaccion}>Perfil</Typography>
+      </Box>
+      <Box className={s.cajaUsuarios}>
         {usuarios.map((usuario) => (
-          <div className={s.usuarios} key={usuario.id}>
-            <div className={s.cajaImagen}>
+          <Box className={s.usuarios} key={usuario.id}>
+            <Box className={s.cajaImagen}>
               <img src={usuario.picture} alt="" className={s.imagen} />
-            </div>
-            <div className={s.username}>{usuario.name}</div>
-            <div className={s.rol}>{usuario.rol}</div>
-            <div className={s.accion}>
-            <button id="deshabilitarBtn">Deshabilitar</button>
+            </Box>
+            <Typography className={s.username}>{usuario.name}</Typography>
+            <Typography className={s.rol}>{usuario.rol}</Typography>
+            <Box className={s.accion}>
+              <Button id="deshabilitarBtn">Deshabilitar</Button>
               <Link
                 to={`/admin/perfilUsuario/${usuario.id}`}
                 className={s.accion}
                 style={{ textDecoration: "none" }}
               >
-                <button>ver</button>
+                <Button>ver</Button>
               </Link>
               <script src="script.js"></script>
-            </div>
-          </div>
+            </Box>
+          </Box>
         ))}
-      </div>
-      <div className={s.pagination}>
-        {totalPages > 1 &&
-          Array.from({ length: totalPages }, (_, index) => index + 1).map(
-            (page) => (
-              <button
-                key={page}
-                onClick={() => dispatch(fetchUsuarios(page, 4))}
-              >
-                {page}
-              </button>
-            )
-          )}
-      </div>
-    </div>
+      </Box>
+      <Box className={s.pagination}>
+      <Pagination
+          count={""}
+          showFirstButton
+          showLastButton
+          onChange={""}
+        />
+      </Box>
+    </Box>
   );
 }
