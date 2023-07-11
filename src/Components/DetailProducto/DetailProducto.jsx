@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import GalaxyNote from "../../Archivos pruebas/galaxy note 10.jpg";
 import s from "./DetailProducto.module.css";
 import Box from "@mui/material/Box";
@@ -14,6 +14,7 @@ import {
   addCarrito,
   obtenerCategoriaPorId,
 } from "../../Redux/actions";
+import ReviewCard from "../Reviews/ReviewCard";
 
 //Aquí se renderiza el detalle de cada producto
 
@@ -23,20 +24,25 @@ export default function DetailProducto() {
 
   let { id } = useParams();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const elCarrito = useSelector((state) => state.carrito);
   const [carrito, setCarrito] = useState([]);
+  const [cargando, setCargando] = useState(false)
+  const {allProducts} = useSelector((state)=>state)
   
   console.log(elCarrito);
 
-  const productDetails = useSelector((state) => state.details);
+  dispatch(getDetail(id));
 
   useEffect(() => {
-    dispatch(getDetail(id));
-    // setTimeout(()=>{
-    //   dispatch(obtenerCategoriaPorId(categoriaId))
-    // }, 500)
+
+    setCargando(true)
+    //dispatch(getDetail(id));
+    setCargando(false)
   }, []);
+  const productDetails = useSelector((state) => state.details);
+
   const {
     nombreproducto,
     descproducto,
@@ -49,12 +55,14 @@ export default function DetailProducto() {
   } = productDetails;
 
   //######### OBTENER EL VALOR DE LA REVIEW###########
+  const lengthReviews = reviews?.length
   const arrayReview = []
   reviews?.forEach(review => {
     arrayReview.push(review.rating)
   });
   const suma = arrayReview.reduce((ac, nu)=> ac+nu, 0)
   const calificacion = suma/arrayReview.length
+ 
 
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
@@ -70,8 +78,15 @@ export default function DetailProducto() {
     alert(`Agregaste el producto ${nombreproducto} a tu carrito`);
   }
 
+  
+
   return (
+    <div>
+      {cargando ? (
+        <h1>Cargando info</h1>
+      ): (
     <div className={s.fondo}>
+      
       <form action="" onSubmit={handleSubmit} className={s.fromu}>
         <div className={s.producto}>Detalles del producto</div>
         <div className={s.cajaInterna}>
@@ -99,7 +114,7 @@ export default function DetailProducto() {
             {/* ###############  Boton para mostrar que tarjetas acepta All Market ################# */}
 
             <Pago></Pago>
-            <h4>Color:{colorproducto}</h4>
+            <h4>Color: {colorproducto?.join(", ")}</h4>
             <h4>Stock disponible:{disponibproducto}</h4>
 
             {/* ###############  BOTON DEL CARRITO ################# */}
@@ -121,18 +136,30 @@ export default function DetailProducto() {
                 value={calificacion}
                 readOnly
               />
+       
             </Box>
             <a
               href="https://www.soyhenry.com/?utm_source=google&utm_medium=cpc&utm_campaign=GADS_SEARCH_ARG_BRAND&utm_content=Brand&gad=1&gclid=Cj0KCQjwtO-kBhDIARIsAL6LorcDR-GnZb0eUPEkd6yyO2cXte6yEokKM93fcVlckILE3eU0a3JxTB8aAht3EALw_wcB"
               target="_blank"
             >
               <div className={s.propaganda}></div>
-            </a>
+                        </a>
           </div>
         </div>
-
-        <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px' }} />
-      </form>
+        </form>
+        
+        {reviews?.length === 0 ? <h3>Este producto aun no tiene reviews</h3>:
+        <div style={{display: 'flex'}}>
+        <ReviewCard usuarioId={reviews[lengthReviews-1].usuarioId} description={reviews[lengthReviews-1].description} rating={reviews[lengthReviews-1].rating} createdAt={reviews[lengthReviews-1].createdAt}></ReviewCard>
+        <ReviewCard usuarioId={reviews[lengthReviews-2].usuarioId} description={reviews[lengthReviews-2].description} rating={reviews[lengthReviews-2].rating} createdAt={reviews[lengthReviews-2].createdAt}></ReviewCard>
+        <ReviewCard usuarioId={reviews[lengthReviews-3].usuarioId} description={reviews[lengthReviews-3].description} rating={reviews[lengthReviews-3].rating} createdAt={reviews[lengthReviews-3].createdAt}></ReviewCard>
+        </div>}
+        <div>
+         
+       
+        {/* <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px', marginRight: '20px', marginLeft: '20px'}}  /> */}
+        </div>
+    </div>)}
     </div>
   );
 }
