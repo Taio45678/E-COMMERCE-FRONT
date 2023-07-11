@@ -157,6 +157,22 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         usuarioDetail: [],
       };
+      case "EDITAR_PRODUCTO":
+        const productoEditado = payload; // Datos actualizados del producto
+        const productosActualizados = state.allProducts.map((producto) => {
+          if (producto.id === productoEditado.id) {
+            return productoEditado;
+          } else {
+            return producto;
+          }
+        });
+      
+        return {
+          ...state,
+          allProducts: productosActualizados,
+      };
+      
+
 
     default:
       return state;

@@ -10,7 +10,7 @@ export function getAllProducts(pagina, producto, color, cate, precio) {
   if (!producto) producto = "";
   const queryColor = color?.length > 0 ? color.join("&color=") : "";
   const queryCate = cate?.length > 0 ? cate.join("&cate=") : "";
-  const link = `/producto/buscar?prod=${producto}&page=${pagina}&price=${precio}&color=${queryColor}&cate=${queryCate}`;
+  const link = `https://commerce-back-2025.up.railway.app/producto/buscar?prod=${producto}&page=${pagina}&price=${precio}&color=${queryColor}&cate=${queryCate}`;
 
   return async (dispatch) => {
     const data =
@@ -25,7 +25,7 @@ export function getAllProducts(pagina, producto, color, cate, precio) {
 
 export function getAllCategorias() {
   const linkFelipe = `/categorias`;
-  const linkBackLocal = "http://localhost:3001/productos/productos";
+  //const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data = (await axios.get(linkFelipe)).data;
     //.content;           //para el local
@@ -104,8 +104,8 @@ export function obtenerCategoriaPorId(id) {
 }
 
 export function buscarProducto(pagina, producto) {
-  const linkFelipe = `/producto/buscar?prod=${producto}&cate=&page=${pagina}`;
-  const linkBackLocal = "http://localhost:3001/productos/productos";
+  const linkFelipe = `https://commerce-back-2025.up.railway.app/producto/buscar?prod=${producto}&cate=&page=${pagina}`;
+  //const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data =
       //.content;           //para el local
@@ -204,3 +204,24 @@ export const setUsuarioDetail = (usuario) => {
     payload: usuario,
   };
 };
+
+export function editarProducto(id) {
+  return async function (dispatch) {
+    try {
+      // Realiza la solicitud para editar el producto en el backend
+      const response = await axios.put(
+        `https://commerce-back-2025.up.railway.app/producto/${id}`
+      );
+
+      // Si la solicitud es exitosa, despacha una acción para actualizar el estado en Redux
+      if (response.status === 200) {
+        dispatch({
+          type: "EDITAR_PRODUCTO",
+          payload: response.data,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
