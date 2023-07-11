@@ -29,7 +29,7 @@ export default function DetailProducto() {
   const elCarrito = useSelector((state) => state.carrito);
   const [carrito, setCarrito] = useState([]);
   const [cargando, setCargando] = useState(false)
-
+  const {allProducts} = useSelector((state)=>state)
   
   console.log(elCarrito);
 
@@ -38,16 +38,16 @@ export default function DetailProducto() {
   useEffect(() => {
 
     setCargando(true)
-    dispatch(getDetail(id));
+    //dispatch(getDetail(id));
     setCargando(false)
-  }, [dispatch]);
+  }, []);
   const productDetails = useSelector((state) => state.details);
 
   const {
     nombreproducto,
     descproducto,
     colorproducto,
-   // fotoprinc,
+    fotoprinc,
     precioproducto,
     disponibproducto,
     nombrecat,
@@ -72,7 +72,7 @@ export default function DetailProducto() {
       nombre: nombreproducto,
       precio: precioproducto,
       cantidad: 1,
-      //imagen: fotoprinc,
+      imagen: fotoprinc,
     };
     dispatch(addCarrito(productToAdd));
     alert(`Agregaste el producto ${nombreproducto} a tu carrito`);
@@ -92,11 +92,11 @@ export default function DetailProducto() {
         <div className={s.cajaInterna}>
           <div className={s.cajaImagen}>
             <div className={s.imagenPosition}>
-              {/* <img
+              <img
                 src={fotoprinc}
                 alt="image not found"
                 className={s.imagen}
-              ></img> */}
+              ></img>
             </div>
             <div className={s.linea}></div>
             <h1>Descripcion :</h1>
@@ -157,7 +157,7 @@ export default function DetailProducto() {
         <div>
          
        
-        <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px', marginRight: '20px', marginLeft: '20px'}} />
+        {/* <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px', marginRight: '20px', marginLeft: '20px'}}  /> */}
         </div>
     </div>)}
     </div>

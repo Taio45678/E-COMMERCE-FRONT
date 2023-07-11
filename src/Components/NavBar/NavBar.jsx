@@ -21,15 +21,23 @@ import {
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   const [showCategories, setShowCategories] = React.useState(true);
   const handleArrowButtonClick = () => {
     setShowCategories(!showCategories);
   };
+  function handleClick(ruta){
+    navigate(`/buscar/${ruta}`)
+  }
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <AppBar

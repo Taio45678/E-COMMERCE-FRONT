@@ -45,8 +45,7 @@ const Home = () => {
     
     dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
     setPage(value)
-    dispatch(getAllCategorias())
-    dispatch(getDetail(1))
+
   }
 
   //Traemos todos los productos del store local

@@ -8,6 +8,7 @@ import {
   Card,
   CardActions,
   IconButton,
+  Rating
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
