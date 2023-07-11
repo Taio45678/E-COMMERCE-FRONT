@@ -19,13 +19,14 @@ import {
 
 export default function DetailProducto() {
   // Las CALIFICACIONES sera un array acumulativo de estreñas x compras del producto
-  const [value, setValue] = React.useState(3);
+  
 
   let { id } = useParams();
   const dispatch = useDispatch();
 
   const elCarrito = useSelector((state) => state.carrito);
   const [carrito, setCarrito] = useState([]);
+  
   console.log(elCarrito);
 
   const productDetails = useSelector((state) => state.details);
@@ -44,7 +45,16 @@ export default function DetailProducto() {
     precioproducto,
     disponibproducto,
     nombrecat,
+    reviews
   } = productDetails;
+
+  //######### OBTENER EL VALOR DE LA REVIEW###########
+  const arrayReview = []
+  reviews?.forEach(review => {
+    arrayReview.push(review.rating)
+  });
+  const suma = arrayReview.reduce((ac, nu)=> ac+nu, 0)
+  const calificacion = suma/arrayReview.length
 
   //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
@@ -107,11 +117,9 @@ export default function DetailProducto() {
             >
               <Typography component="legend"></Typography>
               <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
+                name="read-only"
+                value={calificacion}
+                readOnly
               />
             </Box>
             <a
