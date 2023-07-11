@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getAllCategorias,
   getAllProducts,
-  limpiarFiltroyBusqueda,
+  limpiarFiltroyBusqueda, getDetail
 } from "../../Redux/actions";
 import ContainerFiltros from "./ContainerFiltros";
 import CardP from "./CardP";
@@ -39,11 +39,13 @@ const Home = () => {
   useEffect(()=>{
     dispatch(getAllProducts(1, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
     dispatch(getAllCategorias())
+    dispatch(getDetail(1));
   },[])
   function handleChangePagina(e, value){
     
     dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
     setPage(value)
+
   }
 
   //Traemos todos los productos del store local

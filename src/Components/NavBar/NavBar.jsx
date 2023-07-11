@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import SearchBar from "./SearchBar";
 import logo from "../Img/Logo.png";
 import Login from "../Login/Login";
@@ -21,29 +21,38 @@ import {
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
-
+  const navigate = useNavigate();
+  
   const [showCategories, setShowCategories] = React.useState(true);
   const handleArrowButtonClick = () => {
     setShowCategories(!showCategories);
   };
+  function handleClick(ruta){
+    navigate(`/buscar/${ruta}`)
+  }
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <AppBar
       position="static"
       className="navbar-container"
-      sx={{ backgroundColor: "#f44336", height: 180 }}
+      sx={{ backgroundColor: "#f44336", height: matches ? 120 : 180,  }}
     >
-      <Toolbar sx={{ mt: 3, ml: 5 }}>
+      <Toolbar sx={{ mt: matches ? 2 : 3, ml: 5  }}>
         <Box
           sx={{
             flexGrow: 1,
             display: "flex",
             alignItems: "center",
-            width: "40%",
-            heigth: "20%",
+            width: matches ? "60%" : "40%", // Ajusta el ancho según el modo responsivo
+            height: matches ? "10%" : "20%",
           }}
         >
           <IconButton color="inherit" component={Link} to="/">
@@ -76,47 +85,44 @@ export default function NavBar() {
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "20px" }}
                   >
-                    <Link
-                      to="/busqueda/tecnologia"
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      <Typography variant="body1">Tecnología</Typography>
-                    </Link>
+                   
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("tecnologia")}>Tecnología</Typography>
+                    
                     <Link
                       to="/busqueda/electrodomesticos"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Electrodomésticos</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("electrodomesticos")}>Electrodomésticos</Typography>
                     </Link>
                     <Link
                       to="/busqueda/hogar"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Hogar </Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("hogar")}>Hogar </Typography>
                     </Link>
                     <Link
                       to="/busqueda/herramientas"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Herramientas</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("herramientas")}>Herramientas</Typography>
                     </Link>
                     <Link
                       to="/busqueda/moda"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Moda</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("moda")}>Moda</Typography>
                     </Link>
                     <Link
                       to="/busqueda/Juguetes"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Juguetes</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("juguetes")}>Juguetes</Typography>
                     </Link>
                     <Link
                       to="/busqueda/construccion"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Construcción</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("construccion")}>Construcción</Typography>
                     </Link>
                   </Box>
                 )}

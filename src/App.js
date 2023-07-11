@@ -32,6 +32,7 @@ import ArrayObjetos from "./Helpers/ArrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
+import EditarProductoForm from "./Components/Admin/Publicaciones/EditarProductoForm";
 
 function App() {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />}></Route>
         <Route path="/admin" element={<Admin />}>
           <Route path="publicaciones" element={<Publicaciones />} />
+          
           <Route path="ventas" element={<Ventas />} />
           <Route path="usuarios" element={<UsuariosAct />} />
           <Route path="baneados" element={<Baneados />} />
@@ -82,7 +84,9 @@ function App() {
           <Route path="perfilUsuario/:id" element={<PerfilUsuario />} />
         </Route>
         <Route path="/busqueda/:producto" element={<HomeBusqueda />} />
+        <Route path="editar-producto/:id" element={<EditarProductoForm />} />
       </Routes>
+      
       <Footer />
     </div>
   );
