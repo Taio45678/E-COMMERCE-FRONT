@@ -28,6 +28,7 @@ export default function ArrayObjetos() {
         disponibproducto: 1000,
         nombrecat:"Papelería"
     },
+
      {"nombreproducto": "TV Antiguo",
      "descproducto": "TV con diseño antiguo en blanco y negro",
      "colorproducto": [
@@ -170,8 +171,7 @@ function handleClick(e){
   })
   
 }
-
-function handleClickRevs(e){
+  function handleClickRevs(e){
   const arrayRevs = []
   for(let i= 1; i<15; i++){
     for(let j= 1; j<10; j++){
