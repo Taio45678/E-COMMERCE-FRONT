@@ -9,7 +9,7 @@ const initialState = {
   nombreCategoria: "",
   allProducts: [],
   allProductsAux: [],
-  details: [],
+  details: {},
   favoritos: [],
   categorias: [],
   carrito: [],

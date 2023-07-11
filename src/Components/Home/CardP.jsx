@@ -12,12 +12,13 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts } from "../../Redux/actions";
+import { getAllProducts, getDetail} from "../../Redux/actions";
 import { addFavorites, removeFavorites } from "../../Redux/actions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CardP({ producto }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   //awdkawopdkopawkpdokawpokdpoawk
   const theme = createTheme({
     breakpoints: {
@@ -40,6 +41,7 @@ export default function CardP({ producto }) {
       if (favorito === false) dispatch(removeFavorites(producto));
     };
 
+   
     return (
       <IconButton onClick={toggleFavorito}>
         <ThemeProvider
@@ -54,9 +56,14 @@ export default function CardP({ producto }) {
       </IconButton>
     );
   };
+  function handleClick(){ 
+    dispatch(getDetail(producto.id))
+    navigate(`/detailProducto/${producto.id}`)
+   
+  }
 
   return (
-    <Link to= {`/detailProducto/${producto.id}`}>
+    
     <Card
       sx={{
         maxWidth: "100%",
@@ -67,8 +74,10 @@ export default function CardP({ producto }) {
         transition: "transform 0.2s",
         "&:hover": {
           transform: "scale(1.05)",
+          cursor: 'pointer'
         },
       }}
+      onClick={handleClick}
     >
       <CardHeader
         avatar={
@@ -149,6 +158,6 @@ export default function CardP({ producto }) {
         </Typography>
       </CardActions>
     </Card>
-    </Link>
+    
   );
 }

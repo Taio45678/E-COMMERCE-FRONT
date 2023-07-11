@@ -16,16 +16,26 @@ export default function HomeBusqueda() {
   const [ordenPrecio, setOrdenPrecio]= useState("")
   const[page, setPage] = useState(1);
   const navigate = useNavigate();
-    const producto = useParams().producto;
+  var botonCat = []
+    var {producto} = useParams()
     if(!producto) producto = ""
+    if(producto === "tecnologia" || producto === "electrodomesticos" || 
+    producto === "hogar" || producto === "herramientas" ||
+     producto === "moda" || producto ==="juguetes"||producto ==="construccion"){
+      botonCat = []
+      botonCat.push(producto)
+      producto =""
+     }
 
     const dispatch = useDispatch();
     // Función que trae los productos del back al store de redux 
     useEffect(()=>{
       
-        dispatch(getAllProducts(1, producto))
+        dispatch(getAllProducts(1, producto, coloresSeleccionados, botonCat, ordenPrecio))
         dispatch(getAllCategorias())
-    },[dispatch])
+        dispatch(getDetail(1));
+        
+    },[])
       
     function handleChangePagina(e, value){
       
@@ -34,7 +44,7 @@ export default function HomeBusqueda() {
     }
     
     //Traemos todos los productos del store local 
-    const {busquedaProducto, pagsBusqueda, categorias, productoBuscado, allProducts} = useSelector((state)=>state)
+    const { allProducts, paginas, categorias } = useSelector((state)=>state)
   
     const [productosMostrados, setProductosMostrados] = useState(3);
   
@@ -134,7 +144,7 @@ export default function HomeBusqueda() {
           mt: 1,
         }}
       >
-        {productos2.length === 0 ? <h1>Ups!! no se encontraron productos en esta busqueda</h1>:
+       
           
           <Container sx={{ display: 'space-between', justifyContent: 'center',}}>
           <Box  xs={12} sm={6} md={6} lg={6} sx={{ display: 'space-between', justifyContent: 'center', alignItems: 'center', mt: 8, margin: 0 }}>
@@ -234,7 +244,7 @@ export default function HomeBusqueda() {
             Limpiar
           </Button>
         </Box>
-      </Container>  }
+      </Container>  
                 
           {productos2?.slice(0, productosMostrados).map((prods) => (
           <Grid item mobile={12} tablet={6} laptop={6} desktop={6} key={prods.id}>
@@ -250,7 +260,7 @@ export default function HomeBusqueda() {
             </Button>
           </Grid>
           <Grid>
-          <Pagination count={pagsBusqueda} page={page} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
+          <Pagination count={paginas} page={page} showFirstButton showLastButton onChange={handleChangePagina} ></Pagination>
           </Grid>
         </Grid>
       

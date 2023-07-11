@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import SearchBar from "./SearchBar";
 import logo from "../Img/Logo.png";
 import Login from "../Login/Login";
@@ -21,14 +21,23 @@ import {
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useDispatch } from "react-redux";
+import { getAllProducts, getDetail } from "../../Redux/actions";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showCategories, setShowCategories] = React.useState(true);
   const handleArrowButtonClick = () => {
     setShowCategories(!showCategories);
   };
+
+  function handleClick (ruta){
+    navigate(`/busqueda/${ruta}`)
+    dispatch(getAllProducts(1, "", [], [ruta]))
+    dispatch(getDetail(1))
+  }
 
   return (
     <AppBar
@@ -76,47 +85,44 @@ export default function NavBar() {
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "20px" }}
                   >
-                    <Link
-                      to="/busqueda/tecnologia"
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      <Typography variant="body1">Tecnología</Typography>
-                    </Link>
+                   
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("tecnologia")}>Tecnología</Typography>
+                    
                     <Link
                       to="/busqueda/electrodomesticos"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Electrodomésticos</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("electrodomesticos")}>Electrodomésticos</Typography>
                     </Link>
                     <Link
                       to="/busqueda/hogar"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Hogar </Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("hogar")}>Hogar </Typography>
                     </Link>
                     <Link
                       to="/busqueda/herramientas"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Herramientas</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("herramientas")}>Herramientas</Typography>
                     </Link>
                     <Link
                       to="/busqueda/moda"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Moda</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("moda")}>Moda</Typography>
                     </Link>
                     <Link
                       to="/busqueda/Juguetes"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Juguetes</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("juguetes")}>Juguetes</Typography>
                     </Link>
                     <Link
                       to="/busqueda/construccion"
                       style={{ textDecoration: "none", color: "white" }}
                     >
-                      <Typography variant="body1">Construcción</Typography>
+                      <Typography sx={{cursor: 'pointer'}} variant="body1" onClick={()=>handleClick("construccion")}>Construcción</Typography>
                     </Link>
                   </Box>
                 )}
