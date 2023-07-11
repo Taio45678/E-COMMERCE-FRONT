@@ -1,73 +1,86 @@
-import React, { useEffect } from "react";
+import React from "react";
 import s from "./Baneados.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setUsuarioDetail } from "../../../../Redux/actions";
-import { Pagination } from "@mui/material";
-//import { getAllUsuarios } from "../../../Redux/actions";
-
-// ######################################
+import { Pagination, Button, Box, Typography } from "@mui/material";
 
 export default function Baneados() {
-  const losUsuarios = useSelector((state) => state.usuariosDesabilitados);
   const dispatch = useDispatch();
-  //const {usuariosHabilidatos, paginas} = useSelector((state)=>state)
-  //const losUsuarios = usuariosHabilidatos;
-  // useEffect(() => {
-  //   dispatch(getAllUsuarios(1));
-  // }, []);
 
-  // function handleChangePagina(e, value) {
-  //   dispatch(getAllUsuarios(value));
-  // }
-  const handleVerClick = (usuario) => {
-    dispatch(setUsuarioDetail(usuario));
+  const usuarios = useSelector((state) => state.usuarios);
+  // const totalPages = useSelector((state) => state.totalPages);
+
+  // useEffect(() => {
+  //   dispatch(fetchUsuarios(1, 4));
+  // }, [dispatch]);
+
+  const setUsuarioDetailHandler = (usuarioId) => {
+    if (window.confirm("¿Estás seguro de que deseas habilitar al usuario?")) {
+      dispatch(setUsuarioDetail(usuarioId));
+    }
   };
 
   return (
-    <div className={s.fondo}>
-      <div className={s.cabezera}>
-        <p>Usuarios Habilitados</p>
+    <>
+    <Box className={s.fondo}>
+      <Box className={s.cabezera}>
+        <Typography variant="h6">Usuarios Habilitados</Typography>
         <Link to={"/admin/crearUsuariosAdmin"}>
-          <button>Crear Usuario</button>
+          <Button
+            style={{
+              borderRadius: "5px",
+              backgroundColor: "#795548",
+              color: "white",
+            }}
+          >
+            Crear nuevo
+          </Button>
         </Link>
-      </div>
-      <div className={s.barra}>
-        <p className={s.barraimagen}>Imagen</p>
-        <p className={s.barrausername}>Usuario</p>
-        <p className={s.barrarol}>Rol</p>
-        <p className={s.barraaccion}>Acción</p>
-        <p className={s.barraaccion}>Perfil</p>
-      </div>
-      <div className={s.cajaUsuarios}>
-        {losUsuarios.map((usuario) => (
-          <div className={s.usuarios} key={usuario.id}>
-            <div className={s.cajaImagen}>
-              <img src={usuario.img} alt="" className={s.imagen} />
-            </div>
-            <div className={s.username}>{usuario.username}</div>
-            <div className={s.rol}>{usuario.rol}</div>
-            <div className={s.accion}>
-              <button>Habilitar</button>
+      </Box>
+      <Box className={s.barra}>
+        <Typography className={s.barraimagen}>Imagen</Typography>
+        <Typography className={s.barrausername}>Usuario</Typography>
+        <Typography className={s.barrarol}>Rol</Typography>
+        <Typography className={s.barraaccion}>Acción</Typography>
+        <Typography className={s.barraaccion}>Perfil</Typography>
+      </Box>
+      <Box className={s.cajaUsuarios}>
+        {usuarios.map((usuario) => (
+          <Box className={s.usuarios} key={usuario.id}>
+            <Box className={s.cajaImagen}>
+              <img src={usuario.picture} alt="" className={s.imagen} />
+            </Box>
+            <Typography className={s.username}>{usuario.name}</Typography>
+            <Typography className={s.rol}>{usuario.rol}</Typography>
+            <Box className={s.accion}>
+              <Button
+                onClick={() => setUsuarioDetailHandler(usuario.id)}
+                id="habilitarBtn"
+              >
+                Habilitar
+              </Button>
               <Link
-                to={"/admin/perfilUsuario/id"}
+                to={`/admin/perfilUsuario/${usuario.id}`}
                 className={s.accion}
                 style={{ textDecoration: "none" }}
               >
-                <button>ver</button>
+                <Button>ver</Button>
               </Link>
-            </div>
-          </div>
+            </Box>
+          </Box>
         ))}
-      </div>
-      <div className={s.pagination}>
+      </Box>
+      <Box className={s.pagination}>
         <Pagination
           count={""}
           showFirstButton
           showLastButton
           onChange={""}
-        ></Pagination>
-      </div>
-    </div>
-  );
+        />
+      </Box>
+    </Box>
+  </>
+);
 }
+

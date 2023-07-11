@@ -1,10 +1,11 @@
 .fondo {
-  margin-left: 300px;
-  width: 1100px;
+  margin-left: auto;
+  width: 230%;
   height: 580px;
 }
 .cajaUsuarios {
   height: 440px;
+  overflow-y: auto; 
 }
 .fondo p {
   font-size: 20px;

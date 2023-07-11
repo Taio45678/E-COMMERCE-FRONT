@@ -21,6 +21,9 @@ import {
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
@@ -30,20 +33,24 @@ export default function NavBar() {
     setShowCategories(!showCategories);
   };
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
+
   return (
     <AppBar
       position="static"
       className="navbar-container"
-      sx={{ backgroundColor: "#f44336", height: 180 }}
+      sx={{ backgroundColor: "#f44336", height: matches ? 120 : 180,  }}
     >
-      <Toolbar sx={{ mt: 3, ml: 5 }}>
+      <Toolbar sx={{ mt: matches ? 2 : 3, ml: 5  }}>
         <Box
           sx={{
             flexGrow: 1,
             display: "flex",
             alignItems: "center",
-            width: "40%",
-            heigth: "20%",
+            width: matches ? "60%" : "40%", // Ajusta el ancho según el modo responsivo
+            height: matches ? "10%" : "20%",
           }}
         >
           <IconButton color="inherit" component={Link} to="/">
