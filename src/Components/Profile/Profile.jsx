@@ -8,7 +8,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Compras from "./Compras/Compras";
+//import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
 
 // ############## Aqui sera la Dashboard del Usuario ################
@@ -76,8 +76,6 @@ function a11yProps(index) {
 }
 
 export default function Profile() {
-
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -87,57 +85,52 @@ export default function Profile() {
 
   return (
     <>
-    {isAuthenticated ? 
-        
+      {isAuthenticated ? (
         <div className={s.fondo}>
-            <ThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
             <Box
-            sx={{
+              sx={{
                 flexGrow: 1,
                 display: "flex",
                 height: 680,
-            }}
+              }}
             >
-            <Tabs
-              orientation="vertical"
-              variant="scrollable"
-              value={value}
-              onChange={handleChange}
-              aria-label="Vertical tabs example"
-              sx={{
+              <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+                sx={{
                   width: "211px",
                   borderRight: 1,
                   borderColor: "divider",
                   background: "black",
                   paddingTop: "340px",
                 }}
-                >
-            <Tab label="Compras" {...a11yProps(0)} />
-            <Tab label="Mis datos" {...a11yProps(1)} />
-            </Tabs>
-            <div className={s.nombreUsuario}>
-            <img
-            src="https://ionicframework.com/docs/img/demos/avatar.svg"
-            alt=""
-            className={s.avatar}
-            />
-            <h4>Nombre Apellido</h4>
-            <h5>Rol: Usuario</h5>
-            </div>
-            <TabPanel value={value} index={0} className={s.caja1}>
-            <div className={s.cajaInterna1}>
-            <Compras></Compras>
-            </div>
-            </TabPanel>
-            <TabPanel value={value} index={1} className={s.datos}>
-              <MisDatos></MisDatos>
-            </TabPanel>
-          </Box>
-        </ThemeProvider>
+              >
+                <Tab label="Compras" {...a11yProps(0)} />
+                <Tab label="Mis datos" {...a11yProps(1)} />
+              </Tabs>
+              <div className={s.nombreUsuario}>
+                <img
+                  src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                  alt=""
+                  className={s.avatar}
+                />
+                <h4>Nombre Apellido</h4>
+                <h5>Rol: Usuario</h5>
+              </div>
+
+              <TabPanel value={value} index={1} className={s.datos}>
+                <MisDatos></MisDatos>
+              </TabPanel>
+            </Box>
+          </ThemeProvider>
         </div>
-        : loginWithRedirect()} 
-        </>
-    );
+      ) : (
+        loginWithRedirect()
+      )}
+    </>
+  );
 }
-
-

@@ -213,16 +213,14 @@ export const fetchProductosSuccess = (productos) => {
   };
 };
 
-export const fetchProductos = (page, limit) => {
+export const fetchProductos = () => {
   return (dispatch) => {
     axios
-      .get(
-        `https://commerce-back-2025.up.railway.app/ocs?page=${page}&limit=${limit}`
-      )
+      .get(`https://commerce-back-2025.up.railway.app/ocs?page=1&limit=100`)
       .then((response) => {
-        //const productos = response.data.ocs;
+        const productos = response.data.ocs;
         const detalle = response.data.ocs.map((obj) => obj.detalleocs[0]);
-        console.log(detalle);
+        //console.log(productos);
         dispatch(fetchProductosSuccess(detalle));
       })
       .catch((error) => {

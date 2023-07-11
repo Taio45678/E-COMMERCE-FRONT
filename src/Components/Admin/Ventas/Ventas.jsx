@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProductos } from "../../../Redux/actions";
 import s from "./Ventas.module.css";
 import { Pagination } from "@mui/material";
@@ -9,10 +9,11 @@ const Ventas = () => {
   const productos = useSelector((state) => state.productosVentas);
   const [page, setPage] = React.useState(0);
   const rowsPerPage = 4;
+
   const [totalPages, setTotalPages] = React.useState(0);
 
   useEffect(() => {
-    dispatch(fetchProductos(page + 1, rowsPerPage));
+    dispatch(fetchProductos(page, rowsPerPage));
   }, [dispatch, page]);
 
   useEffect(() => {
@@ -23,14 +24,13 @@ const Ventas = () => {
   }, [productos, rowsPerPage]);
 
   const handlePageChange = (event, newPage) => {
-    setPage(newPage - 1);
+    setPage(newPage);
   };
 
-  const startIdx = page * rowsPerPage;
+  const startIdx = (page - 1) * rowsPerPage;
   const endIdx = startIdx + rowsPerPage;
   const detalleocsToShow = productos?.slice(startIdx, endIdx);
 
-  //console.log(productos);
   return (
     <div className={s.fondo}>
       <div className={s.cajaproductos}>
@@ -44,7 +44,7 @@ const Ventas = () => {
         </div>
         <div className={s.productos}>
           {detalleocsToShow &&
-            detalleocsToShow?.map((producto) => (
+            detalleocsToShow.map((producto) => (
               <div key={producto.id} className={s.venta}>
                 <div className={s.columna1}>
                   <img
@@ -57,32 +57,29 @@ const Ventas = () => {
                 <div className={s.columna3}>Comprador</div>
                 <div className={s.columna4}>{producto.cant}</div>
                 <div className={s.columna5}>{producto.idoc}</div>
-                <div className={s.columna6}>Precio</div>
+                <div className={s.columna6}>${producto.valorunitario}</div>
               </div>
             ))}
         </div>
         <div className={s.pagination}>
           <Pagination
-            count={totalPages}
-            page={page + 1}
+            count={5}
+            page={page}
             onChange={handlePageChange}
             shape="rounded"
+            boundaryCount={2} // Mostrar los primeros y últimos 2 números de página
+            showFirstButton
+            showLastButton
+            siblingCount={2}
           />
         </div>
       </div>
       <div className={s.total}>
         <div className={s.suma}>total:</div>
-        <div className={s.pesos}>$000</div>
+        <div className={s.pesos}>\$000</div>
       </div>
-      {/* Paginado y total */}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    productos: state.productos,
-  };
-};
-
-export default connect(mapStateToProps, { fetchProductos })(Ventas);
+export default Ventas;
