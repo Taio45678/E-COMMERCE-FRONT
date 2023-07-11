@@ -9,13 +9,17 @@ export default function Footer() {
 
   return (
     <Box
-      sx={{
-        bottom: 78,
-        left: 0,
-        width: '100%',
-        height: 150,
-        backgroundColor: '#ff8a65',
-      }}
+    sx={{
+      bottom: 78,
+      left: 0,
+      width: '100%',
+      height: 150,
+      backgroundColor: '#ff8a65',
+      // Propiedades responsivas
+      '@media (max-width: 600px)': {
+        height: 100,
+      },
+    }}
     >
       <Grid container justifyContent="center" alignItems="center" height="100%" >
         <BottomNavigation

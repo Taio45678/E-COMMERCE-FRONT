@@ -11,6 +11,59 @@ import { getAllUsuarios, fetchUsuarios } from "../../../Redux/actions";
 export default function UsuariosAct() {
   //const losUsuarios = useSelector((state) => state.usuariosHabilidatos);
   // const paginas = useSelector((state) => state.pagina);
+  // function handleChangePagina(event, value) {
+    //   dispatch(getAllUsuarios(value, 5));
+    // }
+    // const handlePagination = (pageNumber) => {
+    //   dispatch(fetchUsuarios(pageNumber, 4));
+    // };
+
+  const deshabilitarBtn = document.getElementById('deshabilitarBtn');
+
+    // Verificar si el elemento existe antes de agregar el evento
+if (deshabilitarBtn) {
+  deshabilitarBtn.addEventListener('click', () => {
+    // Solicitar confirmación al usuario antes de deshabilitar
+    if (window.confirm('¿Estás seguro de que deseas deshabilitar al usuario?')) {
+      // Llamada a la API o al servidor para deshabilitar al usuario
+      deshabilitarUsuario();
+    }
+  });
+}
+
+
+    // Función para deshabilitar al usuario (a reemplazar con tu propia lógica)
+    function deshabilitarUsuario() {
+      // ID del usuario a deshabilitar (a reemplazar con el valor adecuado)
+      const usuarioId = '123';
+
+      // URL de la API o servidor (reemplaza '123' con el ID del usuario correspondiente)
+      const url = `https://commerce-back-2025.up.railway.app/usuarios/${usuarioId}/isban`;
+      const local = `https://localhost:3000/usuarios/${usuarioId}/isban`
+      // Opciones de la solicitud
+      const options = {
+        method: 'POST', // O el método adecuado para deshabilitar al usuario
+        headers: {
+          'Content-Type': 'application/json', // O el tipo de contenido adecuado
+        },
+      };
+
+      // Realizar la solicitud
+        fetch(url, 
+          // local,
+          options)
+        .then(response => response.json())
+        .then(data => {
+          // Manejar la respuesta del servidor
+          console.log(data);
+          alert('Usuario deshabilitado correctamente');
+        })
+        .catch(error => {
+          // Manejar errores en la solicitud
+          console.error('Error:', error);
+          alert('Error al deshabilitar al usuario');
+        });
+      }
 
   const dispatch = useDispatch();
 
@@ -21,12 +74,7 @@ export default function UsuariosAct() {
     dispatch(fetchUsuarios(1, 4));
   }, [dispatch]);
 
-  // function handleChangePagina(event, value) {
-  //   dispatch(getAllUsuarios(value, 5));
-  // }
-  // const handlePagination = (pageNumber) => {
-  //   dispatch(fetchUsuarios(pageNumber, 4));
-  // };
+  
   return (
     <div className={s.fondo}>
       <div className={s.cabezera}>
@@ -51,7 +99,7 @@ export default function UsuariosAct() {
             <div className={s.username}>{usuario.name}</div>
             <div className={s.rol}>{usuario.rol}</div>
             <div className={s.accion}>
-              <button>Desabilitar</button>
+            <button id="deshabilitarBtn">Deshabilitar</button>
               <Link
                 to={`/admin/perfilUsuario/${usuario.id}`}
                 className={s.accion}
@@ -59,6 +107,7 @@ export default function UsuariosAct() {
               >
                 <button>ver</button>
               </Link>
+              <script src="script.js"></script>
             </div>
           </div>
         ))}
