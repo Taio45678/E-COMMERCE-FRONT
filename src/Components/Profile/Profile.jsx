@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Tabs, Tab, Typography, Box, Avatar, } from "@mui/material";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
 
@@ -69,6 +69,9 @@ function a11yProps(index) {
 }
 
 export default function Profile() {
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -76,6 +79,10 @@ export default function Profile() {
   };
 
   return (
+    <>
+      {isAuthenticated ? 
+    
+
     <ThemeProvider theme={theme}>
   <Box sx={{ height: "680px", width: "100%", display: "flex" }}>
     <Tabs
@@ -177,6 +184,7 @@ export default function Profile() {
     </TabPanel>
   </Box>
 </ThemeProvider>
-
+: loginWithRedirect() }
+</>
   );
 }
