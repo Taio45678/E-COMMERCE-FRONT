@@ -28,12 +28,12 @@ export default function DetailProducto() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const elCarrito = useSelector((state) => state.carrito);
-  const [carrito, setCarrito] = useState([]);
+
+  const carrito = useSelector((state) => state.carrito);
   const [cargando, setCargando] = useState(true)
  
   
-  console.log(elCarrito);
+  
 
   
 
