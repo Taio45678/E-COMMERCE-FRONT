@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button, Container, FormControl, OutlinedInput } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { buscarProducto } from "../../Redux/actions";
+import { buscarProducto, getDetail } from "../../Redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 
@@ -21,6 +21,7 @@ export default function SearchBar() {
     }else{
     dispatch(buscarProducto(1, producto))
     navigate(`/busqueda/${producto}`)
+    dispatch(getDetail(1))
     }
   }
 
