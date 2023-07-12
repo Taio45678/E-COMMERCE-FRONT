@@ -21,7 +21,7 @@ import { log_in } from "./Redux/actions";
 
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
-import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
+// import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
 import Publicaciones from "./Components/Admin/Publicaciones/Publicaciones";
 import Ventas from "./Components/Admin/Ventas/Ventas";
 import MisDatos from "./Components/Admin/MisDatos/MisDatos";
@@ -81,7 +81,7 @@ function App() {
             element={<FormCrearUsuarioAdmin />}
           />
           <Route path="mis-datos" element={<MisDatos />} />
-          <Route path="perfilUsuario/:id" element={<PerfilUsuario />} />
+          {/* <Route path="perfilUsuario/:id" element={<PerfilUsuario />} /> */}
         </Route>
         <Route path="/busqueda/:producto" element={<HomeBusqueda />} />
         <Route path="editar-producto/:id" element={<EditarProductoForm />} />

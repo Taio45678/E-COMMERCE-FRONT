@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./ProductosDtl.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,17 +7,22 @@ import { getAllProducts } from "../../../Redux/actions";
 
 
 export default function Productos({productos}) {
-const arrayRandom = [1,5,3,8]
+const arrayRandom = []
 
 const navigate = useNavigate()
 const dispatch = useDispatch();
-dispatch(getAllProducts(1))
 
+
+
+if(!productos){
+  return <p>Esperando info</p>
+}
 function generarNumeroAleatorio() {
-  for(let i = 0; i<5;i++){
-  arrayRandom.push(Math.floor(Math.random() * 10));
+  for(let i = 0; i<4;i++){
+  arrayRandom.push(Math.floor(Math.random() * productos.length));
   }
 }
+generarNumeroAleatorio()
 
 function handleClickOtro(num){
   navigate(`/detailProducto/${num}`)
@@ -29,7 +34,7 @@ function handleClickOtro(num){
     <div className={s.caja2}>
       <div className={s.cajaInterna2}>
         
-        {arrayRandom?.map(num => (
+        {productos && arrayRandom?.map(num => (
            <div className={s.productos}>
            <div className={s.cajaImagen}>
              <img src={productos[num].fotoprinc} width={"100%"} heigth={"200 px"}style={{maxHeight: '100%'}}></img>
@@ -41,56 +46,6 @@ function handleClickOtro(num){
            <button style ={{cursor: 'pointer'}} className={s.verMas} onClick={()=>handleClickOtro(productos[num].id)}>Ver Mas</button>
          </div>
       ))}
-        {/* <div className={s.productos}>
-          <div className={s.cajaImagen}>
-            <div>image</div>
-          </div>
-          <div className={s.titulo}>Producto Aleatorio</div>
-          <div className={s.precio}>
-            <h3>{allProducts.length}</h3>
-          </div>
-          <button className={s.verMas}>Ver Mas</button>
-        </div>
-        <div className={s.productos}>
-          <div className={s.cajaImagen}>
-            <div>image</div>
-          </div>
-          <div className={s.titulo}>Producto Aleatorio</div>
-          <div className={s.precio}>
-            <h3>$000</h3>
-          </div>
-          <button className={s.verMas}>Ver Mas</button>
-        </div>
-        <div className={s.productos}>
-          <div className={s.cajaImagen}>
-            <div>image</div>
-          </div>
-          <div className={s.titulo}>Producto Aleatorio</div>
-          <div className={s.precio}>
-            <h3>$000</h3>
-          </div>
-          <button className={s.verMas}>Ver Mas</button>
-        </div>
-        <div className={s.productos}>
-          <div className={s.cajaImagen}>
-            <div>image</div>
-          </div>
-          <div className={s.titulo}>Producto Aleatorio</div>
-          <div className={s.precio}>
-            <h3>$000</h3>
-          </div>
-          <button className={s.verMas}>Ver Mas</button>
-        </div>
-        <div className={s.productos}>
-          <div className={s.cajaImagen}>
-            <div>image</div>
-          </div>
-          <div className={s.titulo}>Producto Aleatorio</div>
-          <div className={s.precio}>
-            <h3>$000</h3>
-          </div>
-          <button className={s.verMas}>Ver Mas</button>
-        </div> */}
       </div>
     </div>
   );
