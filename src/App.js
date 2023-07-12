@@ -18,6 +18,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { log_in } from "./Redux/actions";
 // import Favoritos from "./Components/Favoritos/Favoritos";
+
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
 // import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
@@ -38,6 +39,12 @@ function App() {
   //axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
   axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado
 
+  useEffect(() => {
+     if (isAuthenticated) {
+      log_in(user);
+
+    }
+  }, []);
 
 
   function onClick() {

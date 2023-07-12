@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_URL = "https://commerce-back-2025.up.railway.app/registro"
-const API_URL2 = "https://commerce-back-2025.up.railway.app/login"
+const API_URL2 = "https://commerce-back-2025.up.railway.app/usuarios"
 
 class AuthService{
 

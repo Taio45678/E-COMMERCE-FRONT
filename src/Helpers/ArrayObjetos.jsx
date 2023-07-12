@@ -28,6 +28,7 @@ export default function ArrayObjetos() {
         disponibproducto: 1000,
         nombrecat:"Papelería"
     },
+
      {"nombreproducto": "TV Antiguo",
      "descproducto": "TV con diseño antiguo en blanco y negro",
      "colorproducto": [
@@ -125,7 +126,7 @@ export default function ArrayObjetos() {
       nombreproducto: "reloj antiguo",
       fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
       disponibproducto:155,
-      descproducto: "Reloj inteligente antiguo"
+       descproducto: "Reloj inteligente antiguo"
       ,precioproducto:11,
       colorproducto:["dorado"],
       nombrecat:"Hogar"
@@ -170,11 +171,11 @@ function handleClick(e){
   })
   
 }
-
 function handleClickRevs(e){
   const arrayRevs = []
   for(let i= 1; i<15; i++){
     for(let j= 1; j<5; j++){
+
       var rating = Math.floor(Math.random()*5)+1
       var description = "meh"
       if(rating === 1) description = "Muy malo"
