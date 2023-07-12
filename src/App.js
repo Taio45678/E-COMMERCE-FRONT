@@ -20,14 +20,14 @@ import { log_in } from "./Redux/actions";
 // import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
-import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
+// import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
 import Publicaciones from "./Components/Admin/Publicaciones/Publicaciones";
 import Ventas from "./Components/Admin/Ventas/Ventas";
 import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
 import axios from "axios";
-import ArrayObjetos from "./Helpers/ArrayObjetos";
+import ArrayObjetos from "./Helpers/arrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
@@ -79,7 +79,7 @@ function App() {
             element={<FormCrearUsuarioAdmin />}
           />
           <Route path="mis-datos" element={<MisDatos />} />
-          <Route path="perfilUsuario/:id" element={<PerfilUsuario />} />
+          {/* <Route path="perfilUsuario/:id" element={<PerfilUsuario />} /> */}
         </Route>
         <Route path="/busqueda/:producto" element={<HomeBusqueda />} />
         <Route path="editar-producto/:id" element={<EditarProductoForm />} />

@@ -1,69 +1,258 @@
 import React from "react";
-import s from "./MisDatos.module.css";
+import { Typography, Button, Box, TextField, } from '@mui/material';
+import { useState } from 'react';
 
-// ########## Aqui sera el apartado de Datos del Usuario ##########
+
 export default function MisDatos() {
-  return (
-    <div className={s.cajaInterna2}>
-      <h1>Datos de cuenta</h1>
-      <div className={s.datosC}>
-        <div className={s.dato1a}>
-          <h2>
-            Usuario
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>Nombre Apellido</p>
-        </div>
-        <div className={s.dato1a}>
-          <h2>
-            Email
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>nombre123@gmail.com</p>
-        </div>
-      </div>
-      <h1>Datos personales</h1>
-      <div className={s.datosP}>
-        <div className={s.dato1a}>
-          <h2>
-            Nombre y Apellido{" "}
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
 
-          <p>Nombre Completo</p>
-        </div>
-        <div className={s.dato1a}>
-          <h2>
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [password, setPassword] = useState('***********');
+  const [address, setAddress] = useState('Calle falsa 123');
+  const [phone, setPhone] = useState('1234567890');
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    setIsEditing(false);
+    // Aquí puedes agregar la lógica para guardar la contraseña editada
+    // Puedes usar el estado para obtener el nuevo valor del campo de contraseña
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+    // Aquí puedes agregar la lógica para cancelar la edición
+    // Puedes usar el estado para restaurar el valor original del campo de contraseña
+  };
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+  };
+
+
+  return (
+    <Box>
+      <Typography
+        variant="h1"
+        fontSize="2rem"
+        sx={{
+          backgroundColor: 'black',
+          color: 'red',
+          padding: '10px',
+          borderRadius: '4px',
+          display: 'inline-block',
+        }}
+      >
+        Datos de cuenta
+      </Typography>
+
+      <Box>
+        <Box>
+          <Typography variant="h2" fontSize="1.5rem" sx={{ mt: 3, }}>
+            Usuario
+            {/* <Button style={{ color: "red", marginLeft: "30px" }}>editar</Button> */}
+          </Typography>
+          <TextField
+            variant="outlined"
+            size="small"
+            defaultValue="Nombre Apellido"
+            sx={{ width: "400px"}}
+            disabled
+          />
+
+        </Box>
+        <Box>
+          <Typography variant="h2" fontSize="1.5rem" sx={{ mt: 3, }}>
+            Email
+            {/* <Button style={{ color: "red", marginLeft: "30px" }}>editar</Button> */}
+          </Typography>
+          <TextField
+            variant="outlined"
+            size="small"
+            defaultValue="nombre123@gmail.com"
+            disabled
+            sx={{ width: "400px", mt: 1, }}
+          />
+
+        </Box>
+      </Box>
+      <Typography
+          variant="h1"
+          fontSize="2rem"
+          sx={{
+            backgroundColor: 'black',
+            color: 'red',
+            padding: '10px',
+            borderRadius: '4px',
+            display: 'inline-block',
+            mt: 5,
+          }}
+        >
+          Datos personales
+        </Typography>
+
+      <Box>
+        {/* <Box>
+          <Typography variant="h2" fontSize="1.5rem">
+            Nombre y Apellido{" "}
+            <Button style={{ color: "red", marginLeft: "30px" }}>editar</Button>
+          </Typography>
+          <Typography variant="body1" fontSize="1rem">Nombre Completo</Typography>
+        </Box> */}
+        <Box>
+          <Typography variant="h2" fontSize="1.5rem" sx={{ mt: 3, }}>
             Edad
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>27</p>
-        </div>
-        <div className={s.dato1a}>
-          <h2>
-            Direccion
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>callefalsa 123</p>
-        </div>
-        <div className={s.dato1a}>
-          <h2>
-            Telefono
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>123456789</p>
-        </div>
-        <div className={s.dato1a}>
-          <h2>
-            Contraseña
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>***********</p>
-        </div>
-      </div>
-      <button className={s.cerrarCuenta}>
-        <h1>Guardar cambios</h1>
-      </button>
-    </div>
+            {/* <Button style={{ color: "red", marginLeft: "30px" }}>editar</Button> */}
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <TextField
+              variant="outlined"
+              size="small"
+              defaultValue="27"
+              disabled
+              sx={{ width: "50px", mt: 1, }}
+            />
+            <Typography variant="body1" sx={{ marginLeft: "10px", mt: 1, }}>
+              años
+            </Typography>
+          </Box>
+
+        </Box>
+        <Box>
+      <Typography variant="h2" fontSize="1.5rem" sx={{ mt: 3 }}>
+        Dirección
+        {isEditing ? (
+          <>
+            <Button
+              style={{ color: "red", marginLeft: "30px" }}
+              onClick={handleSaveClick}
+            >
+              Guardar
+            </Button>
+            <Button
+              style={{ color: "red", marginLeft: "10px" }}
+              onClick={handleCancelClick}
+            >
+              Cancelar
+            </Button>
+          </>
+        ) : (
+          <Button
+            style={{ color: "red", marginLeft: "30px" }}
+            onClick={handleEditClick}
+          >
+            Editar
+          </Button>
+        )}
+      </Typography>
+      <TextField
+        variant="outlined"
+        size="small"
+        value={address}
+        onChange={handleAddressChange}
+        fullWidth
+        disabled={!isEditing}
+      />
+    </Box>
+        <Box>
+      <Typography variant="h2" fontSize="1.5rem" sx={{ mt: 3 }}>
+        Teléfono
+        {isEditing ? (
+          <>
+            <Button
+              style={{ color: "red", marginLeft: "30px" }}
+              onClick={handleSaveClick}
+            >
+              Guardar
+            </Button>
+            <Button
+              style={{ color: "red", marginLeft: "10px" }}
+              onClick={handleCancelClick}
+            >
+              Cancelar
+            </Button>
+          </>
+        ) : (
+          <Button
+            style={{ color: "red", marginLeft: "30px" }}
+            onClick={handleEditClick}
+          >
+            Editar
+          </Button>
+        )}
+      </Typography>
+      <TextField
+        variant="outlined"
+        size="small"
+        value={phone}
+        onChange={handlePhoneChange}
+        fullWidth
+        disabled={!isEditing}
+      />
+    </Box>
+        <Box>
+        <Typography variant="h2" fontSize="1.5rem" sx={{ mt: 3 }}>
+        Contraseña
+        {isEditing ? (
+          <>
+            <Button
+              style={{ color: "red", marginLeft: "30px" }}
+              onClick={handleSaveClick}
+            >
+              Guardar
+            </Button>
+            <Button
+              style={{ color: "red", marginLeft: "10px" }}
+              onClick={handleCancelClick}
+            >
+              Cancelar
+            </Button>
+          </>
+        ) : (
+          <Button
+            style={{ color: "red", marginLeft: "30px" }}
+            onClick={handleEditClick}
+          >
+            Editar
+          </Button>
+        )}
+      </Typography>
+      <TextField
+        variant="filled"
+        type="password"
+        value={password}
+        onChange={handlePasswordChange}
+        InputProps={{
+          readOnly: !isEditing,
+          disableUnderline: true,
+        }}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+
+        </Box>
+      </Box>
+      {/* <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+        <Button variant="contained" 
+         sx={{ width: "250px", height: "50px", backgroundColor: "#e91e63", color: "black", }}>
+          <Typography variant="h1" fontSize="20px">Guardar cambios</Typography>
+        </Button>
+      </Box> */}
+
+    </Box>
   );
+  
+
 }
+
