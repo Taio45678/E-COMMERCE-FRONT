@@ -151,12 +151,11 @@ export const fetchUsuariosRequest = () => {
   };
 };
 
-export const fetchUsuariosSuccess = (usuarios, totalPages) => {
+export const fetchUsuariosSuccess = (usuarios) => {
   return {
     type: "FETCH_USUARIOS_SUCCESS",
     payload: {
       usuarios,
-      totalPages,
     },
   };
 };
@@ -168,17 +167,17 @@ export const fetchUsuariosFailure = (error) => {
   };
 };
 
-export const fetchUsuarios = (page, limit) => {
+export const fetchUsuarios = () => {
   return (dispatch) => {
     dispatch(fetchUsuariosRequest());
     axios
       .get(
-        `https://commerce-back-2025.up.railway.app/usuarios?page=${page}&limit=${limit}`
+        `https://commerce-back-2025.up.railway.app/usuarios?page=1&limit=100`
       )
       .then((response) => {
         const usuarios = response.data.usuarios;
-        const totalPages = response.data.totalPages;
-        dispatch(fetchUsuariosSuccess(usuarios, totalPages));
+        console.log(usuarios);
+        dispatch(fetchUsuariosSuccess(usuarios));
       })
       .catch((error) => {
         dispatch(fetchUsuariosFailure(error.message));
@@ -206,9 +205,17 @@ export const setUsuarioDetail = (usuario) => {
   };
 };
 
+//   ################### VENTAS ADMIN ######################
+
 export const fetchProductosSuccess = (productos) => {
   return {
     type: "FETCH_PRODUCTOS_SUCCESS",
+    payload: productos,
+  };
+};
+export const fetchTotalVentas = (productos) => {
+  return {
+    type: "FETCH_TOTAL_VENTAS",
     payload: productos,
   };
 };
@@ -218,13 +225,39 @@ export const fetchProductos = () => {
     axios
       .get(`https://commerce-back-2025.up.railway.app/ocs?page=1&limit=100`)
       .then((response) => {
-        const productos = response.data.ocs;
-        const detalle = response.data.ocs.map((obj) => obj.detalleocs[0]);
-        //console.log(productos);
+        const total = response.data.ocs;
+        const detalle = response.data.ocs.flatMap((obj) =>
+          obj.detalleocs.map((e) => e)
+        );
+        console.log(total);
         dispatch(fetchProductosSuccess(detalle));
+        const sumValortotaloc = total.reduce(
+          (sum, oc) => sum + oc.valortotaloc,
+          0
+        );
+
+        dispatch(fetchTotalVentas(sumValortotaloc));
       })
       .catch((error) => {
         console.log(error);
       });
   };
 };
+
+//   ################### BANEAR USUARIOS ######################
+
+export function disableUser(usuarioId) {
+  return async function () {
+    try {
+      console.log(usuarioId);
+      const result = await axios.patch(
+        `https://commerce-back-2025.up.railway.app/users/${usuarioId}/blocked `
+      );
+      console.log(result);
+      alert(result);
+      //return dispatch({ type: CREATE_JUEGO, payload: info })
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}

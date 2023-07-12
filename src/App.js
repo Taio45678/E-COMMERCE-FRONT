@@ -31,6 +31,8 @@ import ArrayObjetos from "./Helpers/arrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
+import Compras from "./Components/Profile/Compras/Compras";
+import Mis_Datos from "./Components/Profile/MisDatos/MisDatos";
 
 function App() {
   const navigate = useNavigate();
@@ -61,7 +63,10 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile />}>
+          <Route path="compras" element={<Compras />} />
+          <Route path="misDatos" element={<Mis_Datos />} />
+        </Route>
         {/* <Route path="/favoritos" element={<Favoritos />} /> */}
         <Route path="/helper" element={<ArrayObjetos />}></Route>
         <Route path="*" element={<NotFound />} />{" "}

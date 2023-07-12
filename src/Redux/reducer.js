@@ -31,6 +31,7 @@ const initialState = {
   usuariosHabilidatosAux: [],
   usuariosDesabilitados: [],
   productosVentas: [],
+  SumatoriaVentas: null,
   totalPagesVentas: 1,
 };
 console.log(initialState.totalPages);
@@ -48,6 +49,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         productosVentas: payload,
+      };
+    case "FETCH_TOTAL_VENTAS":
+      return {
+        ...state,
+        SumatoriaVentas: payload,
       };
 
     case "GET_ALL_PRODUCTS":

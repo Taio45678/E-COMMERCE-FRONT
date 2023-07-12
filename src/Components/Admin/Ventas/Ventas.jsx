@@ -7,6 +7,7 @@ import { Pagination } from "@mui/material";
 const Ventas = () => {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.productosVentas);
+  const totalVentas = useSelector((state) => state.SumatoriaVentas);
   const [page, setPage] = React.useState(0);
   const rowsPerPage = 4;
 
@@ -37,10 +38,9 @@ const Ventas = () => {
         <div className={s.titulo}>
           <div className={s.columna1}>imagen</div>
           <div className={s.columna2}>nombre</div>
-          <div className={s.columna3}>comprador</div>
-          <div className={s.columna4}>cantidad</div>
-          <div className={s.columna5}>estado</div>
-          <div className={s.columna6}>precio</div>
+          <div className={s.columna3}>cantidad</div>
+          <div className={s.columna4}>precion unid.</div>
+          <div className={s.columna5}>total</div>
         </div>
         <div className={s.productos}>
           {detalleocsToShow &&
@@ -48,16 +48,15 @@ const Ventas = () => {
               <div key={producto.id} className={s.venta}>
                 <div className={s.columna1}>
                   <img
-                    src="https://static.vecteezy.com/system/resources/previews/014/704/006/non_2x/paper-shop-bag-icon-simple-style-vector.jpg"
+                    src="https://png.pngtree.com/png-clipart/20220602/original/pngtree-shopping-icon-design-vector-png-image_7869274.png"
                     alt=""
                     style={{ width: "70px" }}
                   />
                 </div>
                 <div className={s.columna2}>{producto.nombreproducto}</div>
-                <div className={s.columna3}>Comprador</div>
-                <div className={s.columna4}>{producto.cant}</div>
-                <div className={s.columna5}>{producto.idoc}</div>
-                <div className={s.columna6}>${producto.valorunitario}</div>
+                <div className={s.columna3}>{producto.cant}</div>
+                <div className={s.columna4}>${producto.valorunitario}</div>
+                <div className={s.columna5}>${producto.subtotal}</div>
               </div>
             ))}
         </div>
@@ -76,7 +75,7 @@ const Ventas = () => {
       </div>
       <div className={s.total}>
         <div className={s.suma}>total:</div>
-        <div className={s.pesos}>\$000</div>
+        <div className={s.pesos}>{`$ ${totalVentas}`}</div>
       </div>
     </div>
   );
