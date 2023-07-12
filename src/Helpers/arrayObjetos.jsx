@@ -174,7 +174,7 @@ function handleClick(e){
 function handleClickRevs(e){
   const arrayRevs = []
   for(let i= 1; i<15; i++){
-    for(let j= 1; j<10; j++){
+    for(let j= 1; j<5; j++){
       var rating = Math.floor(Math.random()*5)+1
       var description = "meh"
       if(rating === 1) description = "Muy malo"

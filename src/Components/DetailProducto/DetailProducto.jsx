@@ -13,8 +13,10 @@ import {
   getDetail,
   addCarrito,
   obtenerCategoriaPorId,
+  getAllProducts,
 } from "../../Redux/actions";
 import ReviewCard from "../Reviews/ReviewCard";
+import { TroubleshootRounded } from "@mui/icons-material";
 
 //Aquí se renderiza el detalle de cada producto
 
@@ -28,20 +30,26 @@ export default function DetailProducto() {
 
   const elCarrito = useSelector((state) => state.carrito);
   const [carrito, setCarrito] = useState([]);
-  const [cargando, setCargando] = useState(false)
-  const {allProducts} = useSelector((state)=>state)
+  const [cargando, setCargando] = useState(true)
+ 
   
   console.log(elCarrito);
 
-  dispatch(getDetail(id));
+  
 
   useEffect(() => {
-
-    setCargando(true)
-    //dispatch(getDetail(id));
+    dispatch(getDetail(id));
+    if(productos.length < 10)dispatch(getAllProducts(1))
     setCargando(false)
-  }, []);
-  const productDetails = useSelector((state) => state.details);
+  }, [dispatch, id]);
+  
+
+const productDetails = useSelector((state) => state.details);
+const productos = useSelector((state)=>state.allProducts)
+
+  if(cargando){
+    return <p>Cargando</p>
+  }
 
   const {
     nombreproducto,
@@ -54,7 +62,9 @@ export default function DetailProducto() {
     reviews
   } = productDetails;
 
-  //######### OBTENER EL VALOR DE LA REVIEW###########
+
+
+  // //######### OBTENER EL VALOR DE LA REVIEW###########
   const lengthReviews = reviews?.length
   const arrayReview = []
   reviews?.forEach(review => {
@@ -64,7 +74,7 @@ export default function DetailProducto() {
   const calificacion = suma/arrayReview.length
  
 
-  //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
+  // //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
     e.preventDefault();
     const productToAdd = {
@@ -82,12 +92,9 @@ export default function DetailProducto() {
 
   return (
     <div>
-      {cargando ? (
-        <h1>Cargando info</h1>
-      ): (
-    <div className={s.fondo}>
       
-      <form action="" onSubmit={handleSubmit} className={s.fromu}>
+    <div className={s.fondo}>
+    <form action="" onSubmit={handleSubmit} className={s.fromu}>
         <div className={s.producto}>Detalles del producto</div>
         <div className={s.cajaInterna}>
           <div className={s.cajaImagen}>
@@ -103,7 +110,7 @@ export default function DetailProducto() {
             <Descripcion descripcion={descproducto}></Descripcion>
           </div>
           <div className={s.datos}>
-            <h1>{productDetails.name}</h1>
+            <h1>{productDetails.nombreproducto}</h1>
             <h4>
               Categoria : <h5 style={{ color: "red" }}>{nombrecat}</h5>
             </h4>
@@ -147,19 +154,27 @@ export default function DetailProducto() {
           </div>
         </div>
         </form>
-        
-        {reviews?.length === 0 ? <h3>Este producto aun no tiene reviews</h3>:
-        <div style={{display: 'flex'}}>
-        <ReviewCard usuarioId={reviews[lengthReviews-1].usuarioId} description={reviews[lengthReviews-1].description} rating={reviews[lengthReviews-1].rating} createdAt={reviews[lengthReviews-1].createdAt}></ReviewCard>
-        <ReviewCard usuarioId={reviews[lengthReviews-2].usuarioId} description={reviews[lengthReviews-2].description} rating={reviews[lengthReviews-2].rating} createdAt={reviews[lengthReviews-2].createdAt}></ReviewCard>
-        <ReviewCard usuarioId={reviews[lengthReviews-3].usuarioId} description={reviews[lengthReviews-3].description} rating={reviews[lengthReviews-3].rating} createdAt={reviews[lengthReviews-3].createdAt}></ReviewCard>
-        </div>}
+      
+        <Box>
+        {reviews && reviews.length === 0 ? (<h3>Este producto aun no tiene reviews</h3>):
+        (<div style={{display: 'flex'}}>
+          {reviews && reviews.length >= 3 && (
+            <>
+             <ReviewCard usuarioId={reviews[reviews.length-1].usuarioId} description={reviews[reviews.length-1].description} rating={reviews[reviews.length-1].rating} createdAt={reviews[reviews.length-1].createdAt}></ReviewCard>
+            <ReviewCard usuarioId={reviews[reviews.length-2].usuarioId} description={reviews[reviews.length-2].description} rating={reviews[reviews.length-2].rating} createdAt={reviews[reviews.length-2].createdAt}></ReviewCard>
+            <ReviewCard usuarioId={reviews[reviews.length-3].usuarioId} description={reviews[reviews.length-3].description} rating={reviews[reviews.length-3].rating} createdAt={reviews[reviews.length-3].createdAt}></ReviewCard>
+            </>)}
+        </div>)}
+        </Box>
         <div>
          
-       
-        {/* <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px', marginRight: '20px', marginLeft: '20px'}}  /> */}
+       {productos && productos.length > 0 && (<>
+        <ProductosDtl style={{ marginTop: '10px', marginBottom: '20px', marginRight: '20px', marginLeft: '20px'}} productos= {productos}  />
+       </>)
+       }
+        
         </div>
-    </div>)}
+    </div>
     </div>
   );
 }

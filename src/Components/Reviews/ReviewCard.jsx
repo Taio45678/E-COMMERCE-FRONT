@@ -2,6 +2,10 @@ import React from 'react'
 import { CardContent, Typography, Rating, Box, Card} from '@mui/material';
 
 export default function ReviewCard({usuarioId, description, rating, createdAt}) {
+
+  if(!usuarioId || !description || !rating || !createdAt){
+    return <p>Esperando info</p>
+  }
     
   return (
     <Box sx={{ minWidth: 275 }}>

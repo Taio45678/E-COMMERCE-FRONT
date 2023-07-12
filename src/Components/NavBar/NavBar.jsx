@@ -235,7 +235,7 @@ export default function NavBar() {
   };
 
   function handleClick(ruta) {
-    navigate(`/buscar/${ruta}`);
+    navigate(`/busqueda/${ruta}`);
   }
 
   const theme = useTheme();
