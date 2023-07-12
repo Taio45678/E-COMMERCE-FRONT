@@ -34,7 +34,7 @@ export default function NavBar() {
     setShowCategories(!showCategories);
   };
   function handleClick(ruta){
-    navigate(`/buscar/${ruta}`)
+    navigate(`/busqueda/${ruta}`)
   }
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
