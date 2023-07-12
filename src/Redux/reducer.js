@@ -9,7 +9,16 @@ const initialState = {
   nombreCategoria: "",
   allProducts: [],
   allProductsAux: [],
-  details: [],
+  details: {
+    nombreproducto: "",
+    descproducto: "",
+    colorproducto: [],
+    fotoprinc: "hola",
+    precioproducto: 0,
+    disponibproducto: 0,
+    nombrecat: "",
+    reviews: [],
+  },
   favoritos: [],
   categorias: [],
   carrito: [],
@@ -157,6 +166,60 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         usuarioDetail: [],
       };
+      case "EDITAR_PRODUCTO":
+        const productoEditado = payload; // Datos actualizados del producto
+        const productosActualizados = state.allProducts.map((producto) => {
+          if (producto.id === productoEditado.id) {
+            return productoEditado;
+          } else {
+            return producto;
+          }
+        });
+      
+        return {
+          ...state,
+          allProducts: productosActualizados,
+      };
+      case 'UPDATE_CARRITO':
+ const { id, cantidad, valorunit, subtotalitem } = payload;
+
+ const updatedCarrito = state.carrito.map((producto) => {
+   if (producto.id === id) {
+     return {
+       ...producto,
+       cantidad,  
+       valorunit,                        
+       subtotalitem
+     };
+   }
+   return producto; });
+
+   return {
+     ...state,
+     carrito: updatedCarrito
+   }; 
+
+ case "LIMPIAR_CARRITO":
+  return { ...initialState, };
+
+  case "REINICIA_STORE":
+   return {        
+     loggedUser:"claudiodavid339@gmail.com",
+     nombreCategoria: "",
+     allProducts: [],
+     allProductsAux: [],
+     details: [],
+     favoritos: [],
+     categorias: [],
+     carrito: [],
+     oc: {},
+     detalleoc: [],
+     paginas: 0,
+     busquedaProducto: [],
+     pagsBusqueda: 0                   
+   };
+      
+
 
     default:
       return state;

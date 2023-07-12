@@ -1,51 +1,13 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-//import axios from "axios";
-import s from "./Profile.module.css";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Tabs, Tab, Typography, Box, Avatar, } from '@mui/material';
 import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
-
-// ############## Aqui sera la Dashboard del Usuario ################
-
-const theme = createTheme({
-  components: {
-    MuiTabs: {
-      styleOverrides: {
-        root: {
-          // Estilos para las tabs en general
-        },
-        indicator: {
-          // Estilos para el indicador de la opción seleccionada
-          display: "none", // Ocultar el indicador
-        },
-      },
-    },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          // Estilos para las opciones sin seleccionar
-          color: "#FFFFFF", // Color blanco
-          "&.Mui-selected": {
-            // Estilos para la opción seleccionada
-            color: "#FF0000", // Color rojo
-            borderRight: "none",
-          },
-        },
-      },
-    },
-  },
-});
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
+  
   return (
     <div
       role="tabpanel"
@@ -72,73 +34,70 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
 
-export default function Profile() {
-
-
+export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
-    <>
-    {isAuthenticated ? 
-        
-        <div className={s.fondo}>
-            <ThemeProvider theme={theme}>
-            <Box
-            sx={{
-                flexGrow: 1,
-                display: "flex",
-                height: 680,
-            }}
-            > 
-            <Tabs
-              orientation="vertical"
-              variant="scrollable"
-              value={value}
-              onChange={handleChange}
-              aria-label="Vertical tabs example"
-              sx={{
-                  width: "211px",
-                  borderRight: 1,
-                  borderColor: "divider",
-                  background: "black",
-                  paddingTop: "340px",
-                }}
-                >
-            <Tab label="Compras" {...a11yProps(0)} />
-            <Tab label="Mis datos" {...a11yProps(1)} />
-            </Tabs>
-            <div className={s.nombreUsuario}>
-            <img
-            src="https://ionicframework.com/docs/img/demos/avatar.svg"
-            alt=""
-            className={s.avatar}
-            />
-            <h4>Nombre Apellido</h4>
-            <h5>Rol: Usuario</h5>
-            </div>
-            <TabPanel value={value} index={0} className={s.caja1}>
-            <div className={s.cajaInterna1}>
-            <Compras></Compras>
-            </div>
-            </TabPanel>
-            <TabPanel value={value} index={1} className={s.datos}>
-              <MisDatos></MisDatos>
-            </TabPanel>
-          </Box>
-        </ThemeProvider>
-        </div>
-        : loginWithRedirect()} 
-        </>
-    );
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        height: '100%',
+        mt: 10,
+        mb: 10,
+        border: '1px solid #ccc',
+        borderRadius: '4px',
+        width: '80%',
+        marginLeft: '5%',
+      }}
+    >
+      <Tabs
+        orientation="vertical"
+        variant="scrollable"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        sx={{
+          borderRight: 1,
+          borderColor: 'divider',
+          flex: '0 0 auto',
+          width: '200px',
+        }}
+      >
+        <Box className="nombreUsuario" sx={{ mb: 3,}} textAlign="center">
+              <Avatar
+                src="https://static.vecteezy.com/system/resources/previews/007/409/979/non_2x/people-icon-design-avatar-icon-person-icons-people-icons-are-set-in-trendy-flat-style-user-icon-set-vector.jpg"
+                alt=""
+                className="avatar"
+                sx={{ width: "90%", height:"90%", mt: 1, ml: 1,}}
+              />
+              <Typography variant="h4" sx={{ mt: 2, }}>Nombre</Typography>
+              <Typography variant="h4">Apellido</Typography>
+              <Typography variant="h5" sx={{ mt: 3, }}>Rol: Usuario</Typography>
+        </Box>
+        <Tab label="Mis datos" {...a11yProps(1)} />
+        <Tab label="Mis compras" {...a11yProps(2)} />
+      </Tabs>
+      <Box sx={{ flex: 1, borderLeft: 1, borderColor: 'divider' }}>
+          
+        <Box>
+              <TabPanel value={value} index={1}>
+                <MisDatos />
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                <Compras />
+              </TabPanel>
+        </Box>
+      </Box>
+
+    </Box>
+  );
 }
-
-

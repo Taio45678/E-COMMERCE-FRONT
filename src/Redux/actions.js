@@ -10,7 +10,7 @@ export function getAllProducts(pagina, producto, color, cate, precio) {
   if (!producto) producto = "";
   const queryColor = color?.length > 0 ? color.join("&color=") : "";
   const queryCate = cate?.length > 0 ? cate.join("&cate=") : "";
-  const link = `/producto/buscar?prod=${producto}&page=${pagina}&price=${precio}&color=${queryColor}&cate=${queryCate}`;
+  const link = `producto/buscar?prod=${producto}&page=${pagina}&price=${precio}&color=${queryColor}&cate=${queryCate}`;
 
   return async (dispatch) => {
     const data =
@@ -25,7 +25,7 @@ export function getAllProducts(pagina, producto, color, cate, precio) {
 
 export function getAllCategorias() {
   const linkFelipe = `/categorias`;
-  const linkBackLocal = "http://localhost:3001/productos/productos";
+  //const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data = (await axios.get(linkFelipe)).data;
     //.content;           //para el local
@@ -93,6 +93,19 @@ export function addCarrito(producto) {
     payload: producto,
   };
 }
+
+export const updateCarrito = (id, cantidad, valorunit, subtotalitem) => {
+  return {
+    type: 'UPDATE_CARRITO',
+    payload: {
+      id,
+      cantidad, 
+      valorunit,         
+      subtotalitem
+    }
+  };
+ };
+
 export function obtenerCategoriaPorId(id) {
   return async function (dispatch) {
     const json = await axios(`/categorias/${id}`);
@@ -105,7 +118,7 @@ export function obtenerCategoriaPorId(id) {
 
 export function buscarProducto(pagina, producto) {
   const linkFelipe = `/producto/buscar?prod=${producto}&cate=&page=${pagina}`;
-  const linkBackLocal = "http://localhost:3001/productos/productos";
+  //const linkBackLocal = "http://localhost:3001/productos/productos";
   return async (dispatch) => {
     const data =
       //.content;           //para el local
@@ -122,6 +135,17 @@ export function limpiarFiltroyBusqueda() {
     type: "LIMPIAR_TODO",
   };
 }
+
+ /**  LIMPIAR carrito DE LA PERSISTENCIA  */
+ export const limpiarCarrito = () => {
+  return {  type: "LIMPIAR_CARRITO" };
+ };
+
+ /** REINICIA STORE */
+export const reinicia_store = () => {
+  return {  type: "REINICIA_STORE"  }; 
+  };
+   
 
 // export const getAllUsuarios = (page, limit) => {
 //   return async (dispatch) => {
@@ -172,7 +196,7 @@ export const fetchUsuarios = (page, limit) => {
     dispatch(fetchUsuariosRequest());
     axios
       .get(
-        `https://commerce-back-2025.up.railway.app/usuarios?page=${page}&limit=${limit}`
+        `/usuarios?page=${page}&limit=${limit}`
       )
       .then((response) => {
         const usuarios = response.data.usuarios;
@@ -188,7 +212,7 @@ export const fetchUsuarios = (page, limit) => {
 export function usuarioId(id) {
   return async function (dispatch) {
     const json = await axios(
-      `https://commerce-back-2025.up.railway.app/usuarios/${id}`
+      `/usuarios/${id}`
     );
     //console.log(json.data);
     return dispatch({
@@ -204,3 +228,24 @@ export const setUsuarioDetail = (usuario) => {
     payload: usuario,
   };
 };
+
+export function editarProducto(id) {
+  return async function (dispatch) {
+    try {
+      // Realiza la solicitud para editar el producto en el backend
+      const response = await axios.put(
+        `/producto/${id}`
+      );
+
+      // Si la solicitud es exitosa, despacha una acción para actualizar el estado en Redux
+      if (response.status === 200) {
+        dispatch({
+          type: "EDITAR_PRODUCTO",
+          payload: response.data,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
