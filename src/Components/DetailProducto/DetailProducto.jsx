@@ -77,12 +77,18 @@ const productos = useSelector((state)=>state.allProducts)
   // //########### EL HANDLE DE AGREGAR PRODUCTO AL CARRITO ##############
   function handleSubmit(e) {
     e.preventDefault();
+
+    const productExists = carrito.some((producto) => producto.id === id);
+    if (productExists) { alert("Este producto ya está en el carrito.");
+      return; 
+    }
     const productToAdd = {
       id: id,
       nombre: nombreproducto,
-      precio: precioproducto,
+      valorunit: precioproducto,
       cantidad: 1,
       imagen: fotoprinc,
+      subtotalitem: 1 * precioproducto,
     };
     dispatch(addCarrito(productToAdd));
     alert(`Agregaste el producto ${nombreproducto} a tu carrito`);
