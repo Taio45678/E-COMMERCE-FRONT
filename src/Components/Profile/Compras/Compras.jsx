@@ -635,7 +635,7 @@ export default function Compras() {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-      <Compras numSelected={selected.length} />        <TableContainer>
+       <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"

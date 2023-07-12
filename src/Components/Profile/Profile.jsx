@@ -8,7 +8,6 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Tabs, Tab, Typography, Box, Avatar, } from "@mui/material";
 
 import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
@@ -99,7 +98,7 @@ export default function Profile() {
                 display: "flex",
                 height: 680,
             }}
-            >
+            > 
             <Tabs
               orientation="vertical"
               variant="scrollable"
