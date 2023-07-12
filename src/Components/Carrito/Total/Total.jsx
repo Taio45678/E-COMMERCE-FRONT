@@ -72,6 +72,7 @@ export default function Total({ productos, sumatotal, updateCarrito })
 
      dispatch(getAllProducts(1));
      dispatch(getAllCategorias());
+     window.location.reload(true);
   }
 
   const limpiaPantalla = () => {  window.location.reload(true);  }   
@@ -90,9 +91,9 @@ export default function Total({ productos, sumatotal, updateCarrito })
       <button className={s.button} onClick={reiniciaCarro}>
         <span>LIMPIA CARRO</span>
       </button>
-      <button className={s.button} onClick={limpiaPantalla}>
+      {/* <button className={s.button} onClick={limpiaPantalla}>
         <span>LIMPIA PANTALLA</span>
-      </button>    
+      </button>     */}
       <Modal  isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="URL de Pago" >
