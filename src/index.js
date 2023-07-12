@@ -8,9 +8,9 @@ import { Provider } from "react-redux";
 import store from "./Redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
 ///////////////////////////////////////////////
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore, } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { PersistGate } from 'redux-persist/integration/react';
+// import { PersistGate } from 'redux-persist/integration/react';
 const persistConfig = {
  key: 'root',
  storage,

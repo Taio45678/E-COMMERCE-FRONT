@@ -15,7 +15,7 @@ export default function AboutUs() {
           {/* ############  FELIPE ############## */}
           <div className={s.cajaNosotros}>
             <div className={s.imagen}></div>
-            <h1>Felipe Lopez</h1>
+            <h1>Felipe López</h1>
             <p>Full Stack</p>
             <div className={s.iconos}>
               <a href="">
@@ -23,12 +23,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/theinventor1">
+              <a href="https://github.com/theinventor1" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -46,12 +46,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/Maxi-95">
+              <a href="https://github.com/Maxi-95" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com/in/miguel-maximiliano-fonseca-20ab32234/" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -69,12 +69,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/Taio45678">
+              <a href="https://github.com/Taio45678" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -84,7 +84,7 @@ export default function AboutUs() {
           {/* ############  CAMILO ############## */}
           <div className={s.cajaNosotros}>
             <div className={s.imagen4}></div>
-            <h1>Camilo Parada Ruis</h1>
+            <h1>Camilo Parada Ruiz</h1>
             <p>Full Stack</p>
             <div className={s.iconos}>
               <a href="">
@@ -92,12 +92,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/caparada1366">
+              <a href="https://github.com/caparada1366" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com/in/camiloparadaruiz/" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -115,12 +115,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/MEC-97">
+              <a href="https://github.com/MEC-97" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -130,7 +130,7 @@ export default function AboutUs() {
           {/* ############  DAVINSON ############## */}
           <div className={s.cajaNosotros2}>
             <div className={s.imagen6}></div>
-            <h1>Davinson Gomez</h1>
+            <h1>Davinson Gómez</h1>
             <p>Full Stack</p>
             <div className={s.iconos}>
               <a href="">
@@ -138,12 +138,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/Akadus23">
+              <a href="https://github.com/Akadus23" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -161,12 +161,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/dalegaz404">
+              <a href="https://github.com/dalegaz404" target="_blank">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com" target="_blank">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>

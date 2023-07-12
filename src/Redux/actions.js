@@ -41,8 +41,8 @@ export function getDetail(id) {
   return async function (dispatch) {
     
     const json = await axios(
-      // `https://e-commerce-back-2025.up.railway.app/producto/3`
-      `/producto/${id}`
+      `https://commerce-back-2025.up.railway.app/`
+      // `/producto/${id}`
     );
     return dispatch({
       type: GET_DETAIL,
