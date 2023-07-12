@@ -253,6 +253,9 @@ export function disableUser(usuarioId) {
       const result = await axios.put(
         `https://commerce-back-2025.up.railway.app/usuarios/${usuarioId}/isban `
       );
+      console.log(result);
+      alert(result);
+      //return dispatch({ type: CREATE_JUEGO, payload: info })
     } catch (error) {
       alert(error.message);
     }
