@@ -126,7 +126,7 @@ export default function ArrayObjetos() {
       nombreproducto: "reloj antiguo",
       fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
       disponibproducto:155,
-      descproducto: "Telefono inteligente"
+       descproducto: "Reloj inteligente antiguo"
       ,precioproducto:11,
       colorproducto:["dorado"],
       nombrecat:"Hogar"
@@ -171,7 +171,7 @@ function handleClick(e){
   })
   
 }
-  function handleClickRevs(e){
+function handleClickRevs(e){
   const arrayRevs = []
   for(let i= 1; i<15; i++){
     for(let j= 1; j<5; j++){

@@ -39,14 +39,13 @@ function App() {
   //axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
   axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado
 
-  const { isAuthenticated, user } = useAuth0();
-
   useEffect(() => {
      if (isAuthenticated) {
       log_in(user);
 
     }
   }, []);
+
 
   function onClick() {
     navigate("/home");

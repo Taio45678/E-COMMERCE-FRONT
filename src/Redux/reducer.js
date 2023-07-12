@@ -219,7 +219,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
      pagsBusqueda: 0                   
    };
       
-
+   case "DELETE_PRODCARRO":
+      const updatedCarritox = state.carrito.filter(product => product.id !== payload);
+      return {
+        ...state,
+        carrito: updatedCarritox
+      };
 
     default:
       return state;

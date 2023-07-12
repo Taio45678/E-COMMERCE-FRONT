@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Seleccion.module.css";
 import { useDispatch } from "react-redux";
-import { updateCarrito, removeFavorites } from "../../../Redux/actions";
+import { updateCarrito, removeFavorites, deleteProdCarro } from "../../../Redux/actions";
 
 export default function Seleccion({ key, pokes, updateQuantity, deleteProduct, valorunitario }) {
   const dispatch = useDispatch();
@@ -23,7 +23,10 @@ export default function Seleccion({ key, pokes, updateQuantity, deleteProduct, v
     } 
    };
 
-   const handleDelete = () => {  deleteProduct(id);  };
+   const handleDelete = () => {   
+    deleteProduct(id);  
+    dispatch(deleteProdCarro(id)); 
+   };
    const precioTotal = cantidad * valorunitario;
    console.log('valorunitario: ', valorunitario);
   
