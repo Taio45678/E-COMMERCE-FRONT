@@ -7,7 +7,17 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
-
+///////////////////////////////////////////////
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+const persistConfig = {
+ key: 'root',
+ storage,
+ whitelist: ['carrito', 'loggedUser'], 
+};
+const persistor = persistStore(store);
+///////////////////////////////////////////////
 const domain = "dev-jzsyp78gzn6fdoo4.us.auth0.com";
 const clientID = "xc1IRD9X4IyoX9RQFGpyFZ9EL8NQEKLl";
 
@@ -15,7 +25,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <React.StrictMode>
+      {/* <React.StrictMode> */}
         <Auth0Provider
           domain={domain}
           clientId={clientID}
@@ -23,7 +33,7 @@ root.render(
         >
           <App />
         </Auth0Provider>
-      </React.StrictMode>
+      {/* </React.StrictMode> */}
     </BrowserRouter>
   </Provider>
 );

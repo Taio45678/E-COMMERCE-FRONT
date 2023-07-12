@@ -36,11 +36,13 @@ const Home = () => {
   const dispatch = useDispatch();
   const[page, setPage] = useState(1);
   // Función que trae los productos del back al store de redux 
+  
+  
   useEffect(()=>{
     dispatch(getAllProducts(1, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
     dispatch(getAllCategorias())
-    dispatch(getDetail(1));
-  },[])
+    //dispatch(getDetail(1));
+  },[dispatch])
   function handleChangePagina(e, value){
     
     dispatch(getAllProducts(value, producto, coloresSeleccionados, categoriasSeleccionadas, ordenPrecio))
@@ -51,7 +53,7 @@ const Home = () => {
   //Traemos todos los productos del store local
   const { allProducts, paginas, categorias } = useSelector((state) => state);
 
-  const [productosMostrados, setProductosMostrados] = useState(3);
+  const [productosMostrados, setProductosMostrados] = useState(5);
 
 
   const productos2 = allProducts;
@@ -65,7 +67,7 @@ const Home = () => {
   };
 
   const mostrarMasProductos = () => {
-    setProductosMostrados((prevProductosMostrados) => prevProductosMostrados + 3);
+    setProductosMostrados((prevProductosMostrados) => prevProductosMostrados + 5);
   };
 
   const handleOrdenPrecio = (e) => {

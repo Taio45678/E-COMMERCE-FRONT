@@ -8,10 +8,10 @@ import {
   Card,
   CardActions,
   IconButton,
-  Rating
+  Rating, 
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Favorite, FavoriteBorder} from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts, getDetail} from "../../Redux/actions";
 import { addFavorites, removeFavorites } from "../../Redux/actions";
@@ -32,6 +32,16 @@ export default function CardP({ producto }) {
       },
     },
   });
+
+  if(!producto || !producto.fotoprinc){
+    return <p>Cargando</p>
+  }
+  const arrayReview = []
+  producto.reviews?.forEach(review => {
+    arrayReview.push(review.rating)
+  });
+  const suma = arrayReview.reduce((ac, nu)=> ac+nu, 0)
+  const calificacion = suma/arrayReview.length
 
   const FavoritoButton = () => {
     const [favorito, setFavorito] = useState(false);
@@ -58,7 +68,7 @@ export default function CardP({ producto }) {
     );
   };
   function handleClick(){ 
-    dispatch(getDetail(producto.id))
+    //dispatch(getDetail(producto.id))
     navigate(`/detailProducto/${producto.id}`)
    
   }
@@ -99,6 +109,7 @@ export default function CardP({ producto }) {
         }
         title={
           <>
+          
             <Typography
               sx={{
                 display: "flex",
@@ -113,6 +124,16 @@ export default function CardP({ producto }) {
             <Typography variant="h7" sx={{ color: "blue" }}>
               {producto.nombrecat}
             </Typography>
+            <Typography>
+            <Rating
+                name="read-only"
+                value={calificacion}
+                readOnly
+              />
+            </Typography>
+            
+            
+             
           </>
         }
         action={<FavoritoButton />}
@@ -125,6 +146,7 @@ export default function CardP({ producto }) {
           alignItems: "flex-start",
         }}
       >
+        
         <Typography sx={{ width: 200, h: 200, fontSize: 14 }}>
           {producto.descproducto}
         </Typography>

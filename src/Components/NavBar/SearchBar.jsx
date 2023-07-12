@@ -19,9 +19,9 @@ export default function SearchBar() {
     if(producto===""){
 
     }else{
-    dispatch(buscarProducto(1, producto))
+    //dispatch(buscarProducto(1, producto))
     navigate(`/busqueda/${producto}`)
-    dispatch(getDetail(1))
+    //dispatch(getDetail(1))
     }
   }
 
