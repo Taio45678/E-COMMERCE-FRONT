@@ -22,6 +22,7 @@ export function showMessage(message, url) {
 export default function Total({ productos, sumatotal, updateCarrito }) 
 {
  const dispatch = useDispatch();
+    const {isAuthenticated, loginWithRedirect} = useAuth0();
     const [mensaje, setMensaje] = useState(""); 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [urlPago, setUrlPago] = useState("");
@@ -33,8 +34,8 @@ export default function Total({ productos, sumatotal, updateCarrito })
    }, [productos, updateCarrito]);
 
     const handleCompra = async () => {
-
-    const loginuser = "claudiodavid339@gmail.com";
+    if(isAuthenticated){
+      const loginuser = "claudiodavid339@gmail.com";
     const hashvalidacionpago = "AUN_NO";
     //const valortotaloc = productos.Total;
     const valortotaloc = productos.reduce((total, producto) => total + producto.subtotalitem, 0);
@@ -59,6 +60,11 @@ export default function Total({ productos, sumatotal, updateCarrito })
       // dispatch(getAllCategorias());  
       /**limpieza de deploy  */    
     } catch (error) {     console.error(error);   }
+    } else {
+      loginWithRedirect();
+    }
+
+    
   };
   
   const reiniciaCarro = ()=> { 
@@ -71,6 +77,7 @@ export default function Total({ productos, sumatotal, updateCarrito })
   const limpiaPantalla = () => {  window.location.reload(true);  }   
   const closeModal = () => {  setModalIsOpen(false);  };
   return (
+    
     <div className={s.fondo}>
       <div className={s.titulo}>Sumatoria</div>
       <div className={s.total}>       
