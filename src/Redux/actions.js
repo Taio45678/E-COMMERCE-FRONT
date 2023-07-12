@@ -250,12 +250,9 @@ export function disableUser(usuarioId) {
   return async function () {
     try {
       console.log(usuarioId);
-      const result = await axios.patch(
-        `https://commerce-back-2025.up.railway.app/users/${usuarioId}/blocked `
+      const result = await axios.put(
+        `https://commerce-back-2025.up.railway.app/usuarios/${usuarioId}/isban `
       );
-      console.log(result);
-      alert(result);
-      //return dispatch({ type: CREATE_JUEGO, payload: info })
     } catch (error) {
       alert(error.message);
     }
