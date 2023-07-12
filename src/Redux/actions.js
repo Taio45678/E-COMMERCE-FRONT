@@ -93,6 +93,19 @@ export function addCarrito(producto) {
     payload: producto,
   };
 }
+
+export const updateCarrito = (id, cantidad, valorunit, subtotalitem) => {
+  return {
+    type: 'UPDATE_CARRITO',
+    payload: {
+      id,
+      cantidad, 
+      valorunit,         
+      subtotalitem
+    }
+  };
+ };
+
 export function obtenerCategoriaPorId(id) {
   return async function (dispatch) {
     const json = await axios(`/categorias/${id}`);
@@ -122,6 +135,17 @@ export function limpiarFiltroyBusqueda() {
     type: "LIMPIAR_TODO",
   };
 }
+
+ /**  LIMPIAR carrito DE LA PERSISTENCIA  */
+ export const limpiarCarrito = () => {
+  return {  type: "LIMPIAR_CARRITO" };
+ };
+
+ /** REINICIA STORE */
+export const reinicia_store = () => {
+  return {  type: "REINICIA_STORE"  }; 
+  };
+   
 
 // export const getAllUsuarios = (page, limit) => {
 //   return async (dispatch) => {

@@ -180,6 +180,44 @@ export default function rootReducer(state = initialState, { type, payload }) {
           ...state,
           allProducts: productosActualizados,
       };
+      case 'UPDATE_CARRITO':
+ const { id, cantidad, valorunit, subtotalitem } = payload;
+
+ const updatedCarrito = state.carrito.map((producto) => {
+   if (producto.id === id) {
+     return {
+       ...producto,
+       cantidad,  
+       valorunit,                        
+       subtotalitem
+     };
+   }
+   return producto; });
+
+   return {
+     ...state,
+     carrito: updatedCarrito
+   }; 
+
+ case "LIMPIAR_CARRITO":
+  return { ...initialState, };
+
+  case "REINICIA_STORE":
+   return {        
+     loggedUser:"claudiodavid339@gmail.com",
+     nombreCategoria: "",
+     allProducts: [],
+     allProductsAux: [],
+     details: [],
+     favoritos: [],
+     categorias: [],
+     carrito: [],
+     oc: {},
+     detalleoc: [],
+     paginas: 0,
+     busquedaProducto: [],
+     pagsBusqueda: 0                   
+   };
       
 
 
