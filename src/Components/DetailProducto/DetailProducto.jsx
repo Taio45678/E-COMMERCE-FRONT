@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import GalaxyNote from "../../Archivos pruebas/galaxy note 10.jpg";
+// import GalaxyNote from "../../Archivos pruebas/galaxy note 10.jpg";
 import s from "./DetailProducto.module.css";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
@@ -12,11 +12,10 @@ import Descripcion from "./Descripcion/Descripcion";
 import {
   getDetail,
   addCarrito,
-  obtenerCategoriaPorId,
   getAllProducts,
 } from "../../Redux/actions";
 import ReviewCard from "../Reviews/ReviewCard";
-import { TroubleshootRounded } from "@mui/icons-material";
+// import { TroubleshootRounded } from "@mui/icons-material";
 
 //Aquí se renderiza el detalle de cada producto
 
