@@ -8,7 +8,6 @@ import Home from "./Components/Home/Home";
 import HomeBusqueda from "./Components/HomeBusqueda/HomeBusqueda";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Footer from "./Components/Footer/Footer";
-import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Carrito from "./Components/Carrito/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
@@ -27,7 +26,7 @@ import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
 import axios from "axios";
-import ArrayObjetos from "./Helpers/ArrayObjetos";
+import ArrayObjetos from "./Helpers/arrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
@@ -36,9 +35,7 @@ import EditarProductoForm from "./Components/Admin/Publicaciones/EditarProductoF
 function App() {
   const navigate = useNavigate();
   //axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
-  axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado
-
-
+  axios.defaults.baseURL = "https://commerce-back-2025.up.railway.app/"; //Para trabajar con el deployado
 
   function onClick() {
     navigate("/home");
@@ -53,10 +50,9 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/formProducto" element={<FormProducto />} />
         <Route path="/detailProducto/:id" element={<DetailProducto />} />
-        <Route path="/contacto" element={<Contacto />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path="/favoritos" element={<Favoritos />} /> */}
         <Route path="/helper" element={<ArrayObjetos />}></Route>
         <Route path="*" element={<NotFound />} />{" "}
@@ -64,7 +60,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />}></Route>
         <Route path="/admin" element={<Admin />}>
           <Route path="publicaciones" element={<Publicaciones />} />
-          
+
           <Route path="ventas" element={<Ventas />} />
           <Route path="usuarios" element={<UsuariosAct />} />
           <Route path="baneados" element={<Baneados />} />
@@ -78,7 +74,7 @@ function App() {
         <Route path="/busqueda/:producto" element={<HomeBusqueda />} />
         <Route path="editar-producto/:id" element={<EditarProductoForm />} />
       </Routes>
-      
+
       <Footer />
     </div>
   );

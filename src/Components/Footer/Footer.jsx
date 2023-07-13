@@ -53,7 +53,7 @@ export default function Footer() {
             icon={<AlternateEmail />}
             value="contacto"
             component={Link}
-            href="/contacto"
+            href="allmarketpf@gmail.com"
             sx={{ mx: 1, }}
           />
         </BottomNavigation>

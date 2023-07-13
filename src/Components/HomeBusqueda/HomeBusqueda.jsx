@@ -11,17 +11,17 @@ import {
   FormControl,
   Select,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { createTheme,  } from "@mui/material/styles";
+// import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllCategorias,
   getAllProducts,
-  limpiarFiltroyBusqueda, getDetail
+  
 } from "../../Redux/actions";
 
 import CardP from "../Home/CardP";
-import { useParams, Link } from "react-router-dom";
+import { useParams,  } from "react-router-dom";
 
 
 
