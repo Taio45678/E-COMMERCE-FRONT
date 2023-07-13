@@ -14,8 +14,8 @@ import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
 import FormCrearUsuarioAdmin from "./Components/Admin/Usuarios/CrearUsuario/CrearUsuario";
 import Profile from "./Components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { log_in } from "./Redux/actions";
+import { useEffect, useState } from "react";
+import { log_in, usuarioId } from "./Redux/actions";
 // import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
@@ -31,6 +31,7 @@ import NotFound from "./Components/NotFound/NotFound"; // Importa el componente 
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import EditarProductoForm from "./Components/Admin/Publicaciones/EditarProductoForm";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const navigate = useNavigate();
@@ -40,6 +41,9 @@ function App() {
   function onClick() {
     navigate("/home");
   }
+
+  
+
 
   return (
     <div>

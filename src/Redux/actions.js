@@ -208,10 +208,12 @@ export const fetchUsuarios = () => {
   };
 };
 
-export function usuarioId(id) {
+export function usuarioId(sub) {
   return async function (dispatch) {
-    const json = await axios(`/usuarios/${id}`);
-    console.log(json.data);
+    const json = await axios(
+      `/usuarios/${sub}`
+    );
+    //console.log(json.data);
     return dispatch({
       type: "USUARIO_ID",
       payload: json.data,
@@ -243,6 +245,16 @@ export function editarProducto(id) {
       console.error(error);
     }
   };
+}
+
+export function actualizarUsuario(id, payload) {
+  return async function(dispatch){
+    const json = axios.put(`/usuarios/${id}/actualizar`, payload)
+    return dispatch({
+      type: 'ACTUALIZAR_USUARIO',
+      payload: json.data
+    })
+  }
 }
 export const deleteProdCarro = (productId) => {
   return {
