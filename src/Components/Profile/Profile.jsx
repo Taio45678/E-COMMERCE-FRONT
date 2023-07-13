@@ -9,7 +9,7 @@ import { usuarioId } from '../../Redux/actions';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  
   return (
     <div
       role="tabpanel"
@@ -41,6 +41,7 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
+
 
   const dispatch = useDispatch()
 
@@ -89,19 +90,24 @@ export default function VerticalTabs() {
             <Box className="nombreUsuario" sx={{ mb: 3 }} textAlign="center">
               <Avatar
                 src={user.picture}
-                alt=""
+                alt="https://static.vecteezy.com/system/resources/previews/007/409/979/non_2x/people-icon-design-avatar-icon-person-icons-people-icons-are-set-in-trendy-flat-style-user-icon-set-vector.jpg"
                 className="avatar"
                 sx={{ width: "90%", height: "90%", mt: 1, ml: 1 }}
               />
-              <Typography variant="h4" sx={{ mt: 2, }}>{usuario.nombre} </Typography>
-              <Typography variant="h5" sx={{ mt: 3, }}>Rol: {usuario.rol ? 'Admin' : 'usuario'} </Typography>
-        </Box>
-        <Tab label="Mis datos" {...a11yProps(1)} />
-        <Tab label="Mis compras" {...a11yProps(2)} />
-      </Tabs>
-      <Box sx={{ flex: 1, borderLeft: 1, borderColor: 'divider' }}>
-          
-        <Box>
+              <Typography variant="h4" sx={{ mt: 2 }}>
+                {user.given_name}
+              </Typography>
+              <Typography variant="h4">{user.family_name}</Typography>
+              <Typography variant="h5" sx={{ mt: 3 }}>
+                Rol: Usuario
+              </Typography>
+            </Box>
+            <Tab label="Mis datos" {...a11yProps(1)} />
+            <Tab label="Mis compras" {...a11yProps(2)} />
+          </Tabs>
+          <Box sx={{ flex: 1, borderLeft: 1, borderColor: "divider" }}>
+            <Box>
+
               <TabPanel value={value} index={1}>
                 <MisDatos />
               </TabPanel>

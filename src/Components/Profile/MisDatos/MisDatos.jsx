@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Typography, Button, Box, TextField, } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
 import { actualizarUsuario } from "../../../Redux/actions";
+
 
 
 export default function MisDatos() {
@@ -13,8 +14,12 @@ export default function MisDatos() {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
-
-  const usuario = useSelector((state) => state.usuarioDetail)
+  
+   const{user} = useAuth0();
+  const [password, setPassword] = useState('***********');
+  const [address, setAddress] = useState('Calle falsa 123');
+  const [phone, setPhone] = useState('1234567890');
+   const usuario = useSelector((state) => state.usuarioDetail)
   const id = usuario.id;
   
 
@@ -27,6 +32,8 @@ export default function MisDatos() {
   }
 
   const [datos, setDatos] = useState(initialState);
+  
+
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -109,6 +116,8 @@ export default function MisDatos() {
             type="text"
             variant="outlined"
             size="small"
+          defaultValue={user.name}
+
             sx={{ width: "400px"}}
             onChange={(e) => handleChange(e)}
             name="nombre"
@@ -125,7 +134,8 @@ export default function MisDatos() {
           <TextField
             variant="outlined"
             size="small"
-            defaultValue={usuario.email}
+          defaultValue={user.email}
+
             disabled
             sx={{ width: "400px", mt: 1, }}
           />

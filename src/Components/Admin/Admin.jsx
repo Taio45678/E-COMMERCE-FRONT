@@ -8,11 +8,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function Admin() {
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
-  
-  return (
-    <>
-    {isAuthenticated ? 
-    <div className={s.fondo}>
+  if(true){
+    return (
+      <div className={s.fondo}>
       <div className={s.navBar}>
         <div className={s.caja1}>
           <img
@@ -80,7 +78,10 @@ export default function Admin() {
         <Outlet />
       </div>
     </div>
-    : loginWithRedirect() }
-    </>
-  );
+    )
+  }
+  
+  loginWithRedirect() 
+   
+  
 }
