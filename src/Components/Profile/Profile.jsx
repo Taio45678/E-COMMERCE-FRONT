@@ -47,7 +47,7 @@ export default function VerticalTabs() {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
   const usuario = useSelector((state) => state.usuarioDetail)
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
