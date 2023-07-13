@@ -1,9 +1,11 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { Tabs, Tab, Typography, Box, Avatar } from "@mui/material";
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+import { Tabs, Tab, Typography, Box, Avatar, } from '@mui/material';
 import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { usuarioId } from '../../Redux/actions';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,13 +41,22 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
-  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
 
-  const [value, setValue] = React.useState(0);
+
+  const dispatch = useDispatch()
+
+  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
+  const usuario = useSelector((state) => state.usuarioDetail)
+
+  const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    dispatch(usuarioId(user.sub))
+  },[])
 
   return (
     <>
@@ -96,6 +107,7 @@ export default function VerticalTabs() {
           </Tabs>
           <Box sx={{ flex: 1, borderLeft: 1, borderColor: "divider" }}>
             <Box>
+
               <TabPanel value={value} index={1}>
                 <MisDatos />
               </TabPanel>
