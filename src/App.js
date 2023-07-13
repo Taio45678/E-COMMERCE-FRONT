@@ -20,32 +20,23 @@ import { log_in } from "./Redux/actions";
 // import Favoritos from "./Components/Favoritos/Favoritos";
 import { useLocation } from "react-router-dom";
 import Admin from "./Components/Admin/Admin";
-import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
+// import PerfilUsuario from "./Components/Admin/Usuarios/Perfil/Perfil";
 import Publicaciones from "./Components/Admin/Publicaciones/Publicaciones";
 import Ventas from "./Components/Admin/Ventas/Ventas";
 import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
 import axios from "axios";
-import ArrayObjetos from "./Helpers/arrayObjetos";
+import ArrayObjetos from "./Helpers/ArrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
-import Compras from "./Components/Profile/Compras/Compras";
-import Mis_Datos from "./Components/Profile/MisDatos/MisDatos";
+import EditarProductoForm from "./Components/Admin/Publicaciones/EditarProductoForm";
 
 function App() {
   const navigate = useNavigate();
-  axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
-  //axios.defaults.baseURL = 'https://commerce-back-2025.up.railway.app/' //Para trabajar con el deployado
-
-  const { isAuthenticated, user } = useAuth0();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      log_in(user);
-    }
-  }, []);
+  //axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
+  axios.defaults.baseURL = "https://commerce-back-2025.up.railway.app/"; //Para trabajar con el deployado
 
   function onClick() {
     navigate("/home");
@@ -74,6 +65,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />}></Route>
         <Route path="/admin" element={<Admin />}>
           <Route path="publicaciones" element={<Publicaciones />} />
+
           <Route path="ventas" element={<Ventas />} />
           <Route path="usuarios" element={<UsuariosAct />} />
           <Route path="baneados" element={<Baneados />} />
@@ -82,10 +74,12 @@ function App() {
             element={<FormCrearUsuarioAdmin />}
           />
           <Route path="mis-datos" element={<MisDatos />} />
-          <Route path="perfilUsuario/:id" element={<PerfilUsuario />} />
+          {/* <Route path="perfilUsuario/:id" element={<PerfilUsuario />} /> */}
         </Route>
         <Route path="/busqueda/:producto" element={<HomeBusqueda />} />
+        <Route path="editar-producto/:id" element={<EditarProductoForm />} />
       </Routes>
+
       <Footer />
     </div>
   );

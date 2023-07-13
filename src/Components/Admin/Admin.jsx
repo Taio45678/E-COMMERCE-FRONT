@@ -1,11 +1,17 @@
 import React from "react";
 import s from "./Admin.module.css";
 import { Link, Outlet } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //####################################
 
 export default function Admin() {
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  
   return (
+    <>
+    {isAuthenticated ? 
     <div className={s.fondo}>
       <div className={s.navBar}>
         <div className={s.caja1}>
@@ -65,5 +71,7 @@ export default function Admin() {
         <Outlet />
       </div>
     </div>
+    : loginWithRedirect() }
+    </>
   );
 }

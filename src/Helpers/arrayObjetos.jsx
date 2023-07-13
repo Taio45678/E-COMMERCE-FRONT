@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 
 export default function ArrayObjetos() {
+
+  const { allProducts} = useSelector((state)=>state)
 
   const arrayObjetos = [
     {
@@ -25,28 +28,6 @@ export default function ArrayObjetos() {
         disponibproducto: 1000,
         nombrecat:"Papelería"
     },
-    {
-      "nombreproducto": "Perrito negro",
-          "descproducto": "Perrito amigable y acompañante ",
-          "colorproducto": [
-            "negro"
-          ],
-          "fotoprinc": "https://www.pakainfo.com/wp-content/uploads/2021/09/image-url-for-testing.jpg",
-          "precioproducto": 9,
-          "disponibproducto": 1,
-    "nombrecat":"Animales"
-    },
-    {
-      "nombreproducto": "Decorador extraño",
-           "descproducto": "Decorador con forma extraña",
-           "colorproducto": [
-             "Unico"
-           ],
-           "fotoprinc": "https://www.pakainfo.com/wp-content/uploads/2021/09/test-image-online-300x148.jpg",
-           "precioproducto": 1,
-           "disponibproducto": 15,
-     "nombrecat":"Hogar"	
-     },
      {"nombreproducto": "TV Antiguo",
      "descproducto": "TV con diseño antiguo en blanco y negro",
      "colorproducto": [
@@ -144,7 +125,7 @@ export default function ArrayObjetos() {
       nombreproducto: "reloj antiguo",
       fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
       disponibproducto:155,
-      descproducto: "Telefono inteligente"
+      descproducto: "Reloj inteligente antiguo"
       ,precioproducto:11,
       colorproducto:["dorado"],
       nombrecat:"Hogar"
@@ -190,8 +171,34 @@ function handleClick(e){
   
 }
 
+function handleClickRevs(e){
+  const arrayRevs = []
+  for(let i= 1; i<15; i++){
+    for(let j= 1; j<5; j++){
+      var rating = Math.floor(Math.random()*5)+1
+      var description = "meh"
+      if(rating === 1) description = "Muy malo"
+      if(rating === 3) description = "Normal"
+      if(rating === 5) description = "Muy bueno "
+      var review = {
+        productoId: i,
+        usuarioId: j,
+        description: description,
+        rating: rating
+      }
+      axios.post("/review", review)
+      arrayRevs.push(review)
+    }
+  }
+  
+    alert(arrayRevs)
+}
+
   return (
     <div>
-      <button onClick={handleClick}>arrayObjetos</button></div>
+      <button onClick={handleClick}>arrayObjetos</button>
+      <button onClick={handleClickRevs}>Cargar reviews</button>
+      </div>
+
   )
 }
