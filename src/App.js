@@ -33,8 +33,34 @@ import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import EditarProductoForm from "./Components/Admin/Publicaciones/EditarProductoForm";
 import { useDispatch, useSelector } from "react-redux";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import {Button }from "@mui/material"
+
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+ 
+  const darkTheme = createTheme({
+    palette: {
+      backgroundColor:"#211d1d",
+      mode: "dark",
+    },
+  });
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light",
+    },
+  });
+
+  function enableDarkMode() {
+    setDarkMode(true);
+  }
+
+  function enableLightMode() {
+    setDarkMode(false);
+  }
   const navigate = useNavigate();
   //axios.defaults.baseURL = "http://localhost:3001/"; // para trabajar en local
      axios.defaults.baseURL = "https://commerce-back-2025.up.railway.app/"; //Para trabajar con el deployado
@@ -50,6 +76,28 @@ function App() {
 
   return (
     <div>
+        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+    <CssBaseline />
+    
+    <Button
+          onClick={enableDarkMode}
+          sx={{
+            backgroundColor: darkMode ? "#333" : "#fff",
+            color: darkMode ? "#fff" : "#333",
+            marginRight: "10px",
+            top: 30,
+          left: 1300,
+          }}
+        />
+      <Button
+          onClick={enableLightMode}
+          sx={{
+            position:"relative",
+            top:30,
+            backgroundColor: darkMode ? "#fff" : "#333",
+            color: darkMode ? "#333" : "#fff",
+          }}
+        />
       <NavBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -83,6 +131,7 @@ function App() {
       </Routes>
 
       <Footer />
+      </ThemeProvider>
     </div>
   );
 }
