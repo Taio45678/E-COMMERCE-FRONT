@@ -29,7 +29,6 @@ const initialState = {
   totalPages: 0,
   totalUsuarios: 0,
   usuariosHabilidatosAux: [],
-  usuariosDesabilitados: [],
   productosVentas: [],
   SumatoriaVentas: null,
   totalPagesVentas: 1,

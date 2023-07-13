@@ -190,7 +190,7 @@ export function usuarioId(id) {
     const json = await axios(
       `https://commerce-back-2025.up.railway.app/usuarios/${id}`
     );
-    //console.log(json.data);
+    console.log(json.data);
     return dispatch({
       type: "USUARIO_ID",
       payload: json.data,
@@ -229,7 +229,7 @@ export const fetchProductos = () => {
         const detalle = response.data.ocs.flatMap((obj) =>
           obj.detalleocs.map((e) => e)
         );
-        console.log(total);
+        //console.log(total);
         dispatch(fetchProductosSuccess(detalle));
         const sumValortotaloc = total.reduce(
           (sum, oc) => sum + oc.valortotaloc,
