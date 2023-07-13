@@ -14,7 +14,7 @@ export default function Footer() {
       left: 0,
       width: '100%',
       height: 150,
-      backgroundColor: '#ff8a65',
+      backgroundColor: '#aa453e',
       // Propiedades responsivas
       '@media (max-width: 600px)': {
         height: 100,
@@ -29,7 +29,7 @@ export default function Footer() {
             setValue(newValue);
           }}
           sx={{
-            backgroundColor: '#ff8a65',
+            backgroundColor: '#aa453e',
           }}
         >
           <BottomNavigationAction
@@ -54,7 +54,7 @@ export default function Footer() {
 
       <Grid
         container
-        bgcolor="#ff6e40"
+        bgcolor="#aa453e"
         justifyContent="center"
         bottom={0}
         left={0}
@@ -66,7 +66,7 @@ export default function Footer() {
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '40px',
+                fontSize: '60px',
               }}
             />
           </a>
@@ -78,7 +78,7 @@ export default function Footer() {
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '40px',
+                fontSize: '60px',
               }}
             />
           </a>
@@ -90,7 +90,7 @@ export default function Footer() {
                 p: 2,
                 mb: 1,
                 color: '#eeeeee',
-                fontSize: '40px',
+                fontSize: '60px',
               }}
             />
           </a>
