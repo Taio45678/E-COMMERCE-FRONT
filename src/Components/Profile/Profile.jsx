@@ -9,44 +9,18 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div className={s.fondo}>
-      <div className={s.navBar}>
-        <div className={s.caja1}>
-          <img
-            src="https://ionicframework.com/docs/img/demos/avatar.svg"
-            alt=""
-            className={s.imagen}
-          />
-          <h1>Nombre Apellido</h1>
-          <p>Rol: Administrador</p>
-        </div>
-        <div className={s.caja2}>
-          <Link
-            to="/profile/compras"
-            style={{
-              color: "white",
-              textDecoration: "none",
-              marginBottom: "20px",
-            }}
-          >
-            COMPRAS
-          </Link>
-
-          <Link
-            to="/profile/misDatos"
-            style={{
-              color: "white",
-              textDecoration: "none",
-              marginBottom: "20px",
-            }}
-          >
-            MIS DATOS
-          </Link>
-        </div>
-      </div>
-      <div className={s.content}>
-        <Outlet />
-      </div>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
     </div>
   );
 }

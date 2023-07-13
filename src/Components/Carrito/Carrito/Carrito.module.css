@@ -1,18 +1,22 @@
 .fondo {
   display: flex;
-  justify-content: center;
-  height: 580px;
-  padding-top: 15px;
+  justify-content:space-evenly;
+  height: 100%;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
+
 .caja {
   display: flex;
   justify-content: space-between;
   width: 62%;
+  height: auto;
 }
 .fondo2 {
   width: 62%;
-  height: 400px;
+  height: auto;
 }
+
 .titulo {
   background-color: rgb(78, 78, 78);
   display: flex;

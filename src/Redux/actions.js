@@ -43,8 +43,8 @@ export function getAllCategorias() {
 export function getDetail(id) {
   return async function (dispatch) {
     const json = await axios(
-      //https://commerce-back-2025.up.railway.app/producto/3
-      `/producto/${id}`
+      `https://commerce-back-2025.up.railway.app/`
+      // `/producto/${id}`
     );
     return dispatch({
       type: GET_DETAIL,
@@ -97,15 +97,15 @@ export function addCarrito(producto) {
 
 export const updateCarrito = (id, cantidad, valorunit, subtotalitem) => {
   return {
-    type: 'UPDATE_CARRITO',
+    type: "UPDATE_CARRITO",
     payload: {
       id,
-      cantidad, 
-      valorunit,         
-      subtotalitem
-    }
+      cantidad,
+      valorunit,
+      subtotalitem,
+    },
   };
- };
+};
 
 export function obtenerCategoriaPorId(id) {
   return async function (dispatch) {
@@ -137,16 +137,15 @@ export function limpiarFiltroyBusqueda() {
   };
 }
 
- /**  LIMPIAR carrito DE LA PERSISTENCIA  */
- export const limpiarCarrito = () => {
-  return {  type: "LIMPIAR_CARRITO" };
- };
+/**  LIMPIAR carrito DE LA PERSISTENCIA  */
+export const limpiarCarrito = () => {
+  return { type: "LIMPIAR_CARRITO" };
+};
 
- /** REINICIA STORE */
+/** REINICIA STORE */
 export const reinicia_store = () => {
-  return {  type: "REINICIA_STORE"  }; 
-  };
-   
+  return { type: "REINICIA_STORE" };
+};
 
 // export const getAllUsuarios = (page, limit) => {
 //   return async (dispatch) => {
@@ -196,11 +195,7 @@ export const fetchUsuarios = () => {
     dispatch(fetchUsuariosRequest());
     axios
       .get(
-<<<<<<< HEAD
         `https://commerce-back-2025.up.railway.app/usuarios?page=1&limit=100`
-=======
-        `/usuarios?page=${page}&limit=${limit}`
->>>>>>> 096c66dca618e1993b29d689adc1e01fbf5e9adb
       )
       .then((response) => {
         const usuarios = response.data.usuarios;
@@ -215,9 +210,7 @@ export const fetchUsuarios = () => {
 
 export function usuarioId(id) {
   return async function (dispatch) {
-    const json = await axios(
-      `/usuarios/${id}`
-    );
+    const json = await axios(`/usuarios/${id}`);
     console.log(json.data);
     return dispatch({
       type: "USUARIO_ID",
@@ -237,9 +230,7 @@ export function editarProducto(id) {
   return async function (dispatch) {
     try {
       // Realiza la solicitud para editar el producto en el backend
-      const response = await axios.put(
-        `/producto/${id}`
-      );
+      const response = await axios.put(`/producto/${id}`);
 
       // Si la solicitud es exitosa, despacha una acción para actualizar el estado en Redux
       if (response.status === 200) {
@@ -256,10 +247,10 @@ export function editarProducto(id) {
 export const deleteProdCarro = (productId) => {
   return {
     type: "DELETE_PRODCARRO",
-    payload: productId
+    payload: productId,
   };
- };
- 
+};
+
 //   ################### VENTAS ADMIN ######################
 
 export const fetchProductosSuccess = (productos) => {
