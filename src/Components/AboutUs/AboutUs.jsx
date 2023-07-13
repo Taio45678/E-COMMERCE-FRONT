@@ -23,12 +23,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/theinventor1" target="_blank">
+              <a href="https://github.com/theinventor1" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com" target="_blank">
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -46,12 +46,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/Maxi-95" target="_blank">
+              <a href="https://github.com/Maxi-95" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com/in/miguel-maximiliano-fonseca-20ab32234/" target="_blank">
+              <a href="https://www.linkedin.com/in/miguel-maximiliano-fonseca-20ab32234/" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -69,12 +69,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/Taio45678" target="_blank">
+              <a href="https://github.com/Taio45678" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com" target="_blank">
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -92,12 +92,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/caparada1366" target="_blank">
+              <a href="https://github.com/caparada1366" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com/in/camiloparadaruiz/" target="_blank">
+              <a href="https://www.linkedin.com/in/camiloparadaruiz/" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -115,12 +115,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/MEC-97" target="_blank">
+              <a href="https://github.com/MEC-97" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com" target="_blank">
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -138,12 +138,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/Akadus23" target="_blank">
+              <a href="https://github.com/Akadus23" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com" target="_blank">
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>
@@ -161,12 +161,12 @@ export default function AboutUs() {
               </a>
             </div>
             <div className={s.cajaIconos}>
-              <a href="https://github.com/dalegaz404" target="_blank">
+              <a href="https://github.com/dalegaz404" target="_blank" rel="noreferrer">
                 <div className={s.iconos1}>
                   <GitHubIcon></GitHubIcon>
                 </div>
               </a>
-              <a href="https://www.linkedin.com" target="_blank">
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
                 <div className={s.iconos2}>
                   <LinkedInIcon></LinkedInIcon>
                 </div>

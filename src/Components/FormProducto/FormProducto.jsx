@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Formik, FieldArray, Field } from "formik";
 import { TextField, Button, Grid, Input } from "@mui/material";
-import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
+import {  Image, } from "cloudinary-react";
 import { Cloudinary } from "@cloudinary/url-gen";
 import * as Yup from "yup";
 import axios from "axios";
