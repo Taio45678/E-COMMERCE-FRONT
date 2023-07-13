@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 export default function ArrayObjetos() {
 
@@ -125,7 +125,7 @@ export default function ArrayObjetos() {
       nombreproducto: "reloj antiguo",
       fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
       disponibproducto:155,
-      descproducto: "Telefono inteligente"
+      descproducto: "Reloj inteligente antiguo"
       ,precioproducto:11,
       colorproducto:["dorado"],
       nombrecat:"Hogar"

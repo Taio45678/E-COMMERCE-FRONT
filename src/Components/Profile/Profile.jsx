@@ -10,7 +10,6 @@ import { usuarioId } from '../../Redux/actions';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
-  
   return (
     <div
       role="tabpanel"
@@ -37,7 +36,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -60,39 +59,39 @@ export default function VerticalTabs() {
 
   return (
     <>
-    { isAuthenticated ? 
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        height: '100%',
-        mt: 10,
-        mb: 10,
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        width: '80%',
-        marginLeft: '5%',
-      }}
-    >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{
-          borderRight: 1,
-          borderColor: 'divider',
-          flex: '0 0 auto',
-          width: '200px',
-        }}
-      >
-        <Box className="nombreUsuario" sx={{ mb: 3,}} textAlign="center">
+      {isAuthenticated ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            height: "100%",
+            mt: 10,
+            mb: 10,
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+            width: "80%",
+            marginLeft: "5%",
+          }}
+        >
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs example"
+            sx={{
+              borderRight: 1,
+              borderColor: "divider",
+              flex: "0 0 auto",
+              width: "200px",
+            }}
+          >
+            <Box className="nombreUsuario" sx={{ mb: 3 }} textAlign="center">
               <Avatar
                 src={user.picture}
                 alt=""
                 className="avatar"
-                sx={{ width: "90%", height:"90%", mt: 1, ml: 1,}}
+                sx={{ width: "90%", height: "90%", mt: 1, ml: 1 }}
               />
               <Typography variant="h4" sx={{ mt: 2, }}>{usuario.nombre} </Typography>
               <Typography variant="h5" sx={{ mt: 3, }}>Rol: {usuario.rol ? 'Admin' : 'usuario'} </Typography>
@@ -109,11 +108,12 @@ export default function VerticalTabs() {
               <TabPanel value={value} index={2}>
                 <Compras />
               </TabPanel>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-
-    </Box>
-    : loginWithRedirect() }
+      ) : (
+        loginWithRedirect()
+      )}
     </>
   );
 }
