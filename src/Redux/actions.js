@@ -42,9 +42,8 @@ export function getAllCategorias() {
 
 export function getDetail(id) {
   return async function (dispatch) {
-    const json = await axios(
-      `https://commerce-back-2025.up.railway.app/`
-      // `/producto/${id}`
+    const json = await axios(      
+      `/producto/${id}`
     );
     return dispatch({
       type: GET_DETAIL,

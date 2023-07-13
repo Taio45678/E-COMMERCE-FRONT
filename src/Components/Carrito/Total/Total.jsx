@@ -1,37 +1,23 @@
-import React, { useEffect, useState } from "react";
-import s from "./Total.module.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import { initMercadoPago } from '@mercadopago/sdk-react'
+import { useState, useEffect } from 'react';
+import { useAuth0} from '@auth0/auth0-react';
+import { initMercadoPago } from '@mercadopago/sdk-react';
 import { useDispatch } from 'react-redux';
-import { limpiarCarrito,reinicia_store } from '../../../Redux/actions.js'; 
+import { limpiarCarrito, reinicia_store } from '../../../Redux/actions.js';
 import { getAllCategorias, getAllProducts } from '../../../Redux/actions';
-import axios from "axios";
-import Modal from "react-modal";
+import axios from 'axios';
+import s from "./Total.module.css";
 
 initMercadoPago('TEST-6150df70-606f-4169-971b-dff2a6c919b6');
-Modal.setAppElement("#root");
-export function showMessage(message, url) {
- const link = <a href={url}>{url}</a>;
- alert(
-   <div>
-     <p>{message} este el mensaje</p>
-     {link}<p>este el liunk </p>
-   </div>
- );
-}
-export default function Total({ productos, sumatotal, updateCarrito }) 
-{
- const dispatch = useDispatch();
-    const {isAuthenticated, loginWithRedirect} = useAuth0();
-    const [mensaje, setMensaje] = useState(""); 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [urlPago, setUrlPago] = useState("");
 
-    useEffect(() => {
-     // Calcular el nuevo total
-     const nuevoTotal = productos.reduce((total, producto) => total + (producto.subtotalitem), 0);
-     updateCarrito(nuevoTotal);
-   }, [productos, updateCarrito]);
+export default function Total({ productos, sumatotal, updateCarrito }) {
+  const dispatch = useDispatch();
+  const [urlPago, setUrlPago] = useState('');
+  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
+
+  useEffect(() => {
+    const nuevoTotal = productos.reduce((total, producto) => total + producto.subtotalitem, 0);
+    updateCarrito(nuevoTotal);
+  }, [productos, updateCarrito]);
 
   const handleCompra = async () => {
     if (isAuthenticated) {
@@ -71,26 +57,24 @@ export default function Total({ productos, sumatotal, updateCarrito })
       // Si el usuario no está autenticado, redirigir al formulario de inicio de sesión de Auth0
       loginWithRedirect();
     }
-
-    
   };
-  
-  const reiniciaCarro = ()=> { 
-     dispatch(reinicia_store());
 
-     dispatch(getAllProducts(1));
-     dispatch(getAllCategorias());
-     window.location.reload(true);
-  }
+  const reiniciaCarro = () => {
+    dispatch(reinicia_store());
+    window.location.reload(true);
+  };
 
+  const redirectToProfile = () => {
+    window.location.href = '/profile';
+  };
 
   return (
     
     <div className={s.fondo}>
       <div className={s.titulo}>Sumatoria</div>
-      <div className={s.total}>       
+      <div className={s.total}>
         <h1>TOTAL</h1>
-        <p>${sumatotal ?? 0}</p> {/* Usar el operador ?? para manejar valores undefined o NaN */}
+        <p>${sumatotal ?? 0}</p>
       </div>
       <button className={s.button} onClick={handleCompra}>
         <span>COMPRAR</span>
@@ -98,17 +82,10 @@ export default function Total({ productos, sumatotal, updateCarrito })
       <button className={s.button} onClick={reiniciaCarro}>
         <span>LIMPIA CARRO</span>
       </button>
-      {/* <button className={s.button} onClick={limpiaPantalla}>
-        <span>LIMPIA PANTALLA</span>
-      </button>     */}
-      <Modal  isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="URL de Pago" >
-        <h2>Pago realizado exitosamente</h2>
-        <p>Haz clic en el enlace para pagar:</p>
-        <a href={urlPago}>{urlPago}</a>
-        <button onClick={closeModal}>Cerrar</button>        
-      </Modal>
+ 
+      <button className={s.button} onClick={redirectToProfile}>
+        <span>Ir a Perfil</span>
+      </button>
     </div>
   );
 }

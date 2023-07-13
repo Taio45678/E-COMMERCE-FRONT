@@ -1,12 +1,12 @@
 import React from "react";
 import { Typography, Button, Box, TextField, } from '@mui/material';
 import { useState } from 'react';
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function MisDatos() {
 
   const [isEditing, setIsEditing] = useState(false);
-
+  const{user} = useAuth0();
   const [password, setPassword] = useState('***********');
   const [address, setAddress] = useState('Calle falsa 123');
   const [phone, setPhone] = useState('1234567890');
@@ -65,7 +65,7 @@ export default function MisDatos() {
           <TextField
             variant="outlined"
             size="small"
-            defaultValue="Nombre Apellido"
+            defaultValue={user.name}
             sx={{ width: "400px"}}
             disabled
           />
@@ -79,7 +79,7 @@ export default function MisDatos() {
           <TextField
             variant="outlined"
             size="small"
-            defaultValue="nombre123@gmail.com"
+            defaultValue={user.email}
             disabled
             sx={{ width: "400px", mt: 1, }}
           />

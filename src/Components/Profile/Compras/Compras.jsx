@@ -2,8 +2,10 @@
 //////////////////////////////////////////////////////
 
 
-import React, { useState, } from "react";
+import React, { useEffect, useState, } from "react";
 // import PropTypes from "prop-types";
+import axios from 'axios'
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Table,
   TableBody,
@@ -18,14 +20,9 @@ import {
   Link,
   Button,
 } from "@mui/material";
+import { CompareArrowsOutlined } from "@mui/icons-material";
 
 const headCells = [
-    {
-        id: "Producto",
-        numeric: false,
-        disablePadding: true,
-        label: "Producto",
-    },
     {
         id: "Nombre",
         numeric: true,
@@ -49,6 +46,12 @@ const headCells = [
       numeric: true,
       disablePadding: false,
       label: "Compra",
+    },
+    {
+      id: "Subtotal",
+      numeric: false,
+      disablePadding: true,
+      label: "Subtotal",
     },
     {
       id: "Reseña",
@@ -207,9 +210,45 @@ export default function Compras() {
     const [page, setPage] = useState(0);
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const {user} = useAuth0()
+    const [compras, setCompras] = useState([])
+        
+    async function traerCompras() {
+      try{
+      const response = await axios.get(`/ocs/${user.email}`)
+      const respones = response.data
+      
+        console.log(respones)
 
-    const [user, setUser] = useState('usuario');
+        const nuevasCompras = []
+      respones.forEach(oc => {
+        oc.detalleocs?.forEach(prod =>{
+          const compra = {
+            name: prod.nombreproducto,
+            imagen: "hola",
+            cantidad: prod.cant,
+            subtotal: prod.subtotal,
+            precio: prod.valorunitario,
+            compra: oc.estadooc
+          }
+          nuevasCompras.push(compra)
+        })
+      });
+      setCompras(nuevasCompras)
+    }catch(err){
+        console.log(err.message)
+      }
+    }
+    useEffect(()=>{
+      traerCompras();
+    },[])
+    console.log(compras)
     const [product, setProduct] = useState('producto');
+
+    if(compras.length === 0){
+      return <p>Cargando info</p>
+    }
+  
 
     const handleButtonClick = () => {
         // Aquí puedes agregar la lógica para obtener el usuario registrado y el producto actual
@@ -287,7 +326,7 @@ export default function Compras() {
                 </TableHead>
                 
                 <TableBody>
-                    {rows
+                    {compras
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row) => (
                         <TableRow
@@ -298,13 +337,12 @@ export default function Compras() {
                             tabIndex={-1}
                             sx={{ cursor: "pointer" }}
                         >
-                            <TableCell padding="checkbox" >
-                            <img src={row.imagen} alt="Miniatura" width={50} height={50} sx={{ marginLeft: "20px" }}/>
-                            </TableCell>
-
+                            
+                            
                             <TableCell align="right">{row.name}</TableCell>
                             <TableCell align="right">{row.cantidad}</TableCell>
                             <TableCell align="right">{row.precio}</TableCell>
+                            <TableCell align="right">{row.subtotal}</TableCell>
                             <TableCell align="right">{row.compra}</TableCell>
                             <TableCell align="right">
                             <IconButton component={Link} to="/reviews" aria-label="Calificar">
@@ -328,13 +366,13 @@ export default function Compras() {
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={rows.length}
+                count={compras.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 nextIconButtonProps={{
-                    disabled: (page + 1) * rowsPerPage >= rows.length,
+                    disabled: (page + 1) * rowsPerPage >= compras.length,
                 }}
                 backIconButtonProps={{
                     disabled: page === 0,
