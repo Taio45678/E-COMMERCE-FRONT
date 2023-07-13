@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Button, Container, CardContent, CardHeader, Link, Typography, Avatar, Grid, Card, CardActions, IconButton, OutlinedInput, InputLabel, MenuItem, FormControl, FormControlLabel, Checkbox, Select, Chip, useTheme, Stack } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Button, Container, OutlinedInput, InputLabel, MenuItem, FormControl, Select, } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
+// import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import {useSelector, useDispatch} from 'react-redux'
 import { getAllProducts, limpiarFiltroyBusqueda } from '../../Redux/actions';
 

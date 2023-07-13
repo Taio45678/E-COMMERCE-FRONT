@@ -8,7 +8,6 @@ import Home from "./Components/Home/Home";
 import HomeBusqueda from "./Components/HomeBusqueda/HomeBusqueda";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Footer from "./Components/Footer/Footer";
-import Contacto from "./Components/Contacto/Contacto";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Carrito from "./Components/Carrito/Carrito/Carrito";
 import FormCrearUsuario from "./Components/FormCrearUsuario/FormCrearUsuario";
@@ -27,7 +26,7 @@ import MisDatos from "./Components/Admin/MisDatos/MisDatos";
 import UsuariosAct from "./Components/Admin/Usuarios/UsuariosAct";
 import Baneados from "./Components/Admin/Usuarios/Baneados/Baneados";
 import axios from "axios";
-import ArrayObjetos from "./Helpers/ArrayObjetos";
+import ArrayObjetos from "./Helpers/arrayObjetos";
 import NotFound from "./Components/NotFound/NotFound"; // Importa el componente NotFound (puedes crearlo tú mismo)
 import Reviews from "./Components/Reviews/Reviews";
 import LandingPage from "./Components/LandingPage/LandingPage";
@@ -53,7 +52,6 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/formProducto" element={<FormProducto />} />
         <Route path="/detailProducto/:id" element={<DetailProducto />} />
-        <Route path="/contacto" element={<Contacto />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/formCrearUsuario" element={<FormCrearUsuario />} />
         <Route path="/profile" element={<Profile />} />

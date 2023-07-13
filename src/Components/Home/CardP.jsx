@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  
   CardContent,
   CardHeader,
   Typography,
   Avatar,
   Card,
   CardActions,
-  IconButton,
-  Rating, 
+  Rating,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Favorite, FavoriteBorder} from "@mui/icons-material";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts, getDetail} from "../../Redux/actions";
-import { addFavorites, removeFavorites } from "../../Redux/actions";
-import { Link, useNavigate } from "react-router-dom";
+import { createTheme, } from "@mui/material/styles";
+import { useDispatch } from "react-redux";
+// import { getAllProducts, getDetail } from "../../Redux/actions";
+import { useNavigate } from "react-router-dom";
 
 export default function CardP({ producto }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  //awdkawopdkopawkpdokawpokdpoawk
+  const navigate = useNavigate();
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -33,48 +28,22 @@ export default function CardP({ producto }) {
     },
   });
 
-  if(!producto || !producto.fotoprinc){
-    return <p>Cargando</p>
+  if (!producto || !producto.fotoprinc) {
+    return <p>Cargando</p>;
   }
-  const arrayReview = []
-  producto.reviews?.forEach(review => {
-    arrayReview.push(review.rating)
+
+  const arrayReview = [];
+  producto.reviews?.forEach((review) => {
+    arrayReview.push(review.rating);
   });
-  const suma = arrayReview.reduce((ac, nu)=> ac+nu, 0)
-  const calificacion = suma/arrayReview.length
+  const suma = arrayReview.reduce((ac, nu) => ac + nu, 0);
+  const calificacion = suma / arrayReview.length;
 
-  const FavoritoButton = () => {
-    const [favorito, setFavorito] = useState(false);
-
-    const toggleFavorito = () => {
-      setFavorito(!favorito);
-      if (favorito === true) dispatch(addFavorites(producto));
-      if (favorito === false) dispatch(removeFavorites(producto));
-    };
-
-   
-    return (
-      <IconButton onClick={toggleFavorito}>
-        <ThemeProvider
-          theme={
-            favorito
-              ? createTheme({ palette: { primary: { main: "#ff0000" } } })
-              : theme
-          }
-        >
-          {favorito ? <Favorite color="primary" /> : <FavoriteBorder />}
-        </ThemeProvider>
-      </IconButton>
-    );
-  };
-  function handleClick(){ 
-    //dispatch(getDetail(producto.id))
-    navigate(`/detailProducto/${producto.id}`)
-   
+  function handleClick() {
+    navigate(`/detailProducto/${producto.id}`);
   }
 
   return (
-    
     <Card
       sx={{
         maxWidth: "100%",
@@ -85,7 +54,7 @@ export default function CardP({ producto }) {
         transition: "transform 0.2s",
         "&:hover": {
           transform: "scale(1.05)",
-          cursor: 'pointer'
+          cursor: "pointer",
         },
       }}
       onClick={handleClick}
@@ -109,7 +78,6 @@ export default function CardP({ producto }) {
         }
         title={
           <>
-          
             <Typography
               sx={{
                 display: "flex",
@@ -125,18 +93,10 @@ export default function CardP({ producto }) {
               {producto.nombrecat}
             </Typography>
             <Typography>
-            <Rating
-                name="read-only"
-                value={calificacion}
-                readOnly
-              />
+              <Rating name="read-only" value={calificacion} readOnly />
             </Typography>
-            
-            
-             
           </>
         }
-        action={<FavoritoButton />}
       />
       <CardContent
         sx={{
@@ -146,7 +106,6 @@ export default function CardP({ producto }) {
           alignItems: "flex-start",
         }}
       >
-        
         <Typography sx={{ width: 200, h: 200, fontSize: 14 }}>
           {producto.descproducto}
         </Typography>
@@ -181,6 +140,5 @@ export default function CardP({ producto }) {
         </Typography>
       </CardActions>
     </Card>
-    
   );
 }
