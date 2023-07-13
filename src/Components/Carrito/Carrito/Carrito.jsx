@@ -41,37 +41,37 @@ const Carrito = () => {
     setSumaTotal(sum);
    };
 
-  return (
-    <div>
-    <div className={s.fondo}>
-      <div className={s.caja}>
-        <div className={s.fondo2}>
-          <div className={s.titulo}>
-            <h1>Carrito</h1>
+    return (
+      <div>
+      <div className={s.fondo}>
+        <div className={s.caja}>
+          <div className={s.fondo2}>
+            <div className={s.titulo}>
+              <h1>Carrito</h1>
+            </div>
+            {  productos.length === 0 ? (
+              <Mensaje></Mensaje>
+                ) : (
+                  productos?.map((producto) => (
+                  <Seleccion
+                    key={producto.id}
+                    pokes={producto}
+                    updateQuantity={updateQuantity}
+                    deleteProduct={deleteProduct}
+                    valorunitario={producto.valorunit}             
+                    />
+                  ))
+                ) }         
+          <div className={s.subtotalTotal}>
+            TotalTabla: ${sumaTotal}
           </div>
-          {  productos.length === 0 ? (
-            <Mensaje></Mensaje>
-              ) : (
-                productos?.map((producto) => (
-                 <Seleccion
-                   key={producto.id}
-                   pokes={producto}
-                   updateQuantity={updateQuantity}
-                   deleteProduct={deleteProduct}
-                   valorunitario={producto.valorunit}             
-                  />
-                ))
-              ) }         
-        <div className={s.subtotalTotal}>
-          TotalTabla: ${sumaTotal}
+          </div>    
+          <Total productos={productos} sumatotal={sumaTotal} updateCarrito={updateCarrito} />            
         </div>
-        </div>    
-        <Total productos={productos} sumatotal={sumaTotal} updateCarrito={updateCarrito} />            
       </div>
+      <div></div>
     </div>
-    <div></div>
-  </div>
-);
+  );
 };
 
 export default Carrito;

@@ -1,65 +1,50 @@
 import React from "react";
 import s from "./MisDatos.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios'
 
 // ########## Aqui sera el apartado de Datos del Usuario ##########
 export default function MisDatos() {
+
+  const {user} = useAuth0()
+  //const [idUsuario, setIdUsuario] = (0)
+  var rol = ""
+  async function traerData() {
+    try{
+  const resUsuario = await axios.get(`/usuarios/${user.sub}`)
+ // setIdUsuario(resUsuario.data.id)
+  if(resUsuario.data.rol === true ) rol = "Administrador"
+  if(resUsuario.data.rol === false ) rol = "usuario"
+}catch(err){
+  alert(err.message)
+}
+}
+
+
   return (
     <div className={s.cajaInterna2}>
       <h1>Datos de cuenta</h1>
-      <div className={s.datosC}>
-        <div className={s.dato1a}>
-          <h2>
-            Usuario
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>Nombre Apellido</p>
-        </div>
-        <div className={s.dato1a}>
-          <h2>
-            Email
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>nombre123@gmail.com</p>
-        </div>
-      </div>
-      <h1>Datos personales</h1>
       <div className={s.datosP}>
         <div className={s.dato1a}>
-          <h2>
-            Nombre y Apellido{" "}
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
+          <h2>Nombre y Apellido </h2>
 
-          <p>Nombre Completo</p>
+          <p>{user.name}</p>
         </div>
         <div className={s.dato1a}>
-          <h2>
-            Edad
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>27</p>
+          <h2>Usuario</h2>
+          <p>{user.email}</p>
         </div>
+
         <div className={s.dato1a}>
-          <h2>
-            Direccion
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>callefalsa 123</p>
+          <h2>Id</h2>
+          <p>5</p>
         </div>
+
         <div className={s.dato1a}>
-          <h2>
-            Telefono
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>123456789</p>
+          <h2>Rol</h2>
+          <p>{rol}</p>
         </div>
-        <div className={s.dato1a}>
-          <h2>
-            Contraseña
-            <button style={{ color: "red", marginLeft: "30px" }}>editar</button>
-          </h2>
-          <p>***********</p>
-        </div>
+     
       </div>
     </div>
   );

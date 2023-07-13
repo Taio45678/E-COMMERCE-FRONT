@@ -11,15 +11,15 @@ import {
   FormControl,
   Select,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { createTheme, } from "@mui/material/styles";
+// import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllCategorias,
   getAllProducts,
-  limpiarFiltroyBusqueda, getDetail
+  
 } from "../../Redux/actions";
-import ContainerFiltros from "./ContainerFiltros";
+// import ContainerFiltros from "./ContainerFiltros";
 import CardP from "./CardP";
 import { useParams } from "react-router-dom";
 
