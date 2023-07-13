@@ -14,8 +14,8 @@ export function showMessage(message, url) {
  const link = <a href={url}>{url}</a>;
  alert(
    <div>
-     <p>{message}</p>
-     {link}
+     <p>{message} este el mensaje</p>
+     {link}<p>este el liunk </p>
    </div>
  );
 }
@@ -77,6 +77,7 @@ export default function Total({ productos, sumatotal, updateCarrito })
 
   const limpiaPantalla = () => {  window.location.reload(true);  }   
   const closeModal = () => {  setModalIsOpen(false);  };
+
   return (
     
     <div className={s.fondo}>
