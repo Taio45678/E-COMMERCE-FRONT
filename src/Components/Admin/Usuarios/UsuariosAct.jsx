@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 //import { setUsuarioDetail } from "../../../Redux/actions";
 import { Button, Typography, Box, Pagination } from "@mui/material";
-import { disableUser, fetchUsuarios } from "../../../Redux/actions";
+import { fetchUsuarios } from "../../../Redux/actions";
 
 // ######################################
 
@@ -15,10 +15,10 @@ export default function UsuariosAct() {
   const totalPages = useSelector((state) => state.totalPages);
   //const [reloadPage, setReloadPage] = React.useState(false);
 
-  const disableUserHandler = (userId) => {
-    console.log(userId);
-    dispatch(disableUser(userId));
-  };
+  // const disableUserHandler = (userId) => {
+  //   console.log(userId);
+  //   dispatch(disableUser(userId));
+  // };
 
   useEffect(() => {
     dispatch(fetchUsuarios(1, 10));
@@ -28,7 +28,7 @@ export default function UsuariosAct() {
     <Box className={s.fondo}>
       <Box className={s.cabezera}>
         <Typography variant="h6">Usuarios Habilitados</Typography>
-        <Link to={"/admin/crearUsuariosAdmin"}>
+        {/* <Link to={"/admin/crearUsuariosAdmin"}>
           <Button
             style={{
               borderRadius: "5px",
@@ -38,7 +38,7 @@ export default function UsuariosAct() {
           >
             Crear nuevo
           </Button>
-        </Link>
+        </Link> */}
       </Box>
       <Box className={s.barra}>
         <Typography className={s.barraimagen}>Imagen</Typography>
@@ -61,9 +61,9 @@ export default function UsuariosAct() {
               {usuario.isBan === false ? "Habilitado" : "Deshabilitado"}
             </Typography>
             <Box className={s.accion}>
-              <Button onClick={() => disableUserHandler(usuario.id)}>
+              {/* <Button onClick={() => disableUserHandler(usuario.id)}>
                 cambiar estado
-              </Button>
+              </Button> */}
               <Link
                 to={`/admin/perfilUsuario/${usuario.id}`}
                 className={s.accion}
