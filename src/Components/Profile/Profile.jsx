@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs, Tab, Typography, Box, Avatar, } from '@mui/material';
 import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -39,6 +40,9 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -46,6 +50,8 @@ export default function VerticalTabs() {
   };
 
   return (
+    <>
+    { isAuthenticated ? 
     <Box
       sx={{
         display: 'flex',
@@ -99,5 +105,7 @@ export default function VerticalTabs() {
       </Box>
 
     </Box>
+    : loginWithRedirect() }
+    </>
   );
 }

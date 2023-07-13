@@ -249,3 +249,9 @@ export function editarProducto(id) {
     }
   };
 }
+export const deleteProdCarro = (productId) => {
+  return {
+    type: "DELETE_PRODCARRO",
+    payload: productId
+  };
+ };

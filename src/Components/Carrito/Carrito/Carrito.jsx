@@ -25,7 +25,7 @@ const Carrito = () => {
       return producto;
     });
     setProductos(updatedProducts);
-    updateSumaTotal(updatedProducts);     ///va a ser indefinido : CAMILO
+    updateSumaTotal(updatedProducts);     
   };
 
   const deleteProduct = (id) => {
