@@ -1,9 +1,11 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab, Typography, Box, Avatar, } from '@mui/material';
 import Compras from "./Compras/Compras";
 import MisDatos from "./MisDatos/MisDatos";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { usuarioId } from '../../Redux/actions';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,13 +43,20 @@ function a11yProps(index) {
 
 export default function VerticalTabs() {
 
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const dispatch = useDispatch()
+
+  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
+  const usuario = useSelector((state) => state.usuarioDetail)
 
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    dispatch(usuarioId(user.sub))
+  },[])
 
   return (
     <>
@@ -80,14 +89,13 @@ export default function VerticalTabs() {
       >
         <Box className="nombreUsuario" sx={{ mb: 3,}} textAlign="center">
               <Avatar
-                src="https://static.vecteezy.com/system/resources/previews/007/409/979/non_2x/people-icon-design-avatar-icon-person-icons-people-icons-are-set-in-trendy-flat-style-user-icon-set-vector.jpg"
+                src={user.picture}
                 alt=""
                 className="avatar"
                 sx={{ width: "90%", height:"90%", mt: 1, ml: 1,}}
               />
-              <Typography variant="h4" sx={{ mt: 2, }}>Nombre</Typography>
-              <Typography variant="h4">Apellido</Typography>
-              <Typography variant="h5" sx={{ mt: 3, }}>Rol: Usuario</Typography>
+              <Typography variant="h4" sx={{ mt: 2, }}>{usuario.nombre} </Typography>
+              <Typography variant="h5" sx={{ mt: 3, }}>Rol: {usuario.rol ? 'Admin' : 'usuario'} </Typography>
         </Box>
         <Tab label="Mis datos" {...a11yProps(1)} />
         <Tab label="Mis compras" {...a11yProps(2)} />

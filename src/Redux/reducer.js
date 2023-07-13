@@ -161,6 +161,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         usuarioDetail: payload,
       };
+    case 'ACTUALIZAR_USUARIO':
+      return {
+        ...state
+      }
     case CLEAR_USUARIO_DETAIL:
       return {
         ...state,

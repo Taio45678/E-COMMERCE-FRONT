@@ -209,10 +209,10 @@ export const fetchUsuarios = (page, limit) => {
   };
 };
 
-export function usuarioId(id) {
+export function usuarioId(sub) {
   return async function (dispatch) {
     const json = await axios(
-      `/usuarios/${id}`
+      `/usuarios/${sub}`
     );
     //console.log(json.data);
     return dispatch({
@@ -248,4 +248,14 @@ export function editarProducto(id) {
       console.error(error);
     }
   };
+}
+
+export function actualizarUsuario(id, payload) {
+  return async function(dispatch){
+    const json = axios.put(`/usuarios/${id}/actualizar`, payload)
+    return dispatch({
+      type: 'ACTUALIZAR_USUARIO',
+      payload: json.data
+    })
+  }
 }
