@@ -41,10 +41,10 @@ export default function NavBar() {
 
   return (
     <AppBar
-      position="static"
-      className="navbar-container"
-      sx={{ backgroundColor: "#f44336", height: matches ? 120 : 180 }}
-    >
+    position="static"
+    className="navbar-container"
+    sx={{ backgroundColor: "#aa453e", height: matches ? 120 : 180,  }}
+  >
       <Toolbar sx={{ mt: matches ? 2 : 3, ml: 5 }}>
         <Box
           sx={{

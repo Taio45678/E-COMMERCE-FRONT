@@ -65,12 +65,14 @@ const HomeBusqueda = () => {
     return <p>Cargando</p>
   }
 
+  
   const productos2 = allProducts;
 
-   if(productos2.length === 0 ){
+    if(productos2.length === 0 ){
     return <h1>Ups no se encontraron resultados</h1>
   }
   
+
   const arrayCats = () => {
     var array = [];
     categorias.forEach((cate) => {
