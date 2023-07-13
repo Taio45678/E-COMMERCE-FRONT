@@ -1,13 +1,15 @@
 import axios from 'axios'
 import React from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+
 
 export default function ArrayObjetos() {
 
   const { allProducts} = useSelector((state)=>state)
 
   const arrayObjetos = [
-   {    nombreproducto: "Boligrafos",
+     {    nombreproducto: "Boligrafos",
+
         descproducto: "Bolígrafos de varios colores para que puedas escribir todo lo que quieras ",
         colorproducto: [
           "Rojo",
@@ -19,6 +21,7 @@ export default function ArrayObjetos() {
         disponibproducto: 1000,
         nombrecat:"Papelería"
     },
+
      {"nombreproducto": "TV Antiguo",
      "descproducto": "TV con diseño antiguo en blanco y negro",
      "colorproducto": [
@@ -48,6 +51,7 @@ export default function ArrayObjetos() {
           "precioproducto": 7,
           "disponibproducto": 100,
     "nombrecat":"Alimentos"},
+
     {"nombreproducto": "Cerezas premium",
           "descproducto": "cerezas buenas para comer ",
           "colorproducto": [
@@ -79,7 +83,8 @@ export default function ArrayObjetos() {
       nombreproducto: "reloj antiguo",
       fotoprinc:"https://cdn.pixabay.com/photo/2016/12/08/11/50/time-1891565_640.png",
       disponibproducto:155,
-      descproducto: "Reloj inteligente antiguo"
+              descproducto: "Reloj inteligente antiguo"
+
       ,precioproducto:11,
       colorproducto:["dorado"],
       nombrecat:"Hogar"
@@ -115,7 +120,7 @@ export default function ArrayObjetos() {
           "precioproducto": 19,
           "disponibproducto": 40,
     "nombrecat":"Cosmeticos"},
-    {
+         {
   
       "nombreproducto": "Camiseta de algodón",
       "descproducto": "Camiseta básica de algodón para uso diario de altísima calidad",
@@ -658,6 +663,7 @@ export default function ArrayObjetos() {
       "disponibproducto": 90,
       "nombrecat": "papelería"
     }
+
         ]
     
 
@@ -672,6 +678,7 @@ function handleClickRevs(e){
   const arrayRevs = []
   for(let i= 1; i<15; i++){
     for(let j= 1; j<5; j++){
+
       var rating = Math.floor(Math.random()*5)+1
       var description = "meh"
       if(rating === 1) description = "Muy malo"
